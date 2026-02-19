@@ -804,6 +804,21 @@ jQuery(function () {
     city: 12,
     end: 13
   };
+  var currentView = 'heads';
+  var $tailsViewport = jQuery('.tails');
+
+  function goToTailSection (name) {
+    var $target = jQuery('.tails__section--' + name);
+
+    if (!$target.length) {
+      return false;
+    }
+
+    var top = $target.position().top + $tailsViewport.scrollTop();
+    $tailsViewport.stop().animate({ scrollTop: top }, 700);
+    return true;
+  }
+
   var imagesLoader = new ImagesLoader([
     './app/public/img/texture-ball.png',
     './app/public/img/texture-ballAlpha.png',
@@ -832,9 +847,29 @@ jQuery(function () {
     var $el = jQuery(this);
     var name = $el.attr('data-button') || '';
     var sectionName = $el.attr('data-section') || '';
+    var tailName = $el.attr('data-tail') || '';
+
+    if (tailName) {
+      if (currentView === 'heads') {
+        APP.slide(function () {
+          goToTailSection(tailName);
+        });
+      } else {
+        goToTailSection(tailName);
+      }
+
+      return false;
+    }
 
     if (sectionName && sectionMap[sectionName] !== undefined) {
-      SCENE.goTo(sectionMap[sectionName]);
+      if (currentView === 'tails') {
+        APP.slide(function () {
+          SCENE.goTo(sectionMap[sectionName]);
+        });
+      } else {
+        SCENE.goTo(sectionMap[sectionName]);
+      }
+
       return false;
     }
 
@@ -1219,6 +1254,8 @@ jQuery(function () {
   });
 
   APP.on('slideComplete', function () {
+    currentView = this.to;
+
     if (this.to === 'tails') {
       waypoint.start();
     }
@@ -1226,10 +1263,12 @@ jQuery(function () {
  
   // SCENE on/off
   APP.on('heads:visible', function () {
+    currentView = 'heads';
     SCENE.start();
   });
 
   APP.on('heads:invisible', function () {
+    currentView = 'tails';
     SCENE.stop();
   });
 

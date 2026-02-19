@@ -496,50 +496,51 @@ jQuery(function () {
   });
 
   // heads
-  skrollr.init({ skrollrBody: 'mobile-body' });
+  skrollr.init({
+    skrollrBody: 'mobile-body',
+    smoothScrolling: true,
+    forceHeight: false,
+    mobileDeceleration: 0.004,
+    mobileCheck: function () { return false; }
+  });
 
   // tails
   var wireframe = new Wireframe(jQuery('.wireframe'));
+  var $tails = jQuery('.tails');
+  var $tailsSections = $tails.find('.tails__section');
 
-  if (!mobile()) {
-    var $tails = jQuery('.tails');
-    var $tailsSections = $tails.find('.tails__section');
+  // prepare els
+  $tailsSections.find('.tails__section__el').animate({ opacity: 0, y: 100 }, 0);
 
-    // prepare els
-    $tailsSections.find('.tails__section__el').animate({ opacity: 0, y: 100 }, 0);
+  var waypoint = $tailsSections.waypoint({
+    offset: 30,
+    startAt: $tails.offset().top - 1000
+  });
 
-    var waypoint = $tailsSections.waypoint({
-      offset: 30,
-      startAt: $tails.offset().top - 1000
+  waypoint.start();
+
+  $tailsSections.on('active', function () {
+    var $el = jQuery(this);
+    
+    if ($el.attr('data-appeared')) {
+      return false;
+    }
+
+    jQuery(this).find('.tails__section__el').each(function (i) {
+      jQuery(this).stop().delay(i * 100).animate({ opacity: 1, y: 0 }, 500);
     });
 
-    waypoint.start();
+    $el.attr('data-appeared', true);
+  });
 
-    $tailsSections.on('active', function () {
-      var $el = jQuery(this);
-      
-      if ($el.attr('data-appeared')) {
-        return false;
-      }
-
-      jQuery(this).find('.tails__section__el').each(function (i) {
-        jQuery(this).stop().delay(i * 100).animate({ opacity: 1, y: 0 }, 500);
-      });
-
-      $el.attr('data-appeared', true);
-    });
-
-    jQuery('.tails__section--site').on('stateChange', function (e, state) {
-      if (state === 'active') {
-        wireframe.start();
-        wireframe.in();
-      } else {
-        wireframe.stop();
-      }
-    });
-  } else {
-    wireframe.in();
-  }
+  jQuery('.tails__section--site').on('stateChange', function (e, state) {
+    if (state === 'active') {
+      wireframe.start();
+      wireframe.in();
+    } else {
+      wireframe.stop();
+    }
+  });
 
   imagesLoader.onComplete(function () {
     loader.out();
