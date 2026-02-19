@@ -97,6 +97,84 @@ div.tails__section__el {
   margin-bottom: 0;
 }
 
+.tails__feature-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tails__feature-card {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .03) 45%, rgba(255, 255, 255, .05)),
+    rgba(255, 255, 255, .05);
+}
+
+.tails__feature-card::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: 12%;
+  width: 140px;
+  height: 130%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, .12), rgba(255, 255, 255, 0));
+  opacity: .32;
+  transform: rotate(4deg);
+  pointer-events: none;
+}
+
+.tails__feature-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 85% 12%, rgba(255, 255, 255, .1), transparent 45%);
+  pointer-events: none;
+}
+
+.tails__feature-card h2 {
+  position: relative;
+  z-index: 2;
+  margin: 0 0 16px;
+  font-size: 46px;
+  line-height: 56px;
+  letter-spacing: 1px;
+}
+
+.tails__feature-card p {
+  position: relative;
+  z-index: 2;
+  margin: 0 0 24px;
+  max-width: 900px;
+  font-size: 20px;
+  line-height: 40px;
+  color: rgba(255, 255, 255, .56);
+}
+
+.tails__tags {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tails__tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, .15);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, .2);
+  color: rgba(255, 255, 255, .52);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  line-height: 1;
+}
+
 .tails__section .wireframe {
   margin: 20px auto;
   border: 1px solid var(--glass-border);
@@ -143,5 +221,20 @@ div.tails__section__el {
 
   .tails__column__container {
     padding: 0;
+  }
+
+  .tails__feature-card h2 {
+    font-size: 32px;
+    line-height: 42px;
+  }
+
+  .tails__feature-card p {
+    font-size: 17px;
+    line-height: 31px;
+  }
+
+  .tails__tag {
+    font-size: 11px;
+    letter-spacing: 2px;
   }
 }
