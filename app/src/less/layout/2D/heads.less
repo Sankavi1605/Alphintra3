@@ -312,7 +312,164 @@
   background-repeat: repeat-y;
 }
 
+// In 2D mode, trigger behavior is handled by native scrolling.
+.trigger,
+.trigger__info {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .heads__section {
+    max-width: 100%;
+    padding: 0 18px;
+  }
+
+  .heads__section--hello {
+    height: 680px;
+  }
+
+  .heads__section--beams {
+    height: 560px;
+  }
+
+  .heads__section--drop {
+    height: 460px;
+  }
+
+  .heads__section--ball {
+    height: 520px;
+  }
+
+  .heads__section--flow {
+    height: 700px;
+  }
+
+  .heads__section--height {
+    height: 760px;
+  }
+
+  .heads__section--face {
+    height: 460px;
+  }
+
+  .heads__section--rocks {
+    height: 540px;
+  }
+
+  .heads__section--galaxy {
+    height: 620px;
+  }
+
+  .heads__section--gravity {
+    height: 430px;
+  }
+
+  .heads__section--end {
+    height: 560px;
+  }
+
+  .part--beam--left,
+  .part--beam--right,
+  .part--height,
+  .part--gravity {
+    display: none;
+  }
+
+  .part--smoke {
+    width: 100vw;
+    height: 86vw;
+    margin-left: -50vw;
+    background-size: cover;
+  }
+
+  .part--beam--center {
+    left: 50%;
+    top: -220px;
+  }
+
+  .part--drop {
+    width: 100vw;
+    height: 54vw;
+    margin-left: -50vw;
+    background-size: cover;
+  }
+
+  .part--sphere {
+    width: 58vw;
+    height: 58vw;
+    margin-left: -29vw;
+    background-size: cover;
+  }
+
+  .part--field {
+    width: 90vw;
+    height: 190vw;
+    margin-left: -45vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .part--neons {
+    width: 72vw;
+    height: 89vw;
+    margin-left: -36vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .part--face {
+    width: 58vw;
+    height: 85vw;
+    margin-left: -29vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .part--rocks {
+    width: 120vw;
+    height: 74vw;
+    margin-left: -60vw;
+    background-size: cover;
+  }
+
+  .part--galaxy {
+    width: 106vw;
+    height: 68vw;
+    margin-left: -53vw;
+    background-size: cover;
+  }
+
+  .part--stars {
+    opacity: .34;
+    background-size: 440px auto;
+  }
+}
+
 @media screen and (max-width: 600px) {
+  .heads__section {
+    padding: 0 12px;
+  }
+
+  .heads__section--hello {
+    height: 620px;
+  }
+
+  .heads__section--flow {
+    height: 640px;
+  }
+
+  .heads__section--height {
+    height: 700px;
+  }
+
+  .heads__section--galaxy {
+    height: 560px;
+  }
+
+  .heads__section--end {
+    height: 500px;
+  }
+
   .hello__title,
   .drop__title,
   .ball__title,
@@ -330,5 +487,29 @@
 
   .drop__title {
     top: 40%;
+  }
+
+  .hello__title {
+    top: 30%;
+  }
+
+  .ball__title {
+    top: 34%;
+  }
+
+  .height__title {
+    top: 36%;
+  }
+
+  .face__title {
+    top: 42%;
+  }
+
+  .part--grid {
+    display: none;
+  }
+
+  .part--stars {
+    background-size: 340px auto;
   }
 }
