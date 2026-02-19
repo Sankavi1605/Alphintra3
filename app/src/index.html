@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Alphintra | AI, Web, Mobile, Cloud, and 3D Engineering</title>
+  <link rel="image_src" href="https://www.alphintra.com/logo.png" />
+  <meta
+    name="description"
+    content="Alphintra engineers high-performance AI, web, mobile, and cloud products with immersive 3D experiences for startups and enterprises."
+  />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="Alphintra" />
+  <meta name="theme-color" content="#050508" />
+  <meta name="application-name" content="Alphintra" />
+  <link rel="canonical" href="https://www.alphintra.com/" />
+  <link rel="apple-touch-icon" sizes="57x57" href="./app/public/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="./app/public/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./app/public/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./app/public/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="./app/public/favicons/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="./app/public/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./app/public/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="./app/public/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./app/public/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="./app/public/favicons/favicon-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="./app/public/favicons/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="./app/public/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="./app/public/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="./app/public/favicons/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2d89ef">
+  <meta name="msapplication-TileImage" content="./app/public/favicons/mstile-144x144.png">
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Alphintra" />
+  <meta property="og:title" content="Alphintra | AI, Web, Mobile, Cloud, and 3D Engineering" />
+  <meta
+    property="og:description"
+    content="From AI automation to enterprise cloud platforms, Alphintra builds scalable digital products with premium interactive experiences."
+  />
+  <meta property="og:url" content="https://www.alphintra.com/" />
+  <meta property="og:image" content="https://www.alphintra.com/logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Alphintra | AI, Web, Mobile, Cloud, and 3D Engineering" />
+  <meta
+    name="twitter:description"
+    content="We design and build AI-powered, cloud-ready digital products and immersive web experiences."
+  />
+  <meta name="twitter:image" content="https://www.alphintra.com/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.alphintra.com/#organization",
+          "name": "Alphintra",
+          "url": "https://www.alphintra.com/",
+          "logo": "https://www.alphintra.com/logo.png",
+          "description": "Engineering-focused studio building AI, web, mobile, cloud, and interactive 3D products.",
+          "email": "hello@alphintra.com"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.alphintra.com/#website",
+          "url": "https://www.alphintra.com/",
+          "name": "Alphintra",
+          "publisher": {
+            "@id": "https://www.alphintra.com/#organization"
+          }
+        }
+      ]
+    }
+  </script>
+</head>
+<body>
+  <div class="loader">
+    <h3 class="text--center text--white loader__title is-active"> LOADING </h3>
+    <div class="loader__progress"></div>
+  </div>
+
+  <script type="text/javascript">
+    document = window.document;
+
+    (function () {
+      /* jshint strict: false */
+      /* jshint laxbreak: true */
+
+      // disable console
+      console.log('Alphintra 2015 experience');
+
+      if (!window.console) { window.console = {}; }
+      var methods = ['log', 'debug', 'warn', 'info'];
+      for (var i = 0; i < methods.length; i++){
+        console[methods[i]] = function () {};
+      }
+
+      // features
+      function mobile () {
+        return navigator.userAgent.match(/Android/i)
+          || navigator.userAgent.match(/webOS/i)
+          || navigator.userAgent.match(/iPhone/i)
+          || navigator.userAgent.match(/iPad/i)
+          || navigator.userAgent.match(/iPod/i)
+          || navigator.userAgent.match(/BlackBerry/i)
+          || navigator.userAgent.match(/Windows Phone/i);
+      }
+
+      function webGL () {
+        try {
+          var canvas = document.createElement('canvas'); 
+          return !! window.WebGLRenderingContext
+            && (canvas.getContext('webgl')
+            || canvas.getContext('experimental-webgl'));
+
+        } catch (e) {
+          return false;
+        }
+      }
+
+      var cssPayload = document.createElement('link');
+      cssPayload.rel = 'stylesheet';
+      cssPayload.type = 'text/css';
+
+      var jsPayload = document.createElement('script');
+      jsPayload.type = 'text/javascript';
+      jsPayload.async = jsPayload.defer = false;
+
+      var prefix;
+      if (webGL() && !mobile()) {
+        prefix = '3D';
+      } else {
+        prefix = '2D';
+      }
+
+      cssPayload.href = './app/dist/css/' + prefix + '/main.css';
+      jsPayload.src = './app/dist/js/' + prefix + '/bundle.js';
+
+      var head = document.getElementsByTagName('head')[0];
+
+      function loadScript (src, callback) {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.async = false;
+        script.defer = false;
+        script.src = src;
+        script.onload = callback;
+        script.onerror = callback;
+        head.appendChild(script);
+      }
+
+      function installFallbacks () {
+        if (!window.visibly) {
+          window.visibly = {
+            onHidden: function () {},
+            onVisible: function () {}
+          };
+        }
+      }
+
+      var vendorScripts = [
+        'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenLite.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/easing/EasePack.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/plugins/BezierPlugin.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/plugins/CSSPlugin.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/plugins/jquery.gsap.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/howler/1.1.25/howler.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.29/skrollr.min.js',
+        'https://cdn.jsdelivr.net/gh/addyosmani/visibly.js@master/visibly.js'
+      ];
+
+      function loadVendors (index) {
+        if (index >= vendorScripts.length) {
+          installFallbacks();
+          head.appendChild(jsPayload);
+          return;
+        }
+
+        loadScript(vendorScripts[index], function () {
+          loadVendors(index + 1);
+        });
+      }
+
+      head.appendChild(cssPayload);
+      loadVendors(0);
+    })();
+  </script>
+
+  <div class="help">
+    <div class="help__quit">
+      <svg xmln="http://www.w3.org/2000/svg" viewBox="0 0 25 20">
+        <line stroke="#ffffff"
+          stroke-width="1"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          x1="5.8" y1="16.7" x2="19.2" y2="3.3"></line>
+        <line stroke="#ffffff"
+          stroke-width="1"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          x1="5.8" y1="3.3" x2="19.2" y2="16.7"></line>
+      </svg>
+    </div>
+
+    <div class="slider">
+      <div class="slider__slides">
+        <div class="slider__slide">
+          <div class="slider__slide__content">
+            <div class="help__layout">
+              <div class="layout">
+                <div class="layout__mouse">
+                  <div class="layout__mouse__icon"></div>
+                  <div class="layout__mouse__click"></div>
+                </div>
+                <div class="layout__frame"></div>
+                <div class="layout__parts">
+                  <div class="layout__part"></div>
+                  <div class="layout__part"></div>
+                </div>
+              </div>
+            </div>
+            <p class="text--center text--white">
+              There are 2 parts on this website: the visual experience and the company profile. You can switch between them any time.
+            </p>
+          </div>
+        </div>
+
+        <div class="slider__slide">
+          <div class="slider__slide__content">
+            <div class="help__navigation">
+              <div class="mouse">
+                <div class="mouse__body">
+                  <div class="mouse__body__line"></div>
+                </div>
+                <div class="mouse__wheel">
+                  <div class="mouse__wheel__lines">
+                    <div class="mouse__wheel__line"></div>
+                    <div class="mouse__wheel__line"></div>
+                    <div class="mouse__wheel__line"></div>
+                    <div class="mouse__wheel__line"></div>
+                    <div class="mouse__wheel__line"></div>
+                    <div class="mouse__wheel__line"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="keys">
+                <div class="key key--left">
+                  <div class="key__triangle key__triangle--left"></div>
+                </div>
+                <div class="key key--bottom">
+                  <div class="key__triangle key__triangle--bottom"></div>
+                </div>
+                <div class="key key--top">
+                  <div class="key__triangle key__triangle--top"></div>
+                </div>
+                <div class="key key--right">
+                  <div class="key__triangle key__triangle--right"></div>
+                </div>
+              </div>
+            </div>
+            <p class="text--center text--white">
+              You can navigate with your mouse wheel, trackpad, or the up and down arrow keys.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="slider__map"></div>
+    </div>
+  </div>
+
+  <div id="mobile-body">
+    <div class="heads">
+      <div class="menu">
+        <div class="menu__button">
+          <div class="menu__button__line menu__button__line--top"></div>
+          <div class="menu__button__line menu__button__line--middle"></div>
+          <div class="menu__button__line menu__button__line--bottom"></div>
+        </div>
+
+        <div class="menu__items">
+          <a class="menu__item menu__items--3D" data-section="hello"> Home </a>
+          <a class="menu__item menu__items--3D" data-section="beams"> BEAMS </a>
+          <a class="menu__item menu__items--3D" data-section="drop"> ENGINEERING THE FUTURE </a>
+          <a class="menu__item menu__items--3D" data-section="ball"> WEB AND MOBILE </a>
+          <a class="menu__item menu__items--3D" data-section="flow"> AI AND AUTOMATION </a>
+          <a class="menu__item menu__items--3D" data-section="neons"> NEON SYSTEMS </a>
+          <a class="menu__item menu__items--3D" data-section="height"> ENTERPRISE BACKEND </a>
+          <a class="menu__item menu__items--3D" data-section="wave"> UI UX AND 3D </a>
+          <a class="menu__item menu__items--3D" data-section="face"> OUR WORK </a>
+          <a class="menu__item menu__items--3D" data-section="rocks"> ALPHINTRA WAY </a>
+          <a class="menu__item menu__items--3D" data-section="galaxy"> THE TEAM </a>
+          <a class="menu__item menu__items--3D" data-section="gravity"> GRAVITY GRID </a>
+          <a class="menu__item menu__items--3D" data-section="city"> CITY </a>
+          <a class="menu__item menu__items--3D" data-section="end"> LET'S TALK </a>
+        </div>
+      </div>
+
+      <div class="heads__viewport">
+        <div class="trigger__info trigger__info--arrow">
+          <svg xmln="http://www.w3.org/2000/svg" viewBox="0 0 25 20">
+            <path fill="none"
+              stroke="#ffffff"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M2.5,5L12.5 15 22.5 5"/>
+          </svg>
+        </div>
+
+        <div class="trigger__info trigger__info--heads">
+          <p class="trigger__info__text"> BACK TO THE PRESENTATION </p>
+          <div class="trigger__info__bg trigger__info__bg--heads"></div>
+        </div>
+
+        <div class="trigger__info trigger__info--tails">
+          <p class="trigger__info__text"> ABOUT ALPHINTRA </p>
+          <div class="trigger__info__bg trigger__info__bg--tails"></div>
+        </div>
+      </div>
+
+      <div class="heads__sections">
+        <div class="heads__section heads__section--hello">
+          <div class="part part--title hello__title">
+            <h1 class="text--white text--noMargin"> ALPHINTRA </h1>
+            <h1 class="text--white text--noMargin"> WE ARE ALPHINTRA </h1>
+          </div>
+          <div class="part part--smoke"
+              data-0="transform:translate3d(0px, 0px, 0px)"
+              data-800="transform:translate3d(0px, -300px, 0px)"></div>
+        </div>
+
+        <div class="heads__section heads__section--beams">
+          <div class="part part--beam--left"
+              data-100="transform:translate3d(0px, 120px, 0px); opacity:0"
+              data-500="opacity:0.1"
+              data-1500="transform:translate3d(0px, 0px, 0px)"></div>
+          <div class="part part--beam--center"
+              data-0="transform:translate3d(0px, -10px, 0px); opacity:0"
+              data-600="opacity:1"
+              data-1600="transform:translate3d(0px, 0px, 0px)"></div>
+          <div class="part part--beam--right"
+              data-100="transform:translate3d(0px, 50px, 0px); opacity:0"
+              data-600="opacity:0.3"
+              data-1700="transform:translate3d(0px, -50px, 0px)"></div>
+        </div>
+
+        <div class="heads__section heads__section--drop">
+          <div class="part part--title drop__title"
+              data-1200="opacity:0"
+              data-1500="opacity:1">
+            <h1 class="text--white text--right text--noMargin"> ENGINEERING </h1>
+            <h1 class="text--white text--right text--noMargin"> THE FUTURE </h1>
+            </h1>
+          </div>
+          <div class="part part--drop"
+              data-1000="transform:translate3d(0px, 350px, 0px); opacity:0"
+              data-1700="transform:translate3d(0px, 0px, 0px); opacity:1"></div>
+        </div>
+
+        <div class="heads__section heads__section--ball">
+          <div class="part part--title ball__title"
+              data-1700="opacity:0"
+              data-2000="opacity:1">
+            <h1 class="text--white text--noMargin text--left"> WEB AND </h1>
+            <h1 class="text--white text--noMargin text--left"> MOBILE </h1>
+          </div>
+          <div class="part part--sphere"
+              data-1400="transform:translate3d(0px, -300px, 0px) rotate(60deg); opacity:0"
+              data-2800="transform:translate3d(0px, 250px, 0px) rotate(0deg); opacity:1"></div>
+          <div class="part part--grid"
+              data-1500="transform:translate3d(0px, 300px, 0px); opacity:0"
+              data-2600="transform:translate3d(0px, -200px, 0px); opacity:1"></div>
+        </div>
+
+        <div class="heads__section heads__section--flow">
+          <div class="part part--field"
+              data-2000="transform:translate3d(0px, 200px, 0px); opacity:0"
+              data-2700="transform:translate3d(0px, 0px, 0px); opacity:1"></div>
+          <div class="part part--neons"
+              data-2200="opacity:0"
+              data-3000="opacity:1"
+              data-3500="opacity:0"></div>
+          <div class="part part--smoke flow__smoke"
+              data-2200="transform:translate3d(0px, 400px, 0px); opacity:0"
+              data-3200="transform:translate3d(0px, 0px, 0px); opacity:1"></div>
+        </div>
+
+        <div class="heads__section heads__section--height">
+          <div class="part part--title height__title"
+              data-3500="opacity:0"
+              data-3800="opacity:1">
+            <h1 class="text--white text--right text--noMargin"> ENTERPRISE </h1>
+            <h1 class="text--white text--right text--noMargin"> BACKEND </h1>
+          </div>
+          <div class="part part--height"
+              data-3000="transform:translate3d(0px, 200px, 0px); opacity:0"
+              data-4000="transform:translate3d(0px, 0px, 0px); opacity:0.5"></div>
+        </div>
+
+        <div class="heads__section heads__section--face">
+          <div class="part part--title face__title"
+            data-3800="opacity:0"
+            data-5000="opacity:1">
+              <h1 class="text--white text--left text--noMargin"> UI UX AND </h1>
+              <h1 class="text--white text--left text--noMargin"> 3D DESIGN </h1>
+          </div>
+          <div class="part part--face"
+              data-4000="transform:translate3d(0px, 200px, 0px); opacity:0"
+              data-5500="transform:translate3d(0px, 0px, 0px); opacity:1"></div>
+        </div>
+
+        <div class="heads__section heads__section--rocks">
+          <div class="part part--title rocks__title"
+            data-5200="opacity:0"
+            data-5800="opacity:1">
+              <h1 class="text--white text--noMargin"> ALPHINTRA </h1>
+              <h1 class="text--white text--noMargin"> WAY </h1>
+          </div>
+          <div class="part part--rocks"
+              data-5000="transform:translate3d(0px, 200px, 0px);"
+              data-6000="transform:translate3d(0px, 100px, 0px);"></div>
+        </div>
+
+        <div class="heads__section heads__section--galaxy">
+          <div class="part part--title galaxy__title"
+            data-5900="opacity:0"
+            data-6500="opacity:1">
+              <h1 class="text--white text--noMargin"> THE </h1>
+              <h1 class="text--white text--noMargin"> TEAM </h1>
+          </div>
+          <div class="part part--galaxy"
+            data-5800="transform:translate3d(0px, -100px, 0px); opacity:0"
+            data-6800="transform:translate3d(0px, 0px, 0px); opacity:1"></div>
+        </div>
+
+        <div class="heads__section heads__section--gravity">
+          <div class="part part--gravity"
+            data-6200="transform:translate3d(0px, 200px, 0px); opacity:0"
+            data-6800="transform:translate3d(0px, 0px, 0px); opacity:1"
+            ></div>
+        </div>
+
+        <div class="heads__section heads__section--end">
+          <div class="part part--title end__title"
+              data-7000="opacity:0"
+              data-7400="opacity:1">
+            <h1 class="text--white text--noMargin"> LET'S </h1>
+            <h1 class="text--white text--noMargin"> TALK </h1>
+          </div>
+        </div>
+
+        <div class="part part--stars"></div>
+      </div>
+    </div>
+
+    <div class="tails">
+      <div class="tails__section tails__section--about">
+        <div class="tails__section__el">
+          <h1 class="text--center"> ALPHINTRA </h1>
+          <h2 class="text--center">
+            Engineering the future. <br/>
+            AI, web, mobile, cloud, and immersive 3D products.
+          </h2>
+          <p>
+            We partner with startups and enterprise teams to design and ship robust digital products.
+          </p>
+          <p>
+            From AI-driven workflows and LLM integrations to high-performance web and mobile products, we execute end to end.
+          </p>
+          <p>
+            Our engineering stack includes Next.js, React, Flutter, Spring Boot, LangChain, and cloud-native infrastructure.
+          </p>
+          <p>
+            We operate as a hands-on technical partner, embedding with your team to reduce risk and accelerate delivery.
+          </p>
+          <p>
+            Reach us at hello@alphintra.com to discuss your product goals, constraints, and timeline.
+          </p>
+          <div class="text--center">
+            <a class="tails__link placeholder--email"> Start a project </a>
+          </div>
+          <p>
+            We build with clarity, speed, and technical rigor.
+          </p>
+        </div>
+      </div>
+
+      <div class="tails__section tails__section--site">
+        <div class="tails__section__el">
+          <h1 class="text--center"> ABOUT THIS EXPERIENCE </h1>
+
+          <div class="wireframe">
+            <div class="wireframe__page">
+              <div class="wireframe__frame--left"></div>
+              <div class="wireframe__frame--right"></div>
+              <div class="wireframe__frame--top"></div>
+              <div class="wireframe__frame--bottom"></div>
+              <div class="wireframe__column wireframe__column--left">
+                <div class="wireframe__picture wireframe__picture--tall">
+                  <div class="wireframe__frame--left"></div>
+                  <div class="wireframe__frame--right"></div>
+                  <div class="wireframe__frame--top"></div>
+                  <div class="wireframe__frame--bottom"></div>
+                  <div class="wireframe__controls">
+                    <div class="wireframe__controls__node"></div>
+                    <div class="wireframe__controls__node"></div>
+                    <div class="wireframe__controls__node"></div>
+                    <div class="wireframe__controls__node"></div>
+                  </div>
+                </div>
+                <div class="wireframe__break"></div>
+                <div class="wireframe__picture wireframe__picture--left">
+                  <div class="wireframe__frame--left"></div>
+                  <div class="wireframe__frame--right"></div>
+                  <div class="wireframe__frame--top"></div>
+                  <div class="wireframe__frame--bottom"></div>
+                </div>
+                <div class="wireframe__text wireframe__text--right">
+                  <div class="wireframe__text__line"></div>
+                  <div class="wireframe__text__line"></div>
+                  <div class="wireframe__text__line wireframe__text__line--incomplete"></div>
+                </div>
+                <div class="wireframe__break"></div>
+                <div class="wireframe__text">
+                  <div class="wireframe__text__line"></div>
+                  <div class="wireframe__text__line"></div>
+                  <div class="wireframe__text__line wireframe__text__line--incomplete"></div>
+                </div>
+                <div class="wireframe__break"></div>
+                <div class="wireframe__picture wireframe__picture--right">
+                  <div class="wireframe__frame--left"></div>
+                  <div class="wireframe__frame--right"></div>
+                  <div class="wireframe__frame--top"></div>
+                  <div class="wireframe__frame--bottom"></div>
+                </div>
+                <div class="wireframe__text wireframe__text--left">
+                  <div class="wireframe__text__line"></div>
+                  <div class="wireframe__text__line"></div>
+                  <div class="wireframe__text__line wireframe__text__line--incomplete"></div>
+                </div>
+              </div>
+              <div class="wireframe__column wireframe__column--right">
+                <div class="wireframe__picture">
+                  <div class="wireframe__frame--left"></div>
+                  <div class="wireframe__frame--right"></div>
+                  <div class="wireframe__frame--top"></div>
+                  <div class="wireframe__frame--bottom"></div>
+                </div>
+                <div class="wireframe__break"></div>
+                <div class="wireframe__text">
+                  <div class="wireframe__text__line"></div>
+                  <div class="wireframe__text__line"></div>
+                  <div class="wireframe__text__line wireframe__text__line--incomplete"></div>
+                </div>
+                <div class="wireframe__break"></div>
+                <div class="wireframe__picture wireframe__picture--tall">
+                  <div class="wireframe__frame--left"></div>
+                  <div class="wireframe__frame--right"></div>
+                  <div class="wireframe__frame--top"></div>
+                  <div class="wireframe__frame--bottom"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p>
+            This experience merges the classic 2015 WebGL architecture with Alphintra's current product messaging. <br>
+            It demonstrates how creative direction and real-time engineering can communicate modern technical capabilities.
+          </p>
+        </div>
+      </div>
+
+      <div class="tails__section tails__section--skills">
+        <h1 class="text--center"> OUR CAPABILITIES </h1>
+        <div class="tails__section__el">
+          <h2> Core Services </h2>
+          <p>
+            Web and Mobile: Next.js, React, Flutter <br>
+            AI and Automation: RAG, LLM workflows, LangChain <br>
+            Enterprise Backend: Spring Boot, microservices, GCP <br>
+            UI UX and 3D: Figma, Three.js, interactive storytelling
+          </p>
+          <p> 
+            <span> Frontend: </span> React, Next.js, TypeScript, WebGL <br>
+            <span> Backend: </span> Node.js, Java, Python, distributed services <br>
+            <span> Data and AI: </span> LLM integration, vector search, orchestration <br>
+            <span> Cloud: </span> AWS, Azure, GCP, CI/CD, observability <br>
+            <span> Quality: </span> testing strategy, performance, security
+          </p>
+        </div>
+
+        <div class="tails__section__el">
+          <h2> Delivery Model </h2>
+          <p>
+            Discovery -> Design -> Sprint Development -> Deploy <br>
+            Weekly demos, measurable milestones, and iterative feedback <br>
+            Production-ready releases with continuous monitoring
+          </p>
+          <p>
+            Built for speed without compromising reliability, maintainability, or security.
+          </p>
+        </div>
+        <div class="tails__section__el">
+          <h2> Team and Contact </h2>
+          <p>
+            Frontend engineering, backend architecture, AI/ML, UI/UX and 3D design <br>
+            Sri Lanka and remote worldwide collaboration <br>
+            Contact: hello@alphintra.com
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="trigger"></div>
+  </div>
+</body>
+</html>
