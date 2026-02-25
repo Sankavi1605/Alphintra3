@@ -125,6 +125,7 @@
     }
 
     .hero-logo__glyph,
+    .hero-logo__cut,
     .hero-logo__slash {
       transform-origin: 50% 50%;
       transform-box: fill-box;
@@ -685,7 +686,8 @@
 
       <div class="hero-logo" aria-hidden="true">
         <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-label="Alphintra logo" role="img">
-          <path class="hero-logo__glyph" fill-rule="evenodd" clip-rule="evenodd" d="M56 472L240 58H272L456 472L366 404L256 162L146 404L56 472ZM256 178L184 342H328L256 178Z" fill="#FFFFFF"/>
+          <path class="hero-logo__glyph" d="M56 472L240 58H272L456 472L366 404L256 162L146 404L56 472Z" fill="#FFFFFF"/>
+          <path class="hero-logo__cut" d="M256 180L196 336H316L256 180Z" fill="#050508"/>
           <path class="hero-logo__slash" d="M56 472L330 258L456 214L342 312L74 450L56 472Z" fill="#FFFFFF"/>
         </svg>
       </div>
@@ -1084,14 +1086,15 @@
         if (!window.TweenLite || !window.Power2) return false;
 
         var glyph = root.querySelector('.hero-logo__glyph');
+        var cut = root.querySelector('.hero-logo__cut');
         var slash = root.querySelector('.hero-logo__slash');
-        if (!glyph || !slash) return false;
+        if (!glyph || !cut || !slash) return false;
 
         root.__logoGsapReady = true;
 
-        TweenLite.set([glyph, slash], { transformOrigin: '50% 50%' });
+        TweenLite.set([glyph, cut, slash], { transformOrigin: '50% 50%' });
         TweenLite.fromTo(
-          glyph,
+          [glyph, cut],
           0.62,
           { autoAlpha: 0, scale: 0.9, y: 8, rotation: -1.2 },
           { autoAlpha: 1, scale: 1, y: 0, rotation: 0, ease: Power2.easeOut }
