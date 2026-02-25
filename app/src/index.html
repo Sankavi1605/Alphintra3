@@ -174,6 +174,14 @@
         width: min(500px, 36vw);
       }
 
+      html.mode-3d .heads__section--beams.active-3d-card .section__card {
+        left: 50% !important;
+        right: auto;
+        top: 72%;
+        width: min(520px, 40vw);
+        transform: translate(-50%, -50%);
+      }
+
       html.mode-3d .heads__section--face.active-3d-card .section__card,
       html.mode-3d .heads__section--end.active-3d-card .section__card {
         left: 50% !important;
@@ -486,8 +494,7 @@
           <a class="menu__item menu__items--3D" data-section="galaxy"> THE TEAM </a>
           <a class="menu__item menu__items--3D" data-section="gravity"> ABOUT ALPHINTRA </a>
           <a class="menu__item menu__items--3D" data-section="end"> LET'S TALK </a>
-          <a class="menu__item menu__items--3D" data-tail="about"> ABOUT EXPERIENCE </a>
-          <a class="menu__item menu__items--3D" data-tail="skills"> CAPABILITY CARDS </a>
+          <a class="menu__item menu__items--3D" data-tail="about"> COMPANY PROFILE </a>
         </div>
       </div>
 
@@ -538,6 +545,23 @@
               data-100="transform:translate3d(0px, 50px, 0px); opacity:0"
               data-600="opacity:0.3"
               data-1700="transform:translate3d(0px, -50px, 0px)"></div>
+          <div class="part section__card"
+              data-600="opacity:0"
+              data-1100="opacity:1"
+              data-1500="opacity:0">
+            <div class="tails__section__el tails__feature-card">
+              <h2> About Alphintra </h2>
+              <p>
+                Alphintra builds AI, web, mobile, and cloud products for teams that need reliable execution,
+                measurable progress, and production-ready delivery.
+              </p>
+              <div class="tails__tags">
+                <span class="tails__tag"> PRODUCT DELIVERY </span>
+                <span class="tails__tag"> ENGINEERING QUALITY </span>
+                <span class="tails__tag"> SCALE READY </span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="heads__section heads__section--drop">
@@ -851,148 +875,6 @@
           </div>
           <div class="text--center tails__about-cta">
             <a class="tails__link placeholder--email"> Start a project </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="tails__section tails__section--site">
-        <div class="tails__section__el">
-          <h1 class="text--center"> ABOUT THIS EXPERIENCE </h1>
-
-          <div class="wireframe">
-            <div class="wireframe__page">
-              <div class="wireframe__frame--left"></div>
-              <div class="wireframe__frame--right"></div>
-              <div class="wireframe__frame--top"></div>
-              <div class="wireframe__frame--bottom"></div>
-              <div class="wireframe__column wireframe__column--left">
-                <div class="wireframe__picture wireframe__picture--tall">
-                  <div class="wireframe__frame--left"></div>
-                  <div class="wireframe__frame--right"></div>
-                  <div class="wireframe__frame--top"></div>
-                  <div class="wireframe__frame--bottom"></div>
-                  <div class="wireframe__controls">
-                    <div class="wireframe__controls__node"></div>
-                    <div class="wireframe__controls__node"></div>
-                    <div class="wireframe__controls__node"></div>
-                    <div class="wireframe__controls__node"></div>
-                  </div>
-                </div>
-                <div class="wireframe__break"></div>
-                <div class="wireframe__picture wireframe__picture--left">
-                  <div class="wireframe__frame--left"></div>
-                  <div class="wireframe__frame--right"></div>
-                  <div class="wireframe__frame--top"></div>
-                  <div class="wireframe__frame--bottom"></div>
-                </div>
-                <div class="wireframe__text wireframe__text--right">
-                  <div class="wireframe__text__line"></div>
-                  <div class="wireframe__text__line"></div>
-                  <div class="wireframe__text__line wireframe__text__line--incomplete"></div>
-                </div>
-                <div class="wireframe__break"></div>
-                <div class="wireframe__text">
-                  <div class="wireframe__text__line"></div>
-                  <div class="wireframe__text__line"></div>
-                  <div class="wireframe__text__line wireframe__text__line--incomplete"></div>
-                </div>
-                <div class="wireframe__break"></div>
-                <div class="wireframe__picture wireframe__picture--right">
-                  <div class="wireframe__frame--left"></div>
-                  <div class="wireframe__frame--right"></div>
-                  <div class="wireframe__frame--top"></div>
-                  <div class="wireframe__frame--bottom"></div>
-                </div>
-                <div class="wireframe__text wireframe__text--left">
-                  <div class="wireframe__text__line"></div>
-                  <div class="wireframe__text__line"></div>
-                  <div class="wireframe__text__line wireframe__text__line--incomplete"></div>
-                </div>
-              </div>
-              <div class="wireframe__column wireframe__column--right">
-                <div class="wireframe__picture">
-                  <div class="wireframe__frame--left"></div>
-                  <div class="wireframe__frame--right"></div>
-                  <div class="wireframe__frame--top"></div>
-                  <div class="wireframe__frame--bottom"></div>
-                </div>
-                <div class="wireframe__break"></div>
-                <div class="wireframe__text">
-                  <div class="wireframe__text__line"></div>
-                  <div class="wireframe__text__line"></div>
-                  <div class="wireframe__text__line wireframe__text__line--incomplete"></div>
-                </div>
-                <div class="wireframe__break"></div>
-                <div class="wireframe__picture wireframe__picture--tall">
-                  <div class="wireframe__frame--left"></div>
-                  <div class="wireframe__frame--right"></div>
-                  <div class="wireframe__frame--top"></div>
-                  <div class="wireframe__frame--bottom"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <p>
-            This experience merges the classic 2015 WebGL architecture with Alphintra's current product messaging. <br>
-            It demonstrates how creative direction and real-time engineering can communicate modern technical capabilities.
-          </p>
-        </div>
-      </div>
-
-      <div class="tails__section tails__section--skills">
-        <h1 class="text--center"> WHY ALPHINTRA </h1>
-        <div class="tails__feature-grid">
-          <div class="tails__section__el tails__feature-card">
-            <h2> Product Discovery and Clarity </h2>
-            <p>
-              We turn broad ideas into a concrete roadmap with scope, architecture, milestones, and risk control
-              before the first sprint starts.
-            </p>
-            <div class="tails__tags">
-              <span class="tails__tag"> ROADMAP </span>
-              <span class="tails__tag"> TECHNICAL AUDIT </span>
-              <span class="tails__tag"> RISK PLAN </span>
-            </div>
-          </div>
-
-          <div class="tails__section__el tails__feature-card">
-            <h2> Dedicated Delivery Pods </h2>
-            <p>
-              Cross-functional teams with product, design, frontend, backend, and AI engineering are assigned to your
-              project to keep velocity high and communication direct.
-            </p>
-            <div class="tails__tags">
-              <span class="tails__tag"> PM + DESIGN </span>
-              <span class="tails__tag"> FULL STACK </span>
-              <span class="tails__tag"> AI ENGINEERING </span>
-            </div>
-          </div>
-
-          <div class="tails__section__el tails__feature-card">
-            <h2> Release Discipline </h2>
-            <p>
-              Every release follows CI/CD checks, code review gates, performance targets, and observability standards
-              so production stays stable as you scale.
-            </p>
-            <div class="tails__tags">
-              <span class="tails__tag"> CI CD </span>
-              <span class="tails__tag"> QA AUTOMATION </span>
-              <span class="tails__tag"> OBSERVABILITY </span>
-            </div>
-          </div>
-
-          <div class="tails__section__el tails__feature-card">
-            <h2> Long-Term Ownership </h2>
-            <p>
-              We support your team beyond launch with handover documentation, maintenance options, and iterative
-              improvements driven by product data.
-            </p>
-            <div class="tails__tags">
-              <span class="tails__tag"> DOCUMENTATION </span>
-              <span class="tails__tag"> KNOWLEDGE TRANSFER </span>
-              <span class="tails__tag"> CONTINUOUS IMPROVEMENT </span>
-            </div>
           </div>
         </div>
       </div>

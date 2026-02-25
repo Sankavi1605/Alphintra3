@@ -25,6 +25,12 @@
   padding-bottom: 160px;
 }
 
+.tails__section--about {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
 .tails__link {
   font-size: 12px;
   font-weight: 600;
@@ -188,6 +194,7 @@ div.tails__section__el.tails__feature-card {
 .tails__section__el--about {
   max-width: 980px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .tails__section__el--about .tails__about-lead {
@@ -271,6 +278,11 @@ div.tails__section__el.tails__feature-card {
 @media screen and (max-width: 600px) {
   .tails__section {
     padding: 32px 16px;
+  }
+
+  .tails__section--about {
+    min-height: auto;
+    display: block;
   }
 
   div.tails__section__el {
