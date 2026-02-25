@@ -113,13 +113,7 @@
     }
 
     .hero-logo::before {
-      content: '';
-      position: absolute;
-      inset: 4px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 50% 52%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 34%, rgba(255, 255, 255, 0) 74%);
-      filter: blur(8px);
-      opacity: 0.52;
+      content: none;
     }
 
     .hero-logo svg {
@@ -127,7 +121,7 @@
       width: 84%;
       height: 84%;
       margin: 8%;
-      filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.2));
+      filter: none;
     }
 
     .hero-logo__glyph,
@@ -392,8 +386,8 @@
       .hero-logo {
         top: 14px;
         right: 16px;
-        width: 76px;
-        height: 76px;
+        width: 74px;
+        height: 74px;
       }
 
       .heads__section--wave {
@@ -691,8 +685,8 @@
 
       <div class="hero-logo" aria-hidden="true">
         <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-label="Alphintra logo" role="img">
-          <path class="hero-logo__glyph" fill-rule="evenodd" clip-rule="evenodd" d="M70 470L232 76H280L442 470L368 424L311 296H201L144 424L70 470ZM224 243H288L256 167L224 243Z" fill="#FFFFFF"/>
-          <path class="hero-logo__slash" d="M58 454L329 248L452 210L345 301L75 486L58 454Z" fill="#FFFFFF"/>
+          <path class="hero-logo__glyph" fill-rule="evenodd" clip-rule="evenodd" d="M54 474L242 56H270L458 474L368 404L256 160L144 404L54 474ZM256 176L186 336H326L256 176Z" fill="#FFFFFF"/>
+          <path class="hero-logo__slash" d="M54 474L322 258L458 212L344 312L54 474Z" fill="#FFFFFF"/>
         </svg>
       </div>
 
@@ -1087,7 +1081,7 @@
         var root = document.querySelector('.hero-logo');
         if (!root) return false;
         if (root.__logoGsapReady) return true;
-        if (!window.TweenLite || !window.Power2 || !window.Sine) return false;
+        if (!window.TweenLite || !window.Power2) return false;
 
         var glyph = root.querySelector('.hero-logo__glyph');
         var slash = root.querySelector('.hero-logo__slash');
@@ -1098,19 +1092,16 @@
         TweenLite.set([glyph, slash], { transformOrigin: '50% 50%' });
         TweenLite.fromTo(
           glyph,
-          0.7,
-          { autoAlpha: 0, scale: 0.8, y: 10, rotation: -2 },
+          0.62,
+          { autoAlpha: 0, scale: 0.9, y: 8, rotation: -1.2 },
           { autoAlpha: 1, scale: 1, y: 0, rotation: 0, ease: Power2.easeOut }
         );
         TweenLite.fromTo(
           slash,
-          0.52,
-          { autoAlpha: 0, x: -34, y: 22, rotation: -8, scaleX: 0.74 },
-          { autoAlpha: 1, x: 0, y: 0, rotation: 0, scaleX: 1, ease: Power2.easeOut, delay: 0.26 }
+          0.46,
+          { autoAlpha: 0, x: -24, y: 14, rotation: -4.5, scaleX: 0.86 },
+          { autoAlpha: 1, x: 0, y: 0, rotation: 0, scaleX: 1, ease: Power2.easeOut, delay: 0.2 }
         );
-
-        TweenLite.to(root, 2.9, { y: -2, repeat: -1, yoyo: true, ease: Sine.easeInOut, delay: 0.8 });
-        TweenLite.to(slash, 3.4, { x: 2, repeat: -1, yoyo: true, ease: Sine.easeInOut, delay: 1.0 });
         return true;
       }
 
