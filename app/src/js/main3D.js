@@ -74,6 +74,22 @@ jQuery(function () {
     return true;
   }
 
+  function setActiveCardSection (sectionName) {
+    var $sections = jQuery('.heads__sections .heads__section');
+
+    if (!$sections.length) {
+      return;
+    }
+
+    $sections.removeClass('active-3d-card');
+
+    if (!sectionName) {
+      return;
+    }
+
+    $sections.filter('.heads__section--' + sectionName).addClass('active-3d-card');
+  }
+
   var imagesLoader = new ImagesLoader([
     './app/public/img/texture-ball.png',
     './app/public/img/texture-ballAlpha.png',
@@ -174,11 +190,13 @@ jQuery(function () {
     citySection,
     endSection
   ]);
+  setActiveCardSection('hello');
 
   SCENE.on('section:changeBegin', function () {
     var way = this.way;
     var to = this.to.name;
     var from = this.from.name;
+    setActiveCardSection(to);
 
     // in begin
     if (to === 'hello') {
