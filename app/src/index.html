@@ -103,30 +103,37 @@
       position: fixed;
       top: 22px;
       right: 28px;
-      width: 92px;
-      height: 92px;
+      width: 96px;
+      height: 96px;
       z-index: 220;
       pointer-events: none;
-      opacity: 0.98;
+      opacity: 1;
       transform: translateZ(0);
+      will-change: transform, opacity;
     }
 
     .hero-logo::before {
       content: '';
       position: absolute;
-      inset: 2px;
+      inset: 4px;
       border-radius: 50%;
-      background: radial-gradient(circle at 50% 48%, rgba(126, 166, 255, 0.3) 0%, rgba(98, 138, 244, 0.18) 34%, rgba(66, 91, 160, 0.08) 56%, rgba(22, 33, 74, 0) 74%);
-      filter: blur(7px);
+      background: radial-gradient(circle at 50% 52%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 34%, rgba(255, 255, 255, 0) 74%);
+      filter: blur(8px);
+      opacity: 0.52;
     }
 
-    .hero-logo img {
+    .hero-logo svg {
       position: relative;
-      width: 76%;
-      height: 76%;
-      margin: 12%;
-      object-fit: contain;
-      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.25));
+      width: 84%;
+      height: 84%;
+      margin: 8%;
+      filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.2));
+    }
+
+    .hero-logo__glyph,
+    .hero-logo__slash {
+      transform-origin: 50% 50%;
+      transform-box: fill-box;
     }
 
     .tails__card-actions {
@@ -385,8 +392,8 @@
       .hero-logo {
         top: 14px;
         right: 16px;
-        width: 72px;
-        height: 72px;
+        width: 76px;
+        height: 76px;
       }
 
       .heads__section--wave {
@@ -683,7 +690,10 @@
       </div>
 
       <div class="hero-logo" aria-hidden="true">
-        <img src="./app/public/img/alphintra-mark.svg" alt="Alphintra logo" />
+        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-label="Alphintra logo" role="img">
+          <path class="hero-logo__glyph" fill-rule="evenodd" clip-rule="evenodd" d="M70 470L232 76H280L442 470L368 424L311 296H201L144 424L70 470ZM224 243H288L256 167L224 243Z" fill="#FFFFFF"/>
+          <path class="hero-logo__slash" d="M58 454L329 248L452 210L345 301L75 486L58 454Z" fill="#FFFFFF"/>
+        </svg>
       </div>
 
       <div class="heads__viewport">
@@ -1070,5 +1080,51 @@
 
     <div class="tails"></div>
   </div>
+
+  <script type="text/javascript">
+    (function () {
+      function initHeroLogoGsap() {
+        var root = document.querySelector('.hero-logo');
+        if (!root) return false;
+        if (root.__logoGsapReady) return true;
+        if (!window.TweenLite || !window.Power2 || !window.Sine) return false;
+
+        var glyph = root.querySelector('.hero-logo__glyph');
+        var slash = root.querySelector('.hero-logo__slash');
+        if (!glyph || !slash) return false;
+
+        root.__logoGsapReady = true;
+
+        TweenLite.set([glyph, slash], { transformOrigin: '50% 50%' });
+        TweenLite.fromTo(
+          glyph,
+          0.7,
+          { autoAlpha: 0, scale: 0.8, y: 10, rotation: -2 },
+          { autoAlpha: 1, scale: 1, y: 0, rotation: 0, ease: Power2.easeOut }
+        );
+        TweenLite.fromTo(
+          slash,
+          0.52,
+          { autoAlpha: 0, x: -34, y: 22, rotation: -8, scaleX: 0.74 },
+          { autoAlpha: 1, x: 0, y: 0, rotation: 0, scaleX: 1, ease: Power2.easeOut, delay: 0.26 }
+        );
+
+        TweenLite.to(root, 2.9, { y: -2, repeat: -1, yoyo: true, ease: Sine.easeInOut, delay: 0.8 });
+        TweenLite.to(slash, 3.4, { x: 2, repeat: -1, yoyo: true, ease: Sine.easeInOut, delay: 1.0 });
+        return true;
+      }
+
+      function bootLogoGsap() {
+        if (initHeroLogoGsap()) return;
+        setTimeout(bootLogoGsap, 120);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bootLogoGsap);
+      } else {
+        bootLogoGsap();
+      }
+    })();
+  </script>
 </body>
 </html>
