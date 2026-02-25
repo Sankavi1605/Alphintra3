@@ -31,7 +31,8 @@ var SCENE = (function () {
     var parameters = {
       fogColor: '#0a0a0a',
       quality: 1,
-      sectionHeight: 50
+      sectionHeight: 50,
+      sectionTransitionDuration: 0.75
     };
 
     // DOM element
@@ -69,6 +70,7 @@ var SCENE = (function () {
     var totalSections;
     var currentIndex = 0;
     var previousIndex = 0;
+    var beforeSectionChange;
     
     // events
     var events = new Events();
@@ -83,6 +85,21 @@ var SCENE = (function () {
           return false;
         }
 
+        if (beforeSectionChange) {
+          var nextIndex = currentIndex + 1;
+          var shouldContinueNext = beforeSectionChange({
+            from: currentIndex,
+            to: nextIndex,
+            section: sectionsMap[currentIndex],
+            nextSection: sectionsMap[nextIndex],
+            direction: 'down'
+          });
+
+          if (shouldContinueNext === false) {
+            return false;
+          }
+        }
+
         currentIndex++;
 
         animateCamera(currentIndex);
@@ -91,6 +108,21 @@ var SCENE = (function () {
       function prev () {
         if (currentIndex === 0) {
           return false;
+        }
+
+        if (beforeSectionChange) {
+          var prevIndex = currentIndex - 1;
+          var shouldContinuePrev = beforeSectionChange({
+            from: currentIndex,
+            to: prevIndex,
+            section: sectionsMap[currentIndex],
+            nextSection: sectionsMap[prevIndex],
+            direction: 'up'
+          });
+
+          if (shouldContinuePrev === false) {
+            return false;
+          }
         }
 
         currentIndex--;
@@ -243,7 +275,7 @@ var SCENE = (function () {
         way: way === -1 ? 'up' : 'down'
       };
 
-      TweenLite.to(camera.position, 1.5, { y: nextPosition, ease: window.Quart.easeInOut,
+      TweenLite.to(camera.position, parameters.sectionTransitionDuration, { y: nextPosition, ease: window.Quart.easeInOut,
         onStart: function () {
           isScrolling = true;
           SOUNDS.wind.play();
@@ -260,7 +292,7 @@ var SCENE = (function () {
         }
       });
 
-      TweenLite.to(cameraCache, 1.5, {
+      TweenLite.to(cameraCache, parameters.sectionTransitionDuration, {
         bezier: { type: 'soft', values: [{ speed: 10 }, { speed: 0 }] },
         onUpdate: function () {
           backgroundLines.updateY(this.target.speed);
@@ -444,6 +476,17 @@ var SCENE = (function () {
        */
       unlock: function () {
         isLocked = false;
+      },
+
+      /**
+       * Set a callback fired before section navigation.
+       * Return false to cancel moving to the next/previous section.
+       *
+       * @method setBeforeSectionChange
+       * @param {Function} [callback]
+       */
+      setBeforeSectionChange: function (callback) {
+        beforeSectionChange = callback;
       },
 
       /**

@@ -133,6 +133,82 @@
       height: 500px;
     }
 
+    .our-work-stack {
+      position: relative;
+      min-height: 470px;
+      padding: 0;
+    }
+
+    .our-work-card {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      pointer-events: none;
+    }
+
+    .our-work-card.is-active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .our-work-card__media {
+      width: 100%;
+      height: 185px;
+      margin-bottom: 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.02);
+      overflow: hidden;
+    }
+
+    .our-work-card__media--ciperlux {
+      background:
+        linear-gradient(135deg, rgba(10, 20, 46, 0.95), rgba(4, 8, 16, 0.95)),
+        repeating-linear-gradient(155deg, rgba(81, 120, 255, 0.2) 0 2px, transparent 2px 22px),
+        repeating-linear-gradient(20deg, rgba(52, 196, 255, 0.14) 0 1px, transparent 1px 18px);
+    }
+
+    .our-work-card__media--nexus {
+      background:
+        radial-gradient(circle at 50% 60%, rgba(255, 255, 255, 0.16) 0 8px, transparent 9px),
+        radial-gradient(circle at 60% 58%, rgba(18, 215, 173, 0.42) 0 3px, transparent 4px),
+        radial-gradient(circle at 40% 58%, rgba(131, 131, 255, 0.4) 0 3px, transparent 4px),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.14) 0 42%, transparent 43%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.12) 0 60%, transparent 61%),
+        linear-gradient(140deg, rgba(6, 6, 10, 0.95), rgba(12, 14, 22, 0.95));
+    }
+
+    .our-work-card__media--apex {
+      background:
+        linear-gradient(125deg, rgba(15, 19, 34, 0.96), rgba(8, 10, 18, 0.98)),
+        radial-gradient(circle at 20% 30%, rgba(112, 145, 255, 0.35), transparent 48%),
+        radial-gradient(circle at 78% 70%, rgba(89, 232, 255, 0.2), transparent 45%);
+    }
+
+    .our-work-card__media--strategy {
+      background:
+        linear-gradient(150deg, rgba(38, 42, 52, 0.95), rgba(16, 18, 25, 0.98)),
+        repeating-linear-gradient(0deg, rgba(168, 177, 199, 0.14) 0 1px, transparent 1px 24px),
+        repeating-linear-gradient(90deg, rgba(168, 177, 199, 0.12) 0 1px, transparent 1px 28px);
+    }
+
+    .our-work-card__index {
+      margin: 0 0 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.24em;
+      color: rgba(126, 181, 255, 0.9);
+    }
+
+    .our-work-card__subtitle {
+      margin: -8px 0 10px;
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.44);
+    }
+
     @media screen and (min-width: 901px) {
       html.mode-3d .heads__sections {
         display: block !important;
@@ -176,11 +252,27 @@
       }
 
       html.mode-3d .heads__section .part--title {
-        display: none;
+        display: block;
+        z-index: 9;
+        pointer-events: none;
       }
 
       html.mode-3d .heads__section .part--title h1 {
+        opacity: 0.82;
         text-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
+      }
+
+      html.mode-3d .heads__section.active-3d-card .part--title {
+        top: 14% !important;
+        left: 50% !important;
+        right: auto !important;
+        width: min(760px, 76vw);
+        transform: translateX(-50%) !important;
+        text-align: center !important;
+      }
+
+      html.mode-3d .heads__section.active-3d-card .part--title h1 {
+        text-align: center !important;
       }
 
       html.mode-3d .heads__section.active-3d-card .section__card {
@@ -199,7 +291,7 @@
       }
 
       html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card {
-        animation: mode3dCardIn 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        animation: mode3dCardIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
       html.mode-3d .heads__section--drop.active-3d-card .section__card,
@@ -240,7 +332,7 @@
         left: 8% !important;
         right: auto;
         top: 60%;
-        width: min(500px, 35vw);
+        width: min(560px, 40vw);
         transform: translateY(-50%);
       }
 
@@ -261,7 +353,7 @@
       @keyframes mode3dCardIn {
         0% {
           opacity: 0;
-          transform: translateY(26px) scale(0.97);
+          transform: translateY(14px) scale(0.985);
         }
 
         100% {
@@ -281,6 +373,15 @@
 
       .heads__section--wave {
         height: 460px;
+      }
+
+      .our-work-stack {
+        min-height: 500px;
+      }
+
+      .our-work-card__media {
+        height: 150px;
+        margin-bottom: 14px;
       }
 
       .section__card {
@@ -770,16 +871,66 @@
           <div class="part section__card"
               data-4600="opacity:0"
               data-5600="opacity:1">
-            <div class="tails__section__el tails__feature-card">
-              <h2> Selected Work </h2>
-              <p>
-                CIPERLUX, BUSHUBLK, and APEX FINANCE are examples of product delivery across AI, web, mobile, and
-                enterprise engineering.
-              </p>
-              <div class="tails__tags">
-                <span class="tails__tag"> CIPERLUX </span>
-                <span class="tails__tag"> BUSHUBLK </span>
-                <span class="tails__tag"> APEX FINANCE </span>
+            <div class="tails__section__el tails__feature-card our-work-stack">
+              <div class="our-work-card is-active" data-work-card="0" aria-hidden="false">
+                <div class="our-work-card__media our-work-card__media--ciperlux"></div>
+                <p class="our-work-card__index"> 01 </p>
+                <h2> CiperLux </h2>
+                <p class="our-work-card__subtitle"> Fintech Platform </p>
+                <p>
+                  AI-powered stock trading platform with real-time analytics and automated strategies.
+                </p>
+                <div class="tails__tags">
+                  <span class="tails__tag"> NEXT.JS </span>
+                  <span class="tails__tag"> PYTHON </span>
+                  <span class="tails__tag"> AI/ML </span>
+                </div>
+              </div>
+
+              <div class="our-work-card" data-work-card="1" aria-hidden="true">
+                <div class="our-work-card__media our-work-card__media--nexus"></div>
+                <p class="our-work-card__index"> 02 </p>
+                <h2> NexusAI </h2>
+                <p class="our-work-card__subtitle"> AI Chat Platform </p>
+                <p>
+                  Multi-model AI chatbot platform with voice synthesis, RAG knowledge retrieval, and real-time
+                  streaming.
+                </p>
+                <div class="tails__tags">
+                  <span class="tails__tag"> NEXT.JS </span>
+                  <span class="tails__tag"> LANGCHAIN </span>
+                  <span class="tails__tag"> OPENAI </span>
+                </div>
+              </div>
+
+              <div class="our-work-card" data-work-card="2" aria-hidden="true">
+                <div class="our-work-card__media our-work-card__media--apex"></div>
+                <p class="our-work-card__index"> 03 </p>
+                <h2> Apex Finance </h2>
+                <p class="our-work-card__subtitle"> Wealth Operations Suite </p>
+                <p>
+                  Portfolio analytics, risk controls, and automated financial workflows built for high-growth teams.
+                </p>
+                <div class="tails__tags">
+                  <span class="tails__tag"> REACT </span>
+                  <span class="tails__tag"> NODE.JS </span>
+                  <span class="tails__tag"> POSTGRES </span>
+                </div>
+              </div>
+
+              <div class="our-work-card" data-work-card="3" aria-hidden="true">
+                <div class="our-work-card__media our-work-card__media--strategy"></div>
+                <p class="our-work-card__index"> 04 </p>
+                <h2> Strategy Hub </h2>
+                <p class="our-work-card__subtitle"> Enterprise Suite </p>
+                <p>
+                  Enterprise project management and strategic planning suite with real-time collaboration.
+                </p>
+                <div class="tails__tags">
+                  <span class="tails__tag"> VUE.JS </span>
+                  <span class="tails__tag"> NODE.JS </span>
+                  <span class="tails__tag"> MONGODB </span>
+                </div>
               </div>
             </div>
           </div>

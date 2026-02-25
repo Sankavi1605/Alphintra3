@@ -87,6 +87,29 @@ jQuery(function () {
     $sections.filter('.heads__section--' + sectionName).addClass('active-3d-card');
   }
 
+  var $workCards = jQuery('.our-work-card');
+  var workCardIndex = 0;
+  var totalWorkCards = $workCards.length;
+
+  function setActiveWorkCard (index) {
+    if (!totalWorkCards) {
+      return false;
+    }
+
+    var next = Math.max(0, Math.min(totalWorkCards - 1, index));
+    var $nextCard = $workCards.eq(next);
+
+    if (next === workCardIndex && $nextCard.hasClass('is-active')) {
+      return false;
+    }
+
+    workCardIndex = next;
+    $workCards.removeClass('is-active').attr('aria-hidden', 'true');
+    $nextCard.addClass('is-active').attr('aria-hidden', 'false');
+
+    return true;
+  }
+
   var imagesLoader = new ImagesLoader([
     './app/public/img/texture-ball.png',
     './app/public/img/texture-ballAlpha.png',
@@ -182,12 +205,35 @@ jQuery(function () {
     gravitySection,
     endSection
   ]);
+  SCENE.setBeforeSectionChange(function (payload) {
+    if (payload.section !== 'face' || !totalWorkCards) {
+      return true;
+    }
+
+    if (payload.direction === 'down' && workCardIndex < totalWorkCards - 1) {
+      setActiveWorkCard(workCardIndex + 1);
+      return false;
+    }
+
+    if (payload.direction === 'up' && workCardIndex > 0) {
+      setActiveWorkCard(workCardIndex - 1);
+      return false;
+    }
+
+    return true;
+  });
   setActiveCardSection('');
+  setActiveWorkCard(0);
 
   SCENE.on('section:changeBegin', function () {
     var way = this.way;
     var to = this.to.name;
     var from = this.from.name;
+    setActiveCardSection(to === 'hello' ? '' : to);
+
+    if (to === 'face' && from !== 'face') {
+      setActiveWorkCard(0);
+    }
 
     // in begin
     if (to === 'hello') {
@@ -326,7 +372,6 @@ jQuery(function () {
   SCENE.on('section:changeComplete', function () {
     var to = this.to.name;
     var from = this.from.name;
-    setActiveCardSection(to === 'hello' ? '' : to);
 
     // out complete
     if (from === 'hello') {
