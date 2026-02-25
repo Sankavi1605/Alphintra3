@@ -103,27 +103,29 @@
       position: fixed;
       top: 22px;
       right: 28px;
-      width: 86px;
-      height: 86px;
-      z-index: 85;
+      width: 88px;
+      height: 88px;
+      z-index: 220;
       pointer-events: none;
-      opacity: 1;
+      opacity: 0.98;
+      transform: translateZ(0);
     }
 
     .hero-logo::before {
       content: '';
       position: absolute;
-      inset: 8px;
+      inset: -2px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(118, 161, 255, 0.28) 0%, rgba(118, 161, 255, 0) 72%);
-      filter: blur(4px);
+      background: radial-gradient(circle at 50% 45%, rgba(137, 177, 255, 0.36) 0%, rgba(110, 152, 255, 0.2) 36%, rgba(73, 103, 187, 0.08) 58%, rgba(42, 62, 122, 0) 76%);
+      filter: blur(8px);
     }
 
     .hero-logo svg {
       position: relative;
-      width: 100%;
-      height: 100%;
-      filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.28));
+      width: 78%;
+      height: 78%;
+      margin: 11%;
+      filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.3));
     }
 
     .tails__card-actions {
@@ -144,13 +146,17 @@
 
     .our-work-stack {
       position: relative;
-      min-height: 470px;
-      padding: 0;
+      min-height: 640px;
+      padding: 0 !important;
+      --work-pad-y: 56px;
+      --work-pad-x: 48px;
     }
 
     .our-work-card {
       position: absolute;
       inset: 0;
+      box-sizing: border-box;
+      padding: var(--work-pad-y) var(--work-pad-x);
       opacity: 0;
       transform: translateY(10px);
       transition: opacity 0.25s ease, transform 0.25s ease;
@@ -166,10 +172,10 @@
     .our-work-card__media {
       position: relative;
       display: block;
-      width: 100%;
-      height: 185px;
-      margin-bottom: 18px;
-      border-radius: 14px;
+      width: calc(100% + (var(--work-pad-x) * 2));
+      height: 220px;
+      margin: calc(var(--work-pad-y) * -1) calc(var(--work-pad-x) * -1) 18px;
+      border-radius: 20px 20px 0 0;
       border: 1px solid rgba(255, 255, 255, 0.1);
       background-color: rgba(255, 255, 255, 0.02);
       overflow: hidden;
@@ -179,17 +185,18 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 35%, rgba(0, 0, 0, 0.32) 100%);
+      background: var(--work-media-overlay, linear-gradient(to bottom, rgba(0, 0, 0, 0.01) 34%, rgba(0, 0, 0, 0.24) 100%));
       pointer-events: none;
     }
 
     .our-work-card__media--ciperlux {
+      border-color: rgba(95, 136, 255, 0.45);
+      --work-media-overlay: linear-gradient(to bottom, rgba(4, 8, 20, 0.02) 0%, rgba(4, 8, 20, 0.18) 100%);
       background:
-        linear-gradient(165deg, rgba(255, 88, 122, 0.26) 0 2px, transparent 2px 20px),
-        linear-gradient(140deg, rgba(63, 255, 183, 0.2) 0 2px, transparent 2px 26px),
-        repeating-linear-gradient(0deg, rgba(117, 163, 255, 0.2) 0 1px, transparent 1px 22px),
-        repeating-linear-gradient(155deg, rgba(81, 120, 255, 0.2) 0 2px, transparent 2px 22px),
-        linear-gradient(135deg, rgba(6, 16, 44, 0.95), rgba(4, 8, 16, 0.95));
+        repeating-linear-gradient(0deg, rgba(78, 116, 237, 0.3) 0 1px, transparent 1px 28px),
+        repeating-linear-gradient(159deg, rgba(80, 129, 255, 0.58) 0 2px, transparent 2px 24px),
+        linear-gradient(140deg, rgba(18, 75, 212, 0.38) 0%, rgba(14, 42, 116, 0.34) 45%, rgba(7, 16, 36, 0.22) 100%),
+        linear-gradient(150deg, rgba(3, 10, 33, 0.98), rgba(2, 7, 20, 0.96));
     }
 
     .our-work-card__media--nexus {
@@ -205,18 +212,18 @@
     .our-work-card__media--apex {
       background:
         linear-gradient(180deg, rgba(138, 184, 255, 0.2) 0 2px, transparent 2px 34px),
-        linear-gradient(90deg, rgba(118, 255, 228, 0.12) 0 1px, transparent 1px 26px),
-        radial-gradient(circle at 20% 30%, rgba(112, 145, 255, 0.35), transparent 48%),
-        radial-gradient(circle at 78% 70%, rgba(89, 232, 255, 0.2), transparent 45%),
+        linear-gradient(90deg, rgba(118, 255, 228, 0.16) 0 1px, transparent 1px 26px),
+        radial-gradient(circle at 20% 30%, rgba(112, 145, 255, 0.42), transparent 48%),
+        radial-gradient(circle at 78% 70%, rgba(89, 232, 255, 0.26), transparent 45%),
         linear-gradient(125deg, rgba(15, 19, 34, 0.96), rgba(8, 10, 18, 0.98));
     }
 
     .our-work-card__media--strategy {
       background:
-        linear-gradient(to right, rgba(194, 208, 237, 0.34) 0 30%, transparent 30% 32%, rgba(194, 208, 237, 0.26) 32% 56%, transparent 56% 58%, rgba(194, 208, 237, 0.3) 58% 100%),
-        linear-gradient(180deg, rgba(168, 177, 199, 0.22) 0 1px, transparent 1px 28px),
-        repeating-linear-gradient(0deg, rgba(168, 177, 199, 0.14) 0 1px, transparent 1px 24px),
-        repeating-linear-gradient(90deg, rgba(168, 177, 199, 0.12) 0 1px, transparent 1px 28px),
+        linear-gradient(to right, rgba(194, 208, 237, 0.38) 0 30%, transparent 30% 32%, rgba(194, 208, 237, 0.32) 32% 56%, transparent 56% 58%, rgba(194, 208, 237, 0.34) 58% 100%),
+        linear-gradient(180deg, rgba(168, 177, 199, 0.28) 0 1px, transparent 1px 28px),
+        repeating-linear-gradient(0deg, rgba(168, 177, 199, 0.2) 0 1px, transparent 1px 24px),
+        repeating-linear-gradient(90deg, rgba(168, 177, 199, 0.16) 0 1px, transparent 1px 28px),
         linear-gradient(150deg, rgba(30, 35, 48, 0.95), rgba(16, 18, 25, 0.98));
     }
 
@@ -377,8 +384,8 @@
       .hero-logo {
         top: 14px;
         right: 16px;
-        width: 64px;
-        height: 64px;
+        width: 68px;
+        height: 68px;
       }
 
       .heads__section--wave {
@@ -386,11 +393,13 @@
       }
 
       .our-work-stack {
-        min-height: 500px;
+        min-height: 560px;
+        --work-pad-y: 34px;
+        --work-pad-x: 24px;
       }
 
       .our-work-card__media {
-        height: 150px;
+        height: 170px;
         margin-bottom: 14px;
       }
 
@@ -674,9 +683,9 @@
 
       <div class="hero-logo" aria-hidden="true">
         <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-label="Alphintra logo" role="img">
-          <path d="M68 468L238 80H276L446 468L371 416L316 293H197L142 416L68 468Z" fill="#FFFFFF"/>
-          <path d="M128 351L353 223L396 208L345 278L134 375L128 351Z" fill="#FFFFFF"/>
-          <path d="M217 238L256 151L295 238H217Z" fill="#0A0A0A"/>
+          <path d="M74 470L232 84H282L443 470L368 423L312 294H198L142 423L74 470Z" fill="#FFFFFF"/>
+          <path d="M148 346L324 252L404 218L336 290L156 379L148 346Z" fill="#FFFFFF"/>
+          <path d="M228 238H284L256 170L228 238Z" fill="#090909"/>
         </svg>
       </div>
 
