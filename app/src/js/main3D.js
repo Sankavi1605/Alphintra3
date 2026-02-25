@@ -12,7 +12,6 @@ require('./libs/waypointLib');
   
 var APP = require('./modules/appModule');
 var SCENE = require('./modules/sceneModule');
-var SOUNDS = require('./modules/soundsModule');
 var HASH = require('./modules/hashModule');
 
 var ImagesLoader = require('./classes/LoaderClass');
@@ -142,11 +141,7 @@ jQuery(function () {
       return false;
     }
 
-    if (name === 'sounds') {
-      SOUNDS.toggle();
-      $el.html(SOUNDS.isMuted() ? 'UNMUTE' : 'MUTE');
-    }
-    else if (name === 'help') {
+    if (name === 'help') {
       help.in();
     }
     else if (name === 'quality') {
@@ -454,11 +449,6 @@ jQuery(function () {
     }
   });
 
-  SCENE.on('end', function () {
-    SCENE.lock();
-    APP.slide(SCENE.unlock);
-  });
-
   // map
   var map = SCENE.getMap();
 
@@ -511,15 +501,6 @@ jQuery(function () {
   APP.on('slideBegin', function () {
     if (this.to === 'heads') {
       waypoint.stop();
-
-      try {
-        SOUNDS.background.fadeIn(1, 2000);  
-      } catch (e) {
-        console.warn(e);
-      }
-      
-    } else {
-      SOUNDS.background.fadeOut(0, 2000);
     }
   });
 
@@ -544,6 +525,4 @@ jQuery(function () {
 
   APP.start();
   SCENE.start();
-
-  SOUNDS.background.fadeIn(1, 2000);
 });

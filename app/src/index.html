@@ -87,6 +87,36 @@
       font-family: 'Raleway', sans-serif;
     }
 
+    .menu__items {
+      max-width: 420px !important;
+    }
+
+    .menu__item {
+      display: block !important;
+      margin: 0 !important;
+      padding: 8px 0 !important;
+      line-height: 1.35 !important;
+      letter-spacing: 2px !important;
+    }
+
+    .hero-logo {
+      position: fixed;
+      top: 22px;
+      right: 28px;
+      width: 74px;
+      height: 74px;
+      z-index: 45;
+      pointer-events: none;
+      opacity: 0.95;
+    }
+
+    .hero-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: invert(1) brightness(2.2) contrast(1.1);
+    }
+
     .tails__card-actions {
       margin-top: 20px;
     }
@@ -242,6 +272,13 @@
     }
 
     @media screen and (max-width: 900px) {
+      .hero-logo {
+        top: 14px;
+        right: 16px;
+        width: 56px;
+        height: 56px;
+      }
+
       .heads__section--wave {
         height: 460px;
       }
@@ -396,9 +433,7 @@
         'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/plugins/BezierPlugin.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/plugins/CSSPlugin.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/plugins/jquery.gsap.min.js',
-        'https://cdnjs.cloudflare.com/ajax/libs/howler/1.1.25/howler.min.js',
-        'https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.29/skrollr.min.js',
-        'https://cdn.jsdelivr.net/gh/addyosmani/visibly.js@master/visibly.js'
+        'https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.29/skrollr.min.js'
       ];
 
       function loadVendors (index) {
@@ -452,7 +487,7 @@
               </div>
             </div>
             <p class="text--center text--white">
-              There are 2 parts on this website: the visual experience and the company profile. You can switch between them any time.
+              Explore the interactive sections from the menu, or scroll through the presentation with your mouse wheel and arrow keys.
             </p>
           </div>
         </div>
@@ -523,31 +558,14 @@
           <a class="menu__item menu__items--3D" data-section="galaxy"> THE TEAM </a>
           <a class="menu__item menu__items--3D" data-section="gravity"> ABOUT ALPHINTRA </a>
           <a class="menu__item menu__items--3D" data-section="end"> LET'S TALK </a>
-          <a class="menu__item menu__items--3D" data-tail="about"> COMPANY PROFILE </a>
         </div>
       </div>
 
+      <div class="hero-logo" aria-hidden="true">
+        <img src="./app/public/favicons/favicon-192x192.png" alt="Alphintra logo">
+      </div>
+
       <div class="heads__viewport">
-        <div class="trigger__info trigger__info--arrow">
-          <svg xmln="http://www.w3.org/2000/svg" viewBox="0 0 25 20">
-            <path fill="none"
-              stroke="#ffffff"
-              stroke-width="1"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M2.5,5L12.5 15 22.5 5"/>
-          </svg>
-        </div>
-
-        <div class="trigger__info trigger__info--heads">
-          <p class="trigger__info__text"> BACK TO THE PRESENTATION </p>
-          <div class="trigger__info__bg trigger__info__bg--heads"></div>
-        </div>
-
-        <div class="trigger__info trigger__info--tails">
-          <p class="trigger__info__text"> ABOUT ALPHINTRA </p>
-          <div class="trigger__info__bg trigger__info__bg--tails"></div>
-        </div>
       </div>
 
       <div class="heads__sections">
@@ -879,36 +897,7 @@
       </div>
     </div>
 
-    <div class="tails">
-      <div class="tails__section tails__section--about">
-        <div class="tails__section__el tails__feature-card tails__section__el--about">
-          <h2 class="text--center"> ALPHINTRA </h2>
-          <p class="text--center tails__about-lead">
-            Engineering the future. AI, web, mobile, cloud, and immersive 3D products.
-          </p>
-          <p>
-            We partner with startups and enterprise teams to design and ship robust products with practical execution,
-            clear communication, and measurable milestones.
-          </p>
-          <p>
-            From product discovery to deployment, our teams integrate quickly and deliver systems that are stable,
-            maintainable, and built for growth.
-          </p>
-          <div class="tails__tags">
-            <span class="tails__tag"> STARTUPS + ENTERPRISE </span>
-            <span class="tails__tag"> FULL PRODUCT DELIVERY </span>
-            <span class="tails__tag"> OUTCOME DRIVEN </span>
-          </div>
-          <div class="text--center tails__about-cta">
-            <a class="tails__link placeholder--email"> Start a project </a>
-          </div>
-        </div>
-      </div>
-
-      </div>
-    </div>
-
-    <div class="trigger"></div>
+    <div class="tails"></div>
   </div>
 </body>
 </html>
