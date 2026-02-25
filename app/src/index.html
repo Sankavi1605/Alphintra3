@@ -134,10 +134,7 @@
       }
 
       html.mode-3d .heads__section .part--title {
-        display: block;
-        opacity: 1 !important;
-        z-index: 9;
-        pointer-events: none;
+        display: none;
       }
 
       html.mode-3d .heads__section .part--title h1 {
@@ -171,6 +168,12 @@
         left: 8% !important;
       }
 
+      html.mode-3d .heads__section--drop.active-3d-card .section__card {
+        top: 68%;
+        left: 6% !important;
+        width: min(500px, 36vw);
+      }
+
       html.mode-3d .heads__section--face.active-3d-card .section__card,
       html.mode-3d .heads__section--end.active-3d-card .section__card {
         left: 50% !important;
@@ -179,6 +182,10 @@
       }
 
       html.mode-3d .heads__section--gravity .part--title {
+        display: block;
+        opacity: 1 !important;
+        z-index: 9;
+        pointer-events: none;
         top: 22%;
         left: 8%;
         width: auto;
@@ -544,11 +551,16 @@
               data-1200="opacity:0"
               data-1500="opacity:1">
             <div class="tails__section__el tails__feature-card">
-              <h2> Building Scalable Digital Solutions </h2>
+              <h2> Why Alphintra </h2>
               <p>
-                From AI-driven trading platforms to enterprise-grade logistics, we build scalable solutions that define
-                industries. Our team combines deep technical expertise with a relentless focus on user experience.
+                We combine product thinking, design precision, and engineering execution to ship reliable digital
+                products for startups and enterprise teams.
               </p>
+              <div class="tails__tags">
+                <span class="tails__tag"> AI WEB MOBILE CLOUD </span>
+                <span class="tails__tag"> PRODUCT + ENGINEERING </span>
+                <span class="tails__tag"> FAST DELIVERY </span>
+              </div>
             </div>
           </div>
           <div class="part part--drop"
@@ -819,33 +831,27 @@
 
     <div class="tails">
       <div class="tails__section tails__section--about">
-        <div class="tails__section__el">
-          <h1 class="text--center"> ALPHINTRA </h1>
-          <h2 class="text--center">
-            Engineering the future. <br/>
-            AI, web, mobile, cloud, and immersive 3D products.
-          </h2>
-          <p>
-            We partner with startups and enterprise teams to design and ship robust digital products.
+        <div class="tails__section__el tails__feature-card tails__section__el--about">
+          <h2 class="text--center"> ALPHINTRA </h2>
+          <p class="text--center tails__about-lead">
+            Engineering the future. AI, web, mobile, cloud, and immersive 3D products.
           </p>
           <p>
-            From AI-driven workflows and LLM integrations to high-performance web and mobile products, we execute end to end.
+            We partner with startups and enterprise teams to design and ship robust products with practical execution,
+            clear communication, and measurable milestones.
           </p>
           <p>
-            Our engineering stack includes Next.js, React, Flutter, Spring Boot, LangChain, and cloud-native infrastructure.
+            From product discovery to deployment, our teams integrate quickly and deliver systems that are stable,
+            maintainable, and built for growth.
           </p>
-          <p>
-            We operate as a hands-on technical partner, embedding with your team to reduce risk and accelerate delivery.
-          </p>
-          <p>
-            Reach us at hello@alphintra.com to discuss your product goals, constraints, and timeline.
-          </p>
-          <div class="text--center">
+          <div class="tails__tags">
+            <span class="tails__tag"> STARTUPS + ENTERPRISE </span>
+            <span class="tails__tag"> FULL PRODUCT DELIVERY </span>
+            <span class="tails__tag"> OUTCOME DRIVEN </span>
+          </div>
+          <div class="text--center tails__about-cta">
             <a class="tails__link placeholder--email"> Start a project </a>
           </div>
-          <p>
-            We build with clarity, speed, and technical rigor.
-          </p>
         </div>
       </div>
 
