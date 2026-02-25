@@ -32,7 +32,7 @@ var SCENE = (function () {
       fogColor: '#0a0a0a',
       quality: 1,
       sectionHeight: 50,
-      sectionTransitionDuration: 0.75
+      sectionTransitionDuration: 1.1
     };
 
     // DOM element
