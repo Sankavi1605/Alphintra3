@@ -140,13 +140,28 @@
         top: 50%;
         right: 8%;
         left: auto !important;
-        width: min(470px, 38vw);
-        max-width: 470px;
+        width: min(560px, 42vw);
+        max-width: 560px;
         margin: 0 !important;
         transform: translateY(-50%);
         opacity: 1 !important;
         pointer-events: auto;
         z-index: 12;
+      }
+
+      html.mode-3d .heads__section--drop.active-3d-card .section__card,
+      html.mode-3d .heads__section--flow.active-3d-card .section__card,
+      html.mode-3d .heads__section--wave.active-3d-card .section__card,
+      html.mode-3d .heads__section--rocks.active-3d-card .section__card {
+        right: auto;
+        left: 8% !important;
+      }
+
+      html.mode-3d .heads__section--face.active-3d-card .section__card,
+      html.mode-3d .heads__section--end.active-3d-card .section__card {
+        left: 50% !important;
+        right: auto;
+        transform: translate(-50%, -50%);
       }
     }
 
@@ -471,16 +486,6 @@
             <h1 class="text--white text--noMargin"> ALPHINTRA </h1>
             <h1 class="text--white text--noMargin"> WE ARE ALPHINTRA </h1>
           </div>
-          <div class="part section__card"
-              data-0="opacity:1"
-              data-500="opacity:0">
-            <div class="tails__section__el tails__feature-card">
-              <h2> Digital Products </h2>
-              <p>
-                We partner with startups and enterprise teams to design and ship robust digital products.
-              </p>
-            </div>
-          </div>
           <div class="part part--smoke"
               data-0="transform:translate3d(0px, 0px, 0px)"
               data-800="transform:translate3d(0px, -300px, 0px)"></div>
@@ -512,9 +517,10 @@
               data-1200="opacity:0"
               data-1500="opacity:1">
             <div class="tails__section__el tails__feature-card">
-              <h2> End-to-End Execution </h2>
+              <h2> Building Scalable Digital Solutions </h2>
               <p>
-                From AI-driven workflows and LLM integrations to high-performance web and mobile products, we execute end to end.
+                From AI-driven trading platforms to enterprise-grade logistics, we build scalable solutions that define
+                industries. Our team combines deep technical expertise with a relentless focus on user experience.
               </p>
             </div>
           </div>
@@ -630,7 +636,7 @@
             <div class="tails__section__el tails__feature-card">
               <h2> Immersive Experiences </h2>
               <p>
-                High-fidelity prototyping in Figma, interactive 3D experiences with Three.js, and interfaces that
+                High-fidelity prototyping in Figma, interactive 3D experiences with Three.js, and designs that
                 captivate. We bridge creativity and code.
               </p>
               <div class="tails__tags">
@@ -655,11 +661,16 @@
               data-4600="opacity:0"
               data-5600="opacity:1">
             <div class="tails__section__el tails__feature-card">
-              <h2> Selected Delivery </h2>
+              <h2> Selected Work </h2>
               <p>
-                We ship AI copilots, enterprise web and mobile apps, and cloud systems with production-grade reliability.
-                Every engagement is scoped for measurable business impact.
+                CIPERLUX, BUSHUBLK, and APEX FINANCE are examples of product delivery across AI, web, mobile, and
+                enterprise engineering.
               </p>
+              <div class="tails__tags">
+                <span class="tails__tag"> CIPERLUX </span>
+                <span class="tails__tag"> BUSHUBLK </span>
+                <span class="tails__tag"> APEX FINANCE </span>
+              </div>
             </div>
           </div>
           <div class="part part--face"
@@ -680,13 +691,13 @@
             <div class="tails__section__el tails__feature-card">
               <h2> The Alphintra Way </h2>
               <p>
-                Discovery -> Design -> Sprint Development -> Deploy. Weekly demos, measurable milestones,
-                and production-ready releases with continuous monitoring.
+                Discovery -> Design -> Sprint -> Deploy. Understanding goals, high-fidelity prototyping, agile
+                development with weekly demos, and production deployment with continuous monitoring.
               </p>
               <div class="tails__tags">
                 <span class="tails__tag"> DISCOVERY </span>
                 <span class="tails__tag"> DESIGN </span>
-                <span class="tails__tag"> SPRINT DEV </span>
+                <span class="tails__tag"> SPRINT </span>
                 <span class="tails__tag"> DEPLOY </span>
               </div>
             </div>
@@ -707,10 +718,17 @@
               data-5900="opacity:0"
               data-6500="opacity:1">
             <div class="tails__section__el tails__feature-card">
-              <h2> Technical Partners </h2>
+              <h2> Built by Makers </h2>
               <p>
-                We operate as a hands-on technical partner, embedding with your team to reduce risk and accelerate delivery.
+                Born from UCSC, grown into a full-service tech agency. Our team spans frontend engineering, backend
+                and cloud architecture, AI and machine learning, and UI UX with 3D design.
               </p>
+              <div class="tails__tags">
+                <span class="tails__tag"> FRONTEND </span>
+                <span class="tails__tag"> BACKEND &amp; CLOUD </span>
+                <span class="tails__tag"> AI &amp; ML </span>
+                <span class="tails__tag"> UI UX &amp; 3D </span>
+              </div>
             </div>
           </div>
           <div class="part part--galaxy"
@@ -719,16 +737,6 @@
         </div>
 
         <div class="heads__section heads__section--gravity">
-          <div class="part section__card"
-              data-6200="opacity:0"
-              data-6800="opacity:1">
-            <div class="tails__section__el tails__feature-card">
-              <h2> Cloud-native infrastructure </h2>
-              <p>
-                Our engineering stack includes Next.js, React, Flutter, Spring Boot, LangChain, and cloud-native infrastructure.
-              </p>
-            </div>
-          </div>
           <div class="part part--gravity"
             data-6200="transform:translate3d(0px, 200px, 0px); opacity:0"
               data-6800="transform:translate3d(0px, 0px, 0px); opacity:1"
@@ -741,17 +749,6 @@
               data-7200="opacity:1">
             <h1 class="text--white text--noMargin"> CITY-SCALE </h1>
             <h1 class="text--white text--noMargin"> SYSTEMS </h1>
-          </div>
-          <div class="part section__card"
-              data-6800="opacity:0"
-              data-7200="opacity:1">
-            <div class="tails__section__el tails__feature-card">
-              <h2> Urban Digital Infrastructure </h2>
-              <p>
-                We design resilient digital platforms for complex environments, combining real-time data, cloud operations,
-                and human-centered interfaces.
-              </p>
-            </div>
           </div>
         </div>
 
@@ -768,8 +765,8 @@
             <div class="tails__section__el tails__feature-card">
               <h2> Start a Project </h2>
               <p>
-                Reach us at hello@alphintra.com to discuss your product goals, constraints, and timeline. 
-                We build with clarity, speed, and technical rigor.
+                Tell us what you are building. Web, mobile, AI, or enterprise. Reach us at hello@alphintra.com and we
+                will make it happen.
               </p>
             </div>
           </div>
@@ -947,7 +944,7 @@
           <div class="tails__section__el tails__feature-card">
             <h2> Immersive Experiences </h2>
             <p>
-              High-fidelity prototyping in Figma, interactive 3D experiences with Three.js, and interfaces that
+              High-fidelity prototyping in Figma, interactive 3D experiences with Three.js, and designs that
               captivate. We bridge creativity and code.
             </p>
             <div class="tails__tags">
@@ -962,13 +959,13 @@
           <div class="tails__section__el tails__feature-card">
             <h2> The Alphintra Way </h2>
             <p>
-              Discovery -> Design -> Sprint Development -> Deploy. Weekly demos, measurable milestones,
-              and production-ready releases with continuous monitoring.
+              Discovery -> Design -> Sprint -> Deploy. Understanding goals, high-fidelity prototyping, agile
+              development with weekly demos, and production deployment with continuous monitoring.
             </p>
             <div class="tails__tags">
               <span class="tails__tag"> DISCOVERY </span>
               <span class="tails__tag"> DESIGN </span>
-              <span class="tails__tag"> SPRINT DEV </span>
+              <span class="tails__tag"> SPRINT </span>
               <span class="tails__tag"> DEPLOY </span>
             </div>
           </div>

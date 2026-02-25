@@ -190,13 +190,12 @@ jQuery(function () {
     citySection,
     endSection
   ]);
-  setActiveCardSection('hello');
+  setActiveCardSection('');
 
   SCENE.on('section:changeBegin', function () {
     var way = this.way;
     var to = this.to.name;
     var from = this.from.name;
-    setActiveCardSection(to);
 
     // in begin
     if (to === 'hello') {
@@ -335,6 +334,7 @@ jQuery(function () {
   SCENE.on('section:changeComplete', function () {
     var to = this.to.name;
     var from = this.from.name;
+    setActiveCardSection(to === 'hello' ? '' : to);
 
     // out complete
     if (from === 'hello') {
