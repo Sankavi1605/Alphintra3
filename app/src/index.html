@@ -87,8 +87,7 @@
       font-family: 'Raleway', sans-serif;
     }
 
-    .heads__section--wave,
-    .heads__section--city {
+    .heads__section--wave {
       height: 500px;
     }
 
@@ -134,6 +133,17 @@
         display: none;
       }
 
+      html.mode-3d .heads__section .part--title {
+        display: block;
+        opacity: 1 !important;
+        z-index: 9;
+        pointer-events: none;
+      }
+
+      html.mode-3d .heads__section .part--title h1 {
+        text-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
+      }
+
       html.mode-3d .heads__section.active-3d-card .section__card {
         display: block;
         position: absolute;
@@ -147,6 +157,10 @@
         opacity: 1 !important;
         pointer-events: auto;
         z-index: 12;
+      }
+
+      html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card {
+        animation: mode3dCardIn 0.7s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
       html.mode-3d .heads__section--drop.active-3d-card .section__card,
@@ -163,15 +177,29 @@
         right: auto;
         transform: translate(-50%, -50%);
       }
+
+      html.mode-3d .heads__section--gravity .part--title {
+        top: 22%;
+        left: 8%;
+        width: auto;
+      }
+
+      @keyframes mode3dCardIn {
+        0% {
+          opacity: 0;
+          transform: translateY(26px) scale(0.97);
+        }
+
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
     }
 
     @media screen and (max-width: 900px) {
       .heads__section--wave {
         height: 460px;
-      }
-
-      .heads__section--city {
-        height: 430px;
       }
 
       .section__card {
@@ -449,8 +477,7 @@
           <a class="menu__item menu__items--3D" data-section="face"> OUR WORK </a>
           <a class="menu__item menu__items--3D" data-section="rocks"> ALPHINTRA WAY </a>
           <a class="menu__item menu__items--3D" data-section="galaxy"> THE TEAM </a>
-          <a class="menu__item menu__items--3D" data-section="gravity"> GRAVITY GRID </a>
-          <a class="menu__item menu__items--3D" data-section="city"> CITY </a>
+          <a class="menu__item menu__items--3D" data-section="gravity"> ABOUT ALPHINTRA </a>
           <a class="menu__item menu__items--3D" data-section="end"> LET'S TALK </a>
           <a class="menu__item menu__items--3D" data-tail="about"> ABOUT EXPERIENCE </a>
           <a class="menu__item menu__items--3D" data-tail="skills"> CAPABILITY CARDS </a>
@@ -737,19 +764,33 @@
         </div>
 
         <div class="heads__section heads__section--gravity">
+          <div class="part part--title gravity__title"
+            data-6200="opacity:0"
+            data-6800="opacity:1">
+              <h1 class="text--white text--left text--noMargin"> ABOUT </h1>
+              <h1 class="text--white text--left text--noMargin"> ALPHINTRA </h1>
+          </div>
+          <div class="part section__card"
+              data-6200="opacity:0"
+              data-6800="opacity:1">
+            <div class="tails__section__el tails__feature-card">
+              <h2> Engineering Partner for Ambitious Teams </h2>
+              <p>
+                Alphintra is a product engineering company focused on AI, web, mobile, cloud, and interactive 3D.
+                We work as an embedded partner and deliver measurable outcomes with clear milestones.
+              </p>
+              <div class="tails__tags">
+                <span class="tails__tag"> PRODUCT ENGINEERING </span>
+                <span class="tails__tag"> AI WEB MOBILE CLOUD </span>
+                <span class="tails__tag"> EMBEDDED TEAM </span>
+                <span class="tails__tag"> OUTCOME FOCUSED </span>
+              </div>
+            </div>
+          </div>
           <div class="part part--gravity"
             data-6200="transform:translate3d(0px, 200px, 0px); opacity:0"
               data-6800="transform:translate3d(0px, 0px, 0px); opacity:1"
               ></div>
-        </div>
-
-        <div class="heads__section heads__section--city">
-          <div class="part part--title end__title"
-              data-6800="opacity:0"
-              data-7200="opacity:1">
-            <h1 class="text--white text--noMargin"> CITY-SCALE </h1>
-            <h1 class="text--white text--noMargin"> SYSTEMS </h1>
-          </div>
         </div>
 
         <div class="heads__section heads__section--end">
@@ -894,79 +935,57 @@
       </div>
 
       <div class="tails__section tails__section--skills">
-        <h1 class="text--center"> OUR CAPABILITIES </h1>
+        <h1 class="text--center"> WHY ALPHINTRA </h1>
         <div class="tails__feature-grid">
           <div class="tails__section__el tails__feature-card">
-            <h2> High-Performance Applications </h2>
+            <h2> Product Discovery and Clarity </h2>
             <p>
-              We craft SEO-optimized web applications with Next.js and stunning cross-platform mobile experiences with Flutter.
-              Blazing fast, pixel perfect, and built to scale.
+              We turn broad ideas into a concrete roadmap with scope, architecture, milestones, and risk control
+              before the first sprint starts.
             </p>
             <div class="tails__tags">
-              <span class="tails__tag"> NEXT.JS </span>
-              <span class="tails__tag"> REACT </span>
-              <span class="tails__tag"> FLUTTER </span>
-              <span class="tails__tag"> TYPESCRIPT </span>
-              <span class="tails__tag"> TAILWIND </span>
+              <span class="tails__tag"> ROADMAP </span>
+              <span class="tails__tag"> TECHNICAL AUDIT </span>
+              <span class="tails__tag"> RISK PLAN </span>
             </div>
           </div>
 
           <div class="tails__section__el tails__feature-card">
-            <h2> Intelligent Systems </h2>
+            <h2> Dedicated Delivery Pods </h2>
             <p>
-              Moving beyond basic apps with LangChain and RAG workflows. We integrate LLMs into business processes
-              to make organizations smarter, faster, and more data-driven.
+              Cross-functional teams with product, design, frontend, backend, and AI engineering are assigned to your
+              project to keep velocity high and communication direct.
             </p>
             <div class="tails__tags">
-              <span class="tails__tag"> LANGCHAIN </span>
-              <span class="tails__tag"> RAG </span>
-              <span class="tails__tag"> GPT </span>
-              <span class="tails__tag"> PYTHON </span>
-              <span class="tails__tag"> VECTOR DB </span>
+              <span class="tails__tag"> PM + DESIGN </span>
+              <span class="tails__tag"> FULL STACK </span>
+              <span class="tails__tag"> AI ENGINEERING </span>
             </div>
           </div>
 
           <div class="tails__section__el tails__feature-card">
-            <h2> Rock-Solid Infrastructure </h2>
+            <h2> Release Discipline </h2>
             <p>
-              Spring Boot microservices deployed on GCP with Docker. Designed for 99.9% uptime, horizontal scaling,
-              and enterprise-grade security.
+              Every release follows CI/CD checks, code review gates, performance targets, and observability standards
+              so production stays stable as you scale.
             </p>
             <div class="tails__tags">
-              <span class="tails__tag"> SPRING BOOT </span>
-              <span class="tails__tag"> JAVA </span>
-              <span class="tails__tag"> DOCKER </span>
-              <span class="tails__tag"> GCP </span>
-              <span class="tails__tag"> POSTGRESQL </span>
+              <span class="tails__tag"> CI CD </span>
+              <span class="tails__tag"> QA AUTOMATION </span>
+              <span class="tails__tag"> OBSERVABILITY </span>
             </div>
           </div>
 
           <div class="tails__section__el tails__feature-card">
-            <h2> Immersive Experiences </h2>
+            <h2> Long-Term Ownership </h2>
             <p>
-              High-fidelity prototyping in Figma, interactive 3D experiences with Three.js, and designs that
-              captivate. We bridge creativity and code.
+              We support your team beyond launch with handover documentation, maintenance options, and iterative
+              improvements driven by product data.
             </p>
             <div class="tails__tags">
-              <span class="tails__tag"> FIGMA </span>
-              <span class="tails__tag"> THREE.JS </span>
-              <span class="tails__tag"> GSAP </span>
-              <span class="tails__tag"> FRAMER MOTION </span>
-              <span class="tails__tag"> WEBGL </span>
-            </div>
-          </div>
-
-          <div class="tails__section__el tails__feature-card">
-            <h2> The Alphintra Way </h2>
-            <p>
-              Discovery -> Design -> Sprint -> Deploy. Understanding goals, high-fidelity prototyping, agile
-              development with weekly demos, and production deployment with continuous monitoring.
-            </p>
-            <div class="tails__tags">
-              <span class="tails__tag"> DISCOVERY </span>
-              <span class="tails__tag"> DESIGN </span>
-              <span class="tails__tag"> SPRINT </span>
-              <span class="tails__tag"> DEPLOY </span>
+              <span class="tails__tag"> DOCUMENTATION </span>
+              <span class="tails__tag"> KNOWLEDGE TRANSFER </span>
+              <span class="tails__tag"> CONTINUOUS IMPROVEMENT </span>
             </div>
           </div>
         </div>

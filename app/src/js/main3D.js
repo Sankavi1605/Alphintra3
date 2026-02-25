@@ -34,7 +34,6 @@ var faceSection = require('./sections/faceSection');
 var rocksSection = require('./sections/rocksSection');
 var galaxySection = require('./sections/galaxySection');
 var gravitySection = require('./sections/gravitySection');
-var citySection = require('./sections/citySection');
 var endSection = require('./sections/endSection');
 
 jQuery(function () {
@@ -56,8 +55,7 @@ jQuery(function () {
     rocks: 9,
     galaxy: 10,
     gravity: 11,
-    city: 12,
-    end: 13
+    end: 12
   };
   var currentView = 'heads';
   var $tailsViewport = jQuery('.tails');
@@ -187,7 +185,6 @@ jQuery(function () {
     rocksSection,
     galaxySection,
     gravitySection,
-    citySection,
     endSection
   ]);
   setActiveCardSection('');
