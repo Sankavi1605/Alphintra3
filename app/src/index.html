@@ -87,6 +87,18 @@
       font-family: 'Raleway', sans-serif;
     }
 
+    .tails__card-actions {
+      margin-top: 20px;
+    }
+
+    .tails__card-actions .tails__link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 220px;
+      text-decoration: none;
+    }
+
     .heads__section--wave {
       height: 500px;
     }
@@ -174,6 +186,18 @@
         width: min(500px, 36vw);
       }
 
+      html.mode-3d .heads__section--flow.active-3d-card .section__card {
+        top: 64%;
+        left: 5% !important;
+        width: min(500px, 35vw);
+      }
+
+      html.mode-3d .heads__section--wave.active-3d-card .section__card {
+        top: 63%;
+        left: 4.5% !important;
+        width: min(500px, 35vw);
+      }
+
       html.mode-3d .heads__section--beams.active-3d-card .section__card {
         left: 50% !important;
         right: auto;
@@ -182,21 +206,26 @@
         transform: translate(-50%, -50%);
       }
 
-      html.mode-3d .heads__section--face.active-3d-card .section__card,
+      html.mode-3d .heads__section--face.active-3d-card .section__card {
+        left: 8% !important;
+        right: auto;
+        top: 60%;
+        width: min(500px, 35vw);
+        transform: translateY(-50%);
+      }
+
+      html.mode-3d .heads__section--rocks.active-3d-card .section__card {
+        top: 66%;
+        left: 5% !important;
+        width: min(500px, 35vw);
+      }
+
       html.mode-3d .heads__section--end.active-3d-card .section__card {
         left: 50% !important;
         right: auto;
+        top: 66%;
+        width: min(560px, 42vw);
         transform: translate(-50%, -50%);
-      }
-
-      html.mode-3d .heads__section--gravity .part--title {
-        display: block;
-        opacity: 1 !important;
-        z-index: 9;
-        pointer-events: none;
-        top: 22%;
-        left: 8%;
-        width: auto;
       }
 
       @keyframes mode3dCardIn {
@@ -800,12 +829,6 @@
         </div>
 
         <div class="heads__section heads__section--gravity">
-          <div class="part part--title gravity__title"
-            data-6200="opacity:0"
-            data-6800="opacity:1">
-              <h1 class="text--white text--left text--noMargin"> ABOUT </h1>
-              <h1 class="text--white text--left text--noMargin"> ALPHINTRA </h1>
-          </div>
           <div class="part section__card"
               data-6200="opacity:0"
               data-6800="opacity:1">
@@ -845,6 +868,9 @@
                 Tell us what you are building. Web, mobile, AI, or enterprise. Reach us at hello@alphintra.com and we
                 will make it happen.
               </p>
+              <div class="tails__card-actions">
+                <a class="tails__link" href="mailto:alphintratech@gmail.com"> GET IN TOUCH </a>
+              </div>
             </div>
           </div>
         </div>
