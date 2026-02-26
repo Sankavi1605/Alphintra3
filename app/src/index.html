@@ -204,9 +204,12 @@
     .our-work-stack.tails__feature-card {
       border-radius: 24px !important;
       overflow: hidden !important;
-      background: linear-gradient(165deg, rgba(12, 15, 24, 0.3), rgba(8, 10, 16, 0.25)) !important;
-      border: 1px solid rgba(126, 151, 255, 0.18) !important;
-      box-shadow: 0 22px 54px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+      background: rgba(255, 255, 255, 0.035) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      box-shadow:
+        0 32px 80px rgba(0, 0, 0, 0.55),
+        0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
     }
 
     .our-work-card {
@@ -214,13 +217,15 @@
       inset: 0;
       box-sizing: border-box;
       padding: var(--work-pad-y) var(--work-pad-x);
+      display: none;
       opacity: 0;
-      transform: translateY(16px) scale(0.988);
-      transition: opacity 0.38s ease, transform 0.38s ease;
+      transform: translateY(18px) scale(0.985);
+      transition: none;
       pointer-events: none;
     }
 
     .our-work-card.is-active {
+      display: block;
       opacity: 1;
       transform: translateY(0) scale(1);
       pointer-events: auto;
@@ -1279,50 +1284,111 @@
         var cards = stack.querySelectorAll('.our-work-card');
         if (!cards.length) return false;
 
-        function animateNodeStagger(nodes, delayStart, delayStep) {
+        function clearVisualStyles(node) {
+          if (!node || !node.style) return;
+          node.style.opacity = '';
+          node.style.visibility = '';
+          node.style.transform = '';
+          node.style.filter = '';
+        }
+
+        function getCardAnimNodes(card) {
+          return card.querySelectorAll(
+            '.our-work-card__index, h2, .our-work-card__subtitle, p:not(.our-work-card__index):not(.our-work-card__subtitle), .tails__tag'
+          );
+        }
+
+        function resetWorkCard(card) {
+          if (!card) return;
+
+          TweenLite.killTweensOf(card);
+          clearVisualStyles(card);
+
+          var media = card.querySelector('.our-work-card__media');
+          if (media) {
+            TweenLite.killTweensOf(media);
+            clearVisualStyles(media);
+          }
+
+          var nodes = getCardAnimNodes(card);
           for (var i = 0; i < nodes.length; i++) {
             TweenLite.killTweensOf(nodes[i]);
-            TweenLite.fromTo(
-              nodes[i],
-              0.34,
-              { autoAlpha: 0, y: 9 },
-              {
-                autoAlpha: 1,
-                y: 0,
-                ease: Power2.easeOut,
-                delay: delayStart + (i * delayStep),
-                clearProps: 'transform'
-              }
-            );
+            clearVisualStyles(nodes[i]);
+          }
+        }
+
+        function resetInactiveCards(activeCard) {
+          for (var i = 0; i < cards.length; i++) {
+            if (cards[i] === activeCard) continue;
+            resetWorkCard(cards[i]);
+          }
+        }
+
+        function animateNodeStagger(nodes, delayStart, delayStep) {
+          for (var i = 0; i < nodes.length; i++) {
+            (function (node, delay) {
+              TweenLite.killTweensOf(node);
+              clearVisualStyles(node);
+
+              TweenLite.fromTo(
+                node,
+                0.34,
+                { opacity: 0, y: 10 },
+                {
+                  opacity: 1,
+                  y: 0,
+                  ease: Power2.easeOut,
+                  delay: delay,
+                  onComplete: function () {
+                    clearVisualStyles(node);
+                  }
+                }
+              );
+            })(nodes[i], delayStart + (i * delayStep));
           }
         }
 
         function animateWorkCard(card) {
           if (!card || !card.classList.contains('is-active')) return;
 
-          TweenLite.killTweensOf(card);
+          resetInactiveCards(card);
+          resetWorkCard(card);
+
           TweenLite.fromTo(
             card,
-            0.36,
-            { autoAlpha: 0, y: 12, scale: 0.992 },
-            { autoAlpha: 1, y: 0, scale: 1, ease: Power2.easeOut, clearProps: 'transform' }
+            0.44,
+            { opacity: 0, y: 18, scale: 0.986 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              ease: Power2.easeOut,
+              onComplete: function () {
+                clearVisualStyles(card);
+              }
+            }
           );
 
           var media = card.querySelector('.our-work-card__media');
           if (media) {
-            TweenLite.killTweensOf(media);
             TweenLite.fromTo(
               media,
-              0.54,
-              { autoAlpha: 0.62, scale: 1.02, y: 8 },
-              { autoAlpha: 1, scale: 1, y: 0, ease: Power2.easeOut, clearProps: 'transform' }
+              0.52,
+              { opacity: 0.58, scale: 1.02, y: 10 },
+              {
+                opacity: 1,
+                scale: 1,
+                y: 0,
+                ease: Power2.easeOut,
+                onComplete: function () {
+                  clearVisualStyles(media);
+                }
+              }
             );
           }
 
-          var nodes = card.querySelectorAll(
-            '.our-work-card__index, h2, .our-work-card__subtitle, p:not(.our-work-card__index):not(.our-work-card__subtitle), .tails__tag'
-          );
-          animateNodeStagger(nodes, 0.06, 0.022);
+          var nodes = getCardAnimNodes(card);
+          animateNodeStagger(nodes, 0.08, 0.024);
         }
 
         for (var i = 0; i < cards.length; i++) {
@@ -1330,8 +1396,11 @@
             var observer = new MutationObserver(function (mutations) {
               for (var m = 0; m < mutations.length; m++) {
                 if (mutations[m].attributeName !== 'class' && mutations[m].attributeName !== 'aria-hidden') continue;
-                if (!card.classList.contains('is-active')) continue;
-                animateWorkCard(card);
+                if (card.classList.contains('is-active')) {
+                  animateWorkCard(card);
+                } else {
+                  resetWorkCard(card);
+                }
               }
             });
             observer.observe(card, { attributes: true, attributeFilter: ['class', 'aria-hidden'] });
@@ -1350,8 +1419,11 @@
         }
 
         for (var j = 0; j < cards.length; j++) {
-          if (!cards[j].classList.contains('is-active')) continue;
-          animateWorkCard(cards[j]);
+          if (cards[j].classList.contains('is-active')) {
+            animateWorkCard(cards[j]);
+          } else {
+            resetWorkCard(cards[j]);
+          }
         }
 
         stack.__workCardAnimReady = true;
