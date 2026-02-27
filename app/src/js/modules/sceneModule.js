@@ -250,22 +250,22 @@ var SCENE = (function () {
       var safeHeight = Math.max(height, 1);
       var aspect = width / safeHeight;
 
-      // Keep narrow portrait phones framed wider so text meshes and models stay fully visible.
+      // Balance framing on portrait phones: keep full visibility while avoiding tiny models.
       if (aspect < 0.5) {
-        targetFov = 104;
-        targetCameraZ = 78;
-        targetSectionScale = 0.82;
-        targetParallaxRange = 3.2;
+        targetFov = 90;
+        targetCameraZ = 58;
+        targetSectionScale = 1.04;
+        targetParallaxRange = 4.2;
       } else if (aspect < 0.62) {
-        targetFov = 96;
-        targetCameraZ = 70;
-        targetSectionScale = 0.88;
-        targetParallaxRange = 3.8;
+        targetFov = 84;
+        targetCameraZ = 54;
+        targetSectionScale = 1.02;
+        targetParallaxRange = 4.4;
       } else if (aspect < 0.72) {
-        targetFov = 86;
-        targetCameraZ = 60;
-        targetSectionScale = 0.94;
-        targetParallaxRange = 4.3;
+        targetFov = 76;
+        targetCameraZ = 48;
+        targetSectionScale = 1;
+        targetParallaxRange = 4.7;
       } else {
         targetFov = 60;
         targetCameraZ = 40;
