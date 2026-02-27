@@ -18,14 +18,54 @@ function Menu () {
   var _callback = function () {};
   var timeouts = [];
   var isOpen = false;
+  var lastTouchInteractionAt = 0;
+
+  function isSyntheticClickAfterTouch (event) {
+    return event
+      && event.type === 'click'
+      && (Date.now() - lastTouchInteractionAt) < 450;
+  }
 
   function onItemClick (e) {
     if (e) {
+      if (isSyntheticClickAfterTouch(e)) {
+        return false;
+      }
+
+      if (e.type === 'touchend') {
+        lastTouchInteractionAt = Date.now();
+      }
+
+      e.preventDefault();
       e.stopPropagation();
     }
 
     _callback.call(this, e);
     closeMenu();
+    return false;
+  }
+
+  function onButtonActivate (e) {
+    if (e) {
+      if (isSyntheticClickAfterTouch(e)) {
+        return false;
+      }
+
+      if (e.type === 'touchend') {
+        lastTouchInteractionAt = Date.now();
+      }
+
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+
+    return false;
   }
 
   function clearTimeouts () {
@@ -60,7 +100,7 @@ function Menu () {
 
     isOpen = true;
     clearTimeouts();
-    $items.on('click', onItemClick);
+    $items.on('click touchend', onItemClick);
     $itemsContainer.stop(true, true).css('display', 'block');
     $el.addClass('menu--open');
 
@@ -85,21 +125,12 @@ function Menu () {
         $itemsContainer.css('display', 'none');
       }
 
-      $items.off('click', onItemClick);
+      $items.off('click touchend', onItemClick);
     });
   }
 
   $button.on('mouseenter', openMenu);
-  $button.on('click', function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (isOpen) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  });
+  $button.on('click touchend', onButtonActivate);
 
   $el.on('mouseenter', openMenu);
   $el.on('mouseleave', closeMenu);

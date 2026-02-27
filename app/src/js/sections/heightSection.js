@@ -32,6 +32,21 @@ var text = new TextPanel(
   }
 );
 text.el.position.set(-20, 0, 0);
+
+function updateTextPosition () {
+  if (window.innerWidth <= 900) {
+    text.el.position.x = -8;
+    text.el.position.z = 6;
+    return;
+  }
+
+  text.el.position.x = -20;
+  text.el.position.z = 0;
+}
+
+updateTextPosition();
+window.addEventListener('resize', updateTextPosition);
+
 heightSection.add(text.el);
 
 heightMap.el.visible = false;

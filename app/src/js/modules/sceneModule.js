@@ -143,6 +143,7 @@ var SCENE = (function () {
       var touchStartedInCard = false;
       var activeTouchCard = null;
       var MIN_SWIPE_DISTANCE = 36;
+      var FORCE_SECTION_SWIPE_DISTANCE = 78;
       var MAX_SWIPE_TIME = 700;
 
       function isCardNode (node) {
@@ -214,6 +215,14 @@ var SCENE = (function () {
         }
 
         if (touchStartedInCard) {
+          // Strong swipe on a card should still navigate sections.
+          var originalCardMove = event.originalEvent;
+          var movingTouch = originalCardMove && originalCardMove.touches ? originalCardMove.touches[0] : null;
+
+          if (movingTouch && Math.abs(movingTouch.clientY - touchStartY) >= FORCE_SECTION_SWIPE_DISTANCE) {
+            event.preventDefault();
+          }
+
           // Allow native vertical scrolling inside feature cards.
           return true;
         }
@@ -238,13 +247,15 @@ var SCENE = (function () {
 
         var deltaY = touch.clientY - touchStartY;
         var deltaX = touch.clientX - touchStartX;
+        var absDeltaY = Math.abs(deltaY);
         var elapsed = Date.now() - touchStartTime;
 
         if (touchStartedInCard) {
+          var forceSectionSwipe = absDeltaY >= FORCE_SECTION_SWIPE_DISTANCE;
           var cardCanScroll = activeTouchCard
             && activeTouchCard.scrollHeight > (activeTouchCard.clientHeight + 2);
 
-          if (cardCanScroll) {
+          if (!forceSectionSwipe && cardCanScroll) {
             var cardAtTop = activeTouchCard.scrollTop <= 1;
             var cardAtBottom =
               (activeTouchCard.scrollTop + activeTouchCard.clientHeight) >= (activeTouchCard.scrollHeight - 1);
