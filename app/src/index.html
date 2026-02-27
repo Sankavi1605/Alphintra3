@@ -517,44 +517,79 @@
       line-height: 1.58;
     }
 
-    .neons-company-grid {
+    .neons-dual-cards {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+      gap: 16px;
       margin: 16px 0 22px;
     }
 
-    .neons-company-metric {
-      border-radius: 14px;
-      padding: 14px 14px 12px;
+    .neons-client-card {
+      position: relative;
+      border-radius: 16px;
+      padding: 18px 18px 16px;
       border: 1px solid rgba(176, 212, 255, 0.3);
-      background: linear-gradient(145deg, rgba(166, 207, 255, 0.16), rgba(124, 171, 230, 0.09));
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      background: linear-gradient(145deg, rgba(160, 199, 255, 0.14), rgba(95, 140, 204, 0.08));
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 12px 28px rgba(0, 0, 0, 0.22);
     }
 
-    .neons-company-metric strong {
-      display: block;
-      margin-bottom: 5px;
-      color: rgba(237, 245, 255, 0.96);
-      font-size: 18px;
+    .neons-client-card--left {
+      border-color: rgba(169, 216, 255, 0.38);
+    }
+
+    .neons-client-card--right {
+      border-color: rgba(180, 224, 255, 0.32);
+      background: linear-gradient(145deg, rgba(145, 192, 255, 0.12), rgba(84, 131, 198, 0.08));
+    }
+
+    .neons-client-card h3 {
+      margin: 0 0 10px;
+      color: rgba(240, 249, 255, 0.97);
+      font-size: clamp(23px, 1.75vw, 30px);
       line-height: 1.15;
-      letter-spacing: 0.015em;
+      letter-spacing: 0.01em;
     }
 
-    .neons-company-metric span {
-      color: rgba(199, 218, 244, 0.82);
-      font-size: 11.5px;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
+    .neons-client-card p {
+      margin: 0;
+      color: rgba(210, 227, 246, 0.84) !important;
+      font-size: 15px;
+      line-height: 1.55;
     }
 
-    .neons-company-card .tails__tags {
-      gap: 10px;
+    .neons-client-list {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
     }
 
-    .neons-company-card .tails__tag {
+    .neons-client-list li {
+      color: rgba(222, 236, 255, 0.88);
+      font-size: 14px;
+      line-height: 1.4;
+      letter-spacing: 0.01em;
+    }
+
+    .neons-client-list li::before {
+      content: '>';
+      display: inline-block;
+      width: 15px;
+      margin-right: 3px;
+      color: rgba(192, 228, 255, 0.88);
+    }
+
+    .neons-client-card .tails__tags {
+      margin-top: 14px;
+      gap: 8px;
+    }
+
+    .neons-client-card .tails__tag {
       border-radius: 999px !important;
-      padding: 8px 14px !important;
+      padding: 7px 12px !important;
       border: 1px solid rgba(174, 215, 255, 0.34) !important;
       background: rgba(173, 208, 255, 0.11) !important;
       color: rgba(235, 245, 255, 0.92) !important;
@@ -661,8 +696,8 @@
         left: 50% !important;
         right: auto;
         top: 52%;
-        width: min(780px, 58vw);
-        max-width: 780px;
+        width: min(1040px, 74vw);
+        max-width: 1040px;
         transform: translate(-50%, -50%);
       }
 
@@ -779,9 +814,26 @@
         font-size: 15px;
       }
 
-      .neons-company-grid {
+      .neons-dual-cards {
         grid-template-columns: 1fr;
-        gap: 10px;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .neons-client-card {
+        padding: 15px 14px 13px;
+      }
+
+      .neons-client-card h3 {
+        font-size: clamp(20px, 5.8vw, 25px);
+      }
+
+      .neons-client-card p {
+        font-size: 14px;
+      }
+
+      .neons-client-list {
+        gap: 6px;
       }
 
       .section__card {
@@ -1219,34 +1271,50 @@
               data-2600="opacity:0"
               data-3400="opacity:1">
             <div class="tails__section__el tails__feature-card neons-company-card">
-              <h2> Alphintra Company Snapshot </h2>
+              <h2> Build Faster. Grow Smarter. </h2>
               <p>
-                Product engineering company delivering AI, web, mobile, cloud, and interactive 3D systems for
-                ambitious teams.
+                Alphintra helps teams launch high-impact digital products and scale operations with AI, web, mobile,
+                and cloud engineering under one delivery team.
               </p>
-              <div class="neons-company-grid">
-                <div class="neons-company-metric">
-                  <strong> UCSC Origins </strong>
-                  <span> Founded by builders </span>
+              <div class="neons-dual-cards">
+                <div class="neons-client-card neons-client-card--left">
+                  <h3> Startup Launch Track </h3>
+                  <p>
+                    Turn your idea into a production-ready product with fast iteration cycles and clear weekly
+                    delivery.
+                  </p>
+                  <ul class="neons-client-list">
+                    <li> MVP-ready builds in weeks, not months </li>
+                    <li> Product decisions backed by user feedback </li>
+                    <li> Clear milestones with transparent execution </li>
+                  </ul>
+                  <div class="tails__tags">
+                    <span class="tails__tag"> MVP ACCELERATION </span>
+                    <span class="tails__tag"> FAST ITERATION </span>
+                  </div>
                 </div>
-                <div class="neons-company-metric">
-                  <strong> End-to-End Delivery </strong>
-                  <span> Discovery to production </span>
-                </div>
-                <div class="neons-company-metric">
-                  <strong> Embedded Model </strong>
-                  <span> Works like your team </span>
-                </div>
-                <div class="neons-company-metric">
-                  <strong> Outcome Focus </strong>
-                  <span> Fast measurable releases </span>
+                <div class="neons-client-card neons-client-card--right">
+                  <h3> Growth &amp; Enterprise Track </h3>
+                  <p>
+                    Modernize existing systems with reliable architecture, AI automation, and measurable business
+                    outcomes.
+                  </p>
+                  <ul class="neons-client-list">
+                    <li> Automation flows that reduce manual workload </li>
+                    <li> Scalable cloud foundations for long-term growth </li>
+                    <li> Dedicated engineering squad aligned to your KPIs </li>
+                  </ul>
+                  <div class="tails__tags">
+                    <span class="tails__tag"> AI AUTOMATION </span>
+                    <span class="tails__tag"> SCALE &amp; SECURITY </span>
+                  </div>
                 </div>
               </div>
               <div class="tails__tags">
-                <span class="tails__tag"> AI ENGINEERING </span>
+                <span class="tails__tag"> PRODUCT ENGINEERING </span>
                 <span class="tails__tag"> WEB &amp; MOBILE </span>
-                <span class="tails__tag"> CLOUD PLATFORMS </span>
-                <span class="tails__tag"> 3D EXPERIENCES </span>
+                <span class="tails__tag"> CLOUD DELIVERY </span>
+                <span class="tails__tag"> AI-FIRST SYSTEMS </span>
               </div>
             </div>
           </div>
