@@ -759,7 +759,7 @@
       }
 
       html.mode-3d .heads__section.active-3d-card .part--title {
-        display: block;
+        display: none;
         position: absolute;
         top: calc(env(safe-area-inset-top, 0px) + 72px);
         left: 50% !important;
@@ -837,6 +837,41 @@
 
       html.mode-3d .heads {
         background-color: #050508;
+      }
+
+      html.mode-3d .menu {
+        top: calc(env(safe-area-inset-top, 0px) + 12px) !important;
+        left: 14px !important;
+        height: 24px !important;
+        opacity: 1 !important;
+        z-index: 260 !important;
+      }
+
+      html.mode-3d .menu__button {
+        top: 0 !important;
+        margin-top: 0 !important;
+        width: 30px !important;
+        height: 24px !important;
+        opacity: 1 !important;
+      }
+
+      html.mode-3d .menu__button__line {
+        height: 2px !important;
+        background-color: rgba(255, 255, 255, 0.92) !important;
+        border-radius: 999px;
+      }
+
+      html.mode-3d .menu__button__line--top {
+        top: 2px !important;
+      }
+
+      html.mode-3d .menu__button__line--middle {
+        top: 11px !important;
+        margin-top: 0 !important;
+      }
+
+      html.mode-3d .menu__button__line--bottom {
+        bottom: 2px !important;
       }
     }
   </style>

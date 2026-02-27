@@ -140,8 +140,27 @@ var SCENE = (function () {
       var touchStartY = null;
       var touchStartX = null;
       var touchStartTime = 0;
+      var touchStartedInCard = false;
       var MIN_SWIPE_DISTANCE = 36;
       var MAX_SWIPE_TIME = 700;
+
+      function isCardNode (node) {
+        return !!(node && node.classList && node.classList.contains('tails__feature-card'));
+      }
+
+      function findCardFromTarget (target) {
+        var node = target;
+        var viewportNode = $viewport && $viewport[0];
+
+        while (node && node !== document && node !== viewportNode) {
+          if (isCardNode(node)) {
+            return node;
+          }
+          node = node.parentNode;
+        }
+
+        return null;
+      }
 
       function onScroll (event) {
         newDate = new Date();
@@ -166,6 +185,7 @@ var SCENE = (function () {
         touchStartY = null;
         touchStartX = null;
         touchStartTime = 0;
+        touchStartedInCard = false;
       }
 
       function onTouchStart (event) {
@@ -182,11 +202,16 @@ var SCENE = (function () {
         touchStartY = original.touches[0].clientY;
         touchStartX = original.touches[0].clientX;
         touchStartTime = Date.now();
+        touchStartedInCard = !!findCardFromTarget(original.target || event.target);
       }
 
       function onTouchMove (event) {
         if (touchStartY === null) {
           return false;
+        }
+
+        if (touchStartedInCard) {
+          return true;
         }
 
         // Keep touch gesture dedicated to section navigation while heads is active.
@@ -210,6 +235,12 @@ var SCENE = (function () {
         var deltaY = touch.clientY - touchStartY;
         var deltaX = touch.clientX - touchStartX;
         var elapsed = Date.now() - touchStartTime;
+
+        if (touchStartedInCard) {
+          resetTouch();
+          return false;
+        }
+
         resetTouch();
 
         if (elapsed > MAX_SWIPE_TIME) {
