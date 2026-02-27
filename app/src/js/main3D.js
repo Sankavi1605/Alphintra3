@@ -90,6 +90,16 @@ jQuery(function () {
   var $workCards = jQuery('.our-work-card');
   var workCardIndex = 0;
   var totalWorkCards = $workCards.length;
+  var workCardScrollLockUntil = 0;
+  var WORK_CARD_SCROLL_LOCK_MS = 420;
+
+  function lockWorkCardScroll () {
+    workCardScrollLockUntil = Date.now() + WORK_CARD_SCROLL_LOCK_MS;
+  }
+
+  function clearWorkCardScrollLock () {
+    workCardScrollLockUntil = 0;
+  }
 
   function setActiveWorkCard (index) {
     if (!totalWorkCards) {
@@ -207,19 +217,29 @@ jQuery(function () {
   ]);
   SCENE.setBeforeSectionChange(function (payload) {
     if (payload.section !== 'face' || !totalWorkCards) {
+      clearWorkCardScrollLock();
       return true;
     }
 
+    if (Date.now() < workCardScrollLockUntil) {
+      return false;
+    }
+
     if (payload.direction === 'down' && workCardIndex < totalWorkCards - 1) {
-      setActiveWorkCard(workCardIndex + 1);
+      if (setActiveWorkCard(workCardIndex + 1)) {
+        lockWorkCardScroll();
+      }
       return false;
     }
 
     if (payload.direction === 'up' && workCardIndex > 0) {
-      setActiveWorkCard(workCardIndex - 1);
+      if (setActiveWorkCard(workCardIndex - 1)) {
+        lockWorkCardScroll();
+      }
       return false;
     }
 
+    clearWorkCardScrollLock();
     return true;
   });
   setActiveCardSection('');
@@ -232,7 +252,12 @@ jQuery(function () {
     setActiveCardSection(to === 'hello' ? '' : to);
 
     if (to === 'face' && from !== 'face') {
+      clearWorkCardScrollLock();
       setActiveWorkCard(0);
+    }
+
+    if (from === 'face' && to !== 'face') {
+      clearWorkCardScrollLock();
     }
 
     // in begin
