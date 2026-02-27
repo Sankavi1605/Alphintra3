@@ -33,6 +33,25 @@ var text = new TextPanel(
 );
 text.el.position.set(15, 0, 15);
 text.el.rotation.y = -0.4;
+
+function updateTextPosition () {
+  if (window.innerWidth <= 900) {
+    text.el.position.x = 8;
+    text.el.position.z = 10;
+    text.el.rotation.y = -0.22;
+    text.el.scale.set(0.82, 0.82, 0.82);
+    return;
+  }
+
+  text.el.position.x = 15;
+  text.el.position.z = 15;
+  text.el.rotation.y = -0.4;
+  text.el.scale.set(1, 1, 1);
+}
+
+updateTextPosition();
+window.addEventListener('resize', updateTextPosition);
+
 ballSection.add(text.el);
 
 ball.el.visible = false;

@@ -18,6 +18,25 @@ var text = new TextPanel(
 );
 text.el.position.set(23, 0, 0);
 text.el.rotation.y = -0.4;
+
+function updateTextPosition () {
+  if (window.innerWidth <= 900) {
+    text.el.position.x = 10;
+    text.el.position.z = 4;
+    text.el.rotation.y = -0.22;
+    text.el.scale.set(0.82, 0.82, 0.82);
+    return;
+  }
+
+  text.el.position.x = 23;
+  text.el.position.z = 0;
+  text.el.rotation.y = -0.4;
+  text.el.scale.set(1, 1, 1);
+}
+
+updateTextPosition();
+window.addEventListener('resize', updateTextPosition);
+
 faceSection.add(text.el);
 
 var strips = new Strips({

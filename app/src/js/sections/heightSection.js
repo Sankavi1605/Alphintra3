@@ -37,11 +37,13 @@ function updateTextPosition () {
   if (window.innerWidth <= 900) {
     text.el.position.x = -8;
     text.el.position.z = 6;
+    text.el.scale.set(0.82, 0.82, 0.82);
     return;
   }
 
   text.el.position.x = -20;
   text.el.position.z = 0;
+  text.el.scale.set(1, 1, 1);
 }
 
 updateTextPosition();
