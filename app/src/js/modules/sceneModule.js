@@ -48,6 +48,10 @@ var SCENE = (function () {
     var camera;
     var frameId;
     var cameraShakeY = 0;
+    var targetFov = 60;
+    var targetCameraZ = 40;
+    var targetSectionScale = 1;
+    var targetParallaxRange = 5;
 
     // mouse
     var mouseX = 0;
@@ -242,12 +246,65 @@ var SCENE = (function () {
       jQuery(document).on('keydown', onKeyDown);
     }
 
+    function updateViewportProfile () {
+      var safeHeight = Math.max(height, 1);
+      var aspect = width / safeHeight;
+
+      // Keep narrow portrait phones framed wider so text meshes and models stay fully visible.
+      if (aspect < 0.5) {
+        targetFov = 104;
+        targetCameraZ = 78;
+        targetSectionScale = 0.82;
+        targetParallaxRange = 3.2;
+      } else if (aspect < 0.62) {
+        targetFov = 96;
+        targetCameraZ = 70;
+        targetSectionScale = 0.88;
+        targetParallaxRange = 3.8;
+      } else if (aspect < 0.72) {
+        targetFov = 86;
+        targetCameraZ = 60;
+        targetSectionScale = 0.94;
+        targetParallaxRange = 4.3;
+      } else {
+        targetFov = 60;
+        targetCameraZ = 40;
+        targetSectionScale = 1;
+        targetParallaxRange = 5;
+      }
+    }
+
+    function applySectionScale () {
+      for (var i = 0; i < sections.length; i++) {
+        var section = sections[i];
+
+        if (!section || !section.el || !section.el.scale) {
+          continue;
+        }
+
+        section.el.scale.set(targetSectionScale, targetSectionScale, targetSectionScale);
+      }
+    }
+
+    function syncViewportSize () {
+      var viewportWidth = $viewport.width();
+      var viewportHeight = $viewport.height();
+      var visualViewport = window.visualViewport;
+      var fallbackWidth = visualViewport ? Math.round(visualViewport.width) : window.innerWidth;
+      var fallbackHeight = visualViewport ? Math.round(visualViewport.height) : window.innerHeight;
+
+      width = Math.max(1, viewportWidth || fallbackWidth || 1);
+      height = Math.max(1, viewportHeight || fallbackHeight || 1);
+    }
+
     function setup () {
       if (!$viewport) {
         console.warn('set viewport first');
         return false;
       }
 
+      syncViewportSize();
+      updateViewportProfile();
       resolution = parameters.quality;
 
       renderer = new THREE.WebGLRenderer({
@@ -267,8 +324,8 @@ var SCENE = (function () {
       light.position.set(0.2, 1, 0.5);
       scene.add(light);
 
-      camera = new THREE.PerspectiveCamera(20, width / height, 1, 4000);
-      camera.position.set(0, 0, 40);
+      camera = new THREE.PerspectiveCamera(targetFov, width / height, 1, 4000);
+      camera.position.set(0, 0, targetCameraZ);
 
       function onMouseMove (event) {
         mouseX = (event.clientX / window.innerWidth) * 2 - 1;
@@ -310,15 +367,18 @@ var SCENE = (function () {
       cameraShakeY += 0.02;
 
       // mouse camera move
-      camera.position.x += ((mouseX * 5) - camera.position.x) * 0.03;
+      camera.position.x += ((mouseX * targetParallaxRange) - camera.position.x) * 0.03;
 
       renderer.render(scene, camera);
     }
 
     function onResize () {
-      width = $viewport.width();
-      height = $viewport.height();
+      syncViewportSize();
+      updateViewportProfile();
+      applySectionScale();
 
+      camera.fov = targetFov;
+      camera.position.z = targetCameraZ;
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
 
@@ -383,8 +443,8 @@ var SCENE = (function () {
       setViewport: function ($el) {
         $viewport = $el;
 
-        width = $viewport.width();
-        height = $viewport.height();
+        syncViewportSize();
+        updateViewportProfile();
 
         setup();
       },
@@ -422,6 +482,7 @@ var SCENE = (function () {
           scene.add(section.el);
         }
 
+        applySectionScale();
         setupBackground();
       },
 
@@ -568,13 +629,15 @@ var SCENE = (function () {
        * @method in
        */
       in: function () {
-        TweenLite.to({ fov: 200, speed: 0 }, 2, {
+        TweenLite.to({ fov: 200, z: targetCameraZ + 24, speed: 0 }, 2, {
           bezier: { type: 'soft', values: [{ speed: 20 }, { speed: 0 }]},
-          fov: 60,
+          fov: targetFov,
+          z: targetCameraZ,
           ease: 'easeOutCubic',
           onUpdate: function () {
             backgroundLines.updateZ(this.target.speed);
             camera.fov = this.target.fov;
+            camera.position.z = this.target.z;
             camera.updateProjectionMatrix();
           }
         });
