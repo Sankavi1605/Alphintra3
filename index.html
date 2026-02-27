@@ -460,30 +460,35 @@
     .neons-company-card {
       position: relative;
       overflow: hidden !important;
-      border-color: rgba(212, 229, 255, 0.28) !important;
+      padding: clamp(30px, 3.2vw, 46px) !important;
+      border-radius: 24px !important;
+      border: 1px solid rgba(197, 225, 255, 0.28) !important;
       background:
-        radial-gradient(120% 120% at 22% 0%, rgba(177, 209, 255, 0.2) 0%, rgba(177, 209, 255, 0) 52%),
-        radial-gradient(120% 120% at 100% 100%, rgba(163, 238, 255, 0.14) 0%, rgba(163, 238, 255, 0) 56%),
-        rgba(6, 10, 18, 0.88) !important;
+        radial-gradient(125% 145% at 16% 0%, rgba(171, 208, 255, 0.28) 0%, rgba(171, 208, 255, 0.08) 42%, rgba(171, 208, 255, 0) 72%),
+        linear-gradient(160deg, rgba(10, 16, 28, 0.96) 0%, rgba(6, 11, 21, 0.95) 52%, rgba(5, 10, 18, 0.96) 100%) !important;
       box-shadow:
-        0 26px 72px rgba(0, 0, 0, 0.45),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1),
-        inset 0 0 0 1px rgba(157, 198, 255, 0.12) !important;
+        0 30px 86px rgba(0, 0, 0, 0.5),
+        0 0 46px rgba(150, 204, 255, 0.17),
+        inset 0 1px 0 rgba(255, 255, 255, 0.11),
+        inset 0 0 0 1px rgba(164, 205, 255, 0.12) !important;
+      backdrop-filter: blur(14px) saturate(115%) !important;
+      -webkit-backdrop-filter: blur(14px) saturate(115%) !important;
     }
 
     .neons-company-card::before {
       content: '';
       position: absolute;
-      top: 16px;
-      right: 18px;
-      width: 150px;
-      height: 6px;
+      top: 22px;
+      right: 24px;
+      width: 190px;
+      height: 8px;
       border-radius: 999px;
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0.96), rgba(210, 236, 255, 0.82));
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.97), rgba(206, 235, 255, 0.85));
       box-shadow:
-        0 0 26px rgba(255, 255, 255, 0.58),
-        0 0 50px rgba(172, 218, 255, 0.45);
-      transform: rotate(-16deg);
+        0 0 24px rgba(255, 255, 255, 0.42),
+        0 0 46px rgba(169, 217, 255, 0.32);
+      opacity: 0.56;
+      transform: rotate(-13deg);
       pointer-events: none;
     }
 
@@ -491,37 +496,69 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(120deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 34%);
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 36%);
+      opacity: 0.54;
       pointer-events: none;
+    }
+
+    .neons-company-card h2 {
+      margin: 0 0 16px;
+      color: rgba(245, 252, 255, 0.97) !important;
+      font-size: clamp(32px, 2.85vw, 44px);
+      line-height: 1.08;
+      letter-spacing: 0.01em;
+    }
+
+    .neons-company-card > p {
+      margin: 0 0 24px;
+      max-width: 95%;
+      color: rgba(214, 229, 247, 0.86) !important;
+      font-size: clamp(16px, 1.15vw, 19px);
+      line-height: 1.58;
     }
 
     .neons-company-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin: 14px 0 12px;
+      gap: 14px;
+      margin: 16px 0 22px;
     }
 
     .neons-company-metric {
-      border-radius: 12px;
-      padding: 9px 10px;
-      border: 1px solid rgba(174, 210, 255, 0.2);
-      background: rgba(160, 201, 255, 0.08);
+      border-radius: 14px;
+      padding: 14px 14px 12px;
+      border: 1px solid rgba(176, 212, 255, 0.3);
+      background: linear-gradient(145deg, rgba(166, 207, 255, 0.16), rgba(124, 171, 230, 0.09));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
     }
 
     .neons-company-metric strong {
       display: block;
-      margin-bottom: 2px;
-      color: rgba(237, 245, 255, 0.95);
-      font-size: 14px;
-      letter-spacing: 0.02em;
+      margin-bottom: 5px;
+      color: rgba(237, 245, 255, 0.96);
+      font-size: 18px;
+      line-height: 1.15;
+      letter-spacing: 0.015em;
     }
 
     .neons-company-metric span {
-      color: rgba(196, 213, 240, 0.78);
-      font-size: 12px;
-      letter-spacing: 0.08em;
+      color: rgba(199, 218, 244, 0.82);
+      font-size: 11.5px;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
+    }
+
+    .neons-company-card .tails__tags {
+      gap: 10px;
+    }
+
+    .neons-company-card .tails__tag {
+      border-radius: 999px !important;
+      padding: 8px 14px !important;
+      border: 1px solid rgba(174, 215, 255, 0.34) !important;
+      background: rgba(173, 208, 255, 0.11) !important;
+      color: rgba(235, 245, 255, 0.92) !important;
+      letter-spacing: 0.12em !important;
     }
 
     @media screen and (min-width: 901px) {
@@ -623,8 +660,9 @@
       html.mode-3d .heads__section--neons.active-3d-card .section__card {
         left: 50% !important;
         right: auto;
-        top: 33%;
-        width: min(560px, 40vw);
+        top: 52%;
+        width: min(780px, 58vw);
+        max-width: 780px;
         transform: translate(-50%, -50%);
       }
 
@@ -719,14 +757,31 @@
         max-width: none;
       }
 
+      .neons-company-card {
+        padding: 24px 20px !important;
+        border-radius: 18px !important;
+      }
+
       .neons-company-card::before {
-        width: 112px;
-        top: 14px;
-        right: 14px;
+        width: 96px;
+        height: 5px;
+        top: 16px;
+        right: 16px;
+        opacity: 0.52;
+      }
+
+      .neons-company-card h2 {
+        font-size: clamp(26px, 7.4vw, 34px);
+      }
+
+      .neons-company-card > p {
+        max-width: none;
+        font-size: 15px;
       }
 
       .neons-company-grid {
         grid-template-columns: 1fr;
+        gap: 10px;
       }
 
       .section__card {
@@ -996,7 +1051,7 @@
           <a class="menu__item menu__items--3D" data-section="drop"> ENGINEERING THE FUTURE </a>
           <a class="menu__item menu__items--3D" data-section="ball"> WEB AND MOBILE </a>
           <a class="menu__item menu__items--3D" data-section="flow"> AI AND AUTOMATION </a>
-          <a class="menu__item menu__items--3D" data-section="neons"> NEON SYSTEMS </a>
+          <a class="menu__item menu__items--3D" data-section="neons"> COMPANY SNAPSHOT </a>
           <a class="menu__item menu__items--3D" data-section="height"> ENTERPRISE BACKEND </a>
           <a class="menu__item menu__items--3D" data-section="wave"> UI UX AND 3D </a>
           <a class="menu__item menu__items--3D" data-section="face"> OUR WORK </a>
@@ -1157,8 +1212,8 @@
           <div class="part part--title neons__title"
               data-2600="opacity:0"
               data-3400="opacity:1">
-            <h1 class="text--white text--center text--noMargin"> NEON </h1>
-            <h1 class="text--white text--center text--noMargin"> SYSTEMS </h1>
+            <h1 class="text--white text--center text--noMargin"> COMPANY </h1>
+            <h1 class="text--white text--center text--noMargin"> SNAPSHOT </h1>
           </div>
           <div class="part section__card"
               data-2600="opacity:0"
