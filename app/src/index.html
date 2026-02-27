@@ -457,6 +457,73 @@
       color: rgba(175, 197, 233, 0.74);
     }
 
+    .neons-company-card {
+      position: relative;
+      overflow: hidden !important;
+      border-color: rgba(212, 229, 255, 0.28) !important;
+      background:
+        radial-gradient(120% 120% at 22% 0%, rgba(177, 209, 255, 0.2) 0%, rgba(177, 209, 255, 0) 52%),
+        radial-gradient(120% 120% at 100% 100%, rgba(163, 238, 255, 0.14) 0%, rgba(163, 238, 255, 0) 56%),
+        rgba(6, 10, 18, 0.88) !important;
+      box-shadow:
+        0 26px 72px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 0 0 1px rgba(157, 198, 255, 0.12) !important;
+    }
+
+    .neons-company-card::before {
+      content: '';
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      width: 150px;
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.96), rgba(210, 236, 255, 0.82));
+      box-shadow:
+        0 0 26px rgba(255, 255, 255, 0.58),
+        0 0 50px rgba(172, 218, 255, 0.45);
+      transform: rotate(-16deg);
+      pointer-events: none;
+    }
+
+    .neons-company-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 34%);
+      pointer-events: none;
+    }
+
+    .neons-company-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 14px 0 12px;
+    }
+
+    .neons-company-metric {
+      border-radius: 12px;
+      padding: 9px 10px;
+      border: 1px solid rgba(174, 210, 255, 0.2);
+      background: rgba(160, 201, 255, 0.08);
+    }
+
+    .neons-company-metric strong {
+      display: block;
+      margin-bottom: 2px;
+      color: rgba(237, 245, 255, 0.95);
+      font-size: 14px;
+      letter-spacing: 0.02em;
+    }
+
+    .neons-company-metric span {
+      color: rgba(196, 213, 240, 0.78);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
     @media screen and (min-width: 901px) {
       html.mode-3d .heads__sections {
         display: block !important;
@@ -553,6 +620,14 @@
         width: min(500px, 35vw);
       }
 
+      html.mode-3d .heads__section--neons.active-3d-card .section__card {
+        left: 50% !important;
+        right: auto;
+        top: 33%;
+        width: min(560px, 40vw);
+        transform: translate(-50%, -50%);
+      }
+
       html.mode-3d .heads__section--beams.active-3d-card .section__card {
         left: 50% !important;
         right: auto;
@@ -642,6 +717,16 @@
 
       .our-work-card > p:not(.our-work-card__index):not(.our-work-card__subtitle) {
         max-width: none;
+      }
+
+      .neons-company-card::before {
+        width: 112px;
+        top: 14px;
+        right: 14px;
+      }
+
+      .neons-company-grid {
+        grid-template-columns: 1fr;
       }
 
       .section__card {
@@ -1066,6 +1151,50 @@
           <div class="part part--smoke flow__smoke"
               data-2200="transform:translate3d(0px, 400px, 0px); opacity:0"
               data-3200="transform:translate3d(0px, 0px, 0px); opacity:1"></div>
+        </div>
+
+        <div class="heads__section heads__section--neons">
+          <div class="part part--title neons__title"
+              data-2600="opacity:0"
+              data-3400="opacity:1">
+            <h1 class="text--white text--center text--noMargin"> NEON </h1>
+            <h1 class="text--white text--center text--noMargin"> SYSTEMS </h1>
+          </div>
+          <div class="part section__card"
+              data-2600="opacity:0"
+              data-3400="opacity:1">
+            <div class="tails__section__el tails__feature-card neons-company-card">
+              <h2> Alphintra Company Snapshot </h2>
+              <p>
+                Product engineering company delivering AI, web, mobile, cloud, and interactive 3D systems for
+                ambitious teams.
+              </p>
+              <div class="neons-company-grid">
+                <div class="neons-company-metric">
+                  <strong> UCSC Origins </strong>
+                  <span> Founded by builders </span>
+                </div>
+                <div class="neons-company-metric">
+                  <strong> End-to-End Delivery </strong>
+                  <span> Discovery to production </span>
+                </div>
+                <div class="neons-company-metric">
+                  <strong> Embedded Model </strong>
+                  <span> Works like your team </span>
+                </div>
+                <div class="neons-company-metric">
+                  <strong> Outcome Focus </strong>
+                  <span> Fast measurable releases </span>
+                </div>
+              </div>
+              <div class="tails__tags">
+                <span class="tails__tag"> AI ENGINEERING </span>
+                <span class="tails__tag"> WEB &amp; MOBILE </span>
+                <span class="tails__tag"> CLOUD PLATFORMS </span>
+                <span class="tails__tag"> 3D EXPERIENCES </span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="heads__section heads__section--height">
