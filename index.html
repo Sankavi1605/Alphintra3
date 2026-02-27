@@ -769,7 +769,9 @@
       jsPayload.async = jsPayload.defer = false;
 
       var prefix;
-      if (webGL() && !mobile()) {
+      // Keep the same 3D experience on mobile when WebGL is available.
+      // Fall back to 2D only when WebGL is not supported.
+      if (webGL()) {
         prefix = '3D';
       } else {
         prefix = '2D';

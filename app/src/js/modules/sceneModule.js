@@ -133,7 +133,12 @@ var SCENE = (function () {
       // scroll
       var newDate;
       var oldDate = new Date();
-      
+      var touchStartY = null;
+      var touchStartX = null;
+      var touchStartTime = 0;
+      var MIN_SWIPE_DISTANCE = 36;
+      var MAX_SWIPE_TIME = 700;
+
       function onScroll (event) {
         newDate = new Date();
 
@@ -153,6 +158,71 @@ var SCENE = (function () {
         return false;
       }
 
+      function resetTouch () {
+        touchStartY = null;
+        touchStartX = null;
+        touchStartTime = 0;
+      }
+
+      function onTouchStart (event) {
+        if (!isActive || isScrolling) {
+          return false;
+        }
+
+        var original = event.originalEvent;
+
+        if (!original || !original.touches || original.touches.length !== 1) {
+          return false;
+        }
+
+        touchStartY = original.touches[0].clientY;
+        touchStartX = original.touches[0].clientX;
+        touchStartTime = Date.now();
+      }
+
+      function onTouchMove (event) {
+        if (touchStartY === null) {
+          return false;
+        }
+
+        // Keep touch gesture dedicated to section navigation while heads is active.
+        event.preventDefault();
+      }
+
+      function onTouchEnd (event) {
+        if (touchStartY === null || !isActive || isScrolling) {
+          resetTouch();
+          return false;
+        }
+
+        var original = event.originalEvent;
+        var touch = original && original.changedTouches ? original.changedTouches[0] : null;
+
+        if (!touch) {
+          resetTouch();
+          return false;
+        }
+
+        var deltaY = touch.clientY - touchStartY;
+        var deltaX = touch.clientX - touchStartX;
+        var elapsed = Date.now() - touchStartTime;
+        resetTouch();
+
+        if (elapsed > MAX_SWIPE_TIME) {
+          return false;
+        }
+
+        if (Math.abs(deltaY) < MIN_SWIPE_DISTANCE || Math.abs(deltaY) < Math.abs(deltaX)) {
+          return false;
+        }
+
+        if (deltaY < 0) {
+          next();
+        } else {
+          prev();
+        }
+      }
+
       function onKeyDown (event) {
         if (!isScrolling && isActive) {
           var keyCode = event.keyCode;
@@ -166,6 +236,9 @@ var SCENE = (function () {
       }
 
       $viewport.on('DOMMouseScroll mousewheel', onScroll);
+      $viewport.on('touchstart', onTouchStart);
+      $viewport.on('touchmove', onTouchMove);
+      $viewport.on('touchend touchcancel', onTouchEnd);
       jQuery(document).on('keydown', onKeyDown);
     }
 
