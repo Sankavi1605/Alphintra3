@@ -141,6 +141,7 @@ var SCENE = (function () {
       var touchStartX = null;
       var touchStartTime = 0;
       var touchStartedInCard = false;
+      var activeTouchCard = null;
       var MIN_SWIPE_DISTANCE = 36;
       var MAX_SWIPE_TIME = 700;
 
@@ -186,6 +187,7 @@ var SCENE = (function () {
         touchStartX = null;
         touchStartTime = 0;
         touchStartedInCard = false;
+        activeTouchCard = null;
       }
 
       function onTouchStart (event) {
@@ -202,7 +204,8 @@ var SCENE = (function () {
         touchStartY = original.touches[0].clientY;
         touchStartX = original.touches[0].clientX;
         touchStartTime = Date.now();
-        touchStartedInCard = !!findCardFromTarget(original.target || event.target);
+        activeTouchCard = findCardFromTarget(original.target || event.target);
+        touchStartedInCard = !!activeTouchCard;
       }
 
       function onTouchMove (event) {
@@ -211,6 +214,7 @@ var SCENE = (function () {
         }
 
         if (touchStartedInCard) {
+          // Allow native vertical scrolling inside feature cards.
           return true;
         }
 
@@ -237,8 +241,21 @@ var SCENE = (function () {
         var elapsed = Date.now() - touchStartTime;
 
         if (touchStartedInCard) {
-          resetTouch();
-          return false;
+          var cardCanScroll = activeTouchCard
+            && activeTouchCard.scrollHeight > (activeTouchCard.clientHeight + 2);
+
+          if (cardCanScroll) {
+            var cardAtTop = activeTouchCard.scrollTop <= 1;
+            var cardAtBottom =
+              (activeTouchCard.scrollTop + activeTouchCard.clientHeight) >= (activeTouchCard.scrollHeight - 1);
+            var shouldNavigateFromCardEdge =
+              (deltaY > 0 && cardAtTop) || (deltaY < 0 && cardAtBottom);
+
+            if (!shouldNavigateFromCardEdge) {
+              resetTouch();
+              return false;
+            }
+          }
         }
 
         resetTouch();
@@ -270,10 +287,12 @@ var SCENE = (function () {
         }
       }
 
+      var $touchSurface = $viewport.parent();
+
       $viewport.on('DOMMouseScroll mousewheel', onScroll);
-      $viewport.on('touchstart', onTouchStart);
-      $viewport.on('touchmove', onTouchMove);
-      $viewport.on('touchend touchcancel', onTouchEnd);
+      $touchSurface.on('touchstart', onTouchStart);
+      $touchSurface.on('touchmove', onTouchMove);
+      $touchSurface.on('touchend touchcancel', onTouchEnd);
       jQuery(document).on('keydown', onKeyDown);
     }
 

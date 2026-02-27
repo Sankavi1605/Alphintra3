@@ -786,8 +786,8 @@
         right: auto;
         top: auto;
         bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
-        width: min(90vw, 420px);
-        max-width: 90vw;
+        width: min(92vw, 460px);
+        max-width: 92vw;
         margin: 0 !important;
         transform: translateX(-50%) !important;
         pointer-events: auto;
@@ -795,16 +795,19 @@
       }
 
       html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card {
-        padding: 20px 18px !important;
+        padding: 22px 20px !important;
         border-radius: 20px !important;
-        background: rgba(255, 255, 255, 0.048) !important;
-        border: 1px solid rgba(255, 255, 255, 0.14) !important;
-        box-shadow: 0 26px 70px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.09) !important;
-        backdrop-filter: blur(20px) saturate(118%) !important;
-        -webkit-backdrop-filter: blur(20px) saturate(118%) !important;
-        max-height: min(46dvh, 350px);
+        pointer-events: auto !important;
+        background: rgba(255, 255, 255, 0.032) !important;
+        border: 1px solid rgba(255, 255, 255, 0.11) !important;
+        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+        backdrop-filter: blur(24px) saturate(112%) !important;
+        -webkit-backdrop-filter: blur(24px) saturate(112%) !important;
+        max-height: min(48dvh, 380px);
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
+        overscroll-behavior-y: contain;
+        touch-action: pan-y;
       }
 
       html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card h2 {
