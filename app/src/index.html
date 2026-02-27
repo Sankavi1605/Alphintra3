@@ -196,126 +196,265 @@
 
     .our-work-stack {
       position: relative;
-      min-height: 640px;
+      min-height: 660px;
       padding: 0 !important;
-      --work-pad-y: 56px;
-      --work-pad-x: 48px;
+      --work-pad-y: 54px;
+      --work-pad-x: 42px;
+      --work-accent-rgb: 108, 162, 255;
     }
 
     .our-work-stack.tails__feature-card {
-      border-radius: 24px !important;
+      border-radius: 28px !important;
       overflow: hidden !important;
-      background: rgba(255, 255, 255, 0.035) !important;
-      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      background:
+        radial-gradient(130% 120% at 0% 0%, rgba(112, 162, 255, 0.16) 0%, rgba(112, 162, 255, 0) 50%),
+        radial-gradient(130% 120% at 100% 100%, rgba(106, 245, 213, 0.1) 0%, rgba(106, 245, 213, 0) 56%),
+        rgba(7, 10, 18, 0.86) !important;
+      border: 1px solid rgba(151, 182, 255, 0.24) !important;
       box-shadow:
-        0 32px 80px rgba(0, 0, 0, 0.55),
-        0 0 1px rgba(255, 255, 255, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+        0 28px 90px rgba(0, 0, 0, 0.56),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 0 0 1px rgba(124, 160, 242, 0.12) !important;
+      backdrop-filter: blur(2px);
+    }
+
+    .our-work-stack::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(102deg, rgba(255, 255, 255, 0.04) 0, rgba(255, 255, 255, 0) 28%),
+        repeating-linear-gradient(90deg, rgba(136, 173, 255, 0.06) 0 1px, transparent 1px 48px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .our-work-stack::after {
+      content: '';
+      position: absolute;
+      left: 26px;
+      right: 26px;
+      top: 20px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(145, 181, 255, 0.4) 0%, rgba(145, 181, 255, 0) 100%);
+      pointer-events: none;
+      z-index: 6;
+    }
+
+    .our-work-progress {
+      position: absolute;
+      right: 24px;
+      top: 20px;
+      width: 170px;
+      z-index: 7;
+      text-align: right;
+      pointer-events: none;
+    }
+
+    .our-work-progress__label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(174, 203, 255, 0.72);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .our-work-progress__track {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 4px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(127, 163, 236, 0.2);
+      box-shadow: inset 0 0 0 1px rgba(145, 178, 255, 0.18);
+    }
+
+    .our-work-progress__bar {
+      display: block;
+      height: 100%;
+      width: 25%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, rgba(109, 165, 255, 0.9), rgba(95, 255, 218, 0.9));
+      box-shadow: 0 0 18px rgba(101, 177, 255, 0.45);
+      transition: width 0.28s ease;
     }
 
     .our-work-card {
       position: absolute;
       inset: 0;
       box-sizing: border-box;
-      padding: var(--work-pad-y) var(--work-pad-x);
-      display: none;
+      padding: var(--work-pad-y) var(--work-pad-x) 36px;
+      display: block;
       opacity: 0;
-      transform: translateY(18px) scale(0.985);
-      transition: none;
+      visibility: hidden;
+      transform: translate3d(32px, 0, 0) scale(0.97);
       pointer-events: none;
+      z-index: 1;
+      will-change: transform, opacity;
     }
 
     .our-work-card.is-active {
-      display: block;
       opacity: 1;
-      transform: translateY(0) scale(1);
+      visibility: visible;
+      transform: translate3d(0, 0, 0) scale(1);
       pointer-events: auto;
+      z-index: 5;
+    }
+
+    .our-work-card.is-leaving {
+      visibility: visible;
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .our-work-card[data-work-card='0'] {
+      --work-accent-rgb: 111, 160, 255;
+    }
+
+    .our-work-card[data-work-card='1'] {
+      --work-accent-rgb: 106, 234, 220;
+    }
+
+    .our-work-card[data-work-card='2'] {
+      --work-accent-rgb: 154, 176, 255;
+    }
+
+    .our-work-card[data-work-card='3'] {
+      --work-accent-rgb: 204, 170, 255;
     }
 
     .our-work-card__media {
       position: relative;
       display: block;
       width: calc(100% + (var(--work-pad-x) * 2));
-      height: 180px;
-      margin: calc(var(--work-pad-y) * -1) calc(var(--work-pad-x) * -1) 18px;
-      border-radius: 20px 20px 0 0;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background-color: rgba(255, 255, 255, 0.02);
+      height: 198px;
+      margin: calc(var(--work-pad-y) * -1) calc(var(--work-pad-x) * -1) 24px;
+      border-radius: 24px 24px 18px 18px;
+      border: 1px solid rgba(var(--work-accent-rgb), 0.46);
       overflow: hidden;
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-      transition: transform 0.35s ease, border-color 0.35s ease, filter 0.35s ease, box-shadow 0.35s ease;
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+        0 16px 36px rgba(0, 0, 0, 0.35);
+      transition: border-color 0.35s ease, box-shadow 0.35s ease, filter 0.35s ease;
+    }
+
+    .our-work-card__media::before {
+      content: '';
+      position: absolute;
+      inset: -26% -14%;
+      background: radial-gradient(circle, rgba(var(--work-accent-rgb), 0.3) 0%, rgba(var(--work-accent-rgb), 0) 64%);
+      opacity: 0.54;
+      transform: translate3d(-12%, -2%, 0);
+      pointer-events: none;
     }
 
     .our-work-card__media::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: var(--work-media-overlay, linear-gradient(to bottom, rgba(0, 0, 0, 0.01) 34%, rgba(0, 0, 0, 0.24) 100%));
+      background: var(--work-media-overlay, linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 34%, rgba(0, 0, 0, 0.34) 100%));
       pointer-events: none;
     }
 
     .our-work-card.is-active .our-work-card__media {
-      border-color: rgba(120, 157, 255, 0.34);
-      filter: saturate(0.88) brightness(0.9);
-      box-shadow: inset 0 0 0 1px rgba(122, 162, 255, 0.16), 0 10px 26px rgba(0, 0, 0, 0.24);
+      border-color: rgba(var(--work-accent-rgb), 0.7);
+      filter: saturate(1.04) brightness(1.02);
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.11),
+        0 22px 44px rgba(0, 0, 0, 0.36),
+        0 0 34px rgba(var(--work-accent-rgb), 0.28);
     }
 
-    .our-work-card.is-active:hover .our-work-card__media {
-      transform: none;
-      filter: saturate(0.88) brightness(0.9);
-      box-shadow: inset 0 0 0 1px rgba(122, 162, 255, 0.16), 0 10px 26px rgba(0, 0, 0, 0.24);
+    .our-work-card h2 {
+      margin: 0 0 8px;
+      color: rgba(245, 251, 255, 0.96);
+      font-size: clamp(30px, 3.2vw, 40px);
+      line-height: 1.06;
+      letter-spacing: 0.02em;
+    }
+
+    .our-work-card > p:not(.our-work-card__index):not(.our-work-card__subtitle) {
+      margin: 0 0 22px;
+      max-width: 94%;
+      color: rgba(214, 226, 247, 0.82);
+      line-height: 1.58;
+    }
+
+    .our-work-card .tails__tags {
+      margin-top: 2px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .our-work-card .tails__tag {
+      border-radius: 999px !important;
+      padding: 7px 12px !important;
+      border: 1px solid rgba(var(--work-accent-rgb), 0.36) !important;
+      background: rgba(var(--work-accent-rgb), 0.12) !important;
+      color: rgba(230, 242, 255, 0.9) !important;
+      font-size: 10px !important;
+      letter-spacing: 0.12em !important;
     }
 
     .our-work-card__media--ciperlux {
-      border-color: rgba(95, 136, 255, 0.4);
-      --work-media-overlay: linear-gradient(to bottom, rgba(4, 8, 20, 0.02) 0%, rgba(4, 8, 20, 0.18) 100%);
+      --work-media-overlay: linear-gradient(to bottom, rgba(2, 6, 18, 0.04) 0%, rgba(2, 8, 20, 0.3) 100%);
       background:
-        repeating-linear-gradient(0deg, rgba(78, 116, 237, 0.24) 0 1px, transparent 1px 28px),
-        repeating-linear-gradient(159deg, rgba(80, 129, 255, 0.48) 0 2px, transparent 2px 24px),
-        linear-gradient(140deg, rgba(18, 75, 212, 0.3) 0%, rgba(14, 42, 116, 0.3) 45%, rgba(7, 16, 36, 0.2) 100%),
-        linear-gradient(150deg, rgba(3, 10, 33, 0.98), rgba(2, 7, 20, 0.96));
+        repeating-linear-gradient(168deg, rgba(74, 136, 255, 0.42) 0 2px, transparent 2px 21px),
+        repeating-linear-gradient(0deg, rgba(107, 159, 255, 0.18) 0 1px, transparent 1px 22px),
+        linear-gradient(150deg, rgba(10, 26, 78, 0.92), rgba(5, 11, 29, 0.96));
     }
 
     .our-work-card__media--nexus {
+      --work-media-overlay: linear-gradient(to bottom, rgba(3, 12, 16, 0.02) 0%, rgba(3, 12, 16, 0.3) 100%);
       background:
-        radial-gradient(circle at 50% 60%, rgba(255, 255, 255, 0.26) 0 8px, transparent 9px),
-        radial-gradient(circle at 60% 58%, rgba(18, 215, 173, 0.42) 0 3px, transparent 4px),
-        radial-gradient(circle at 40% 58%, rgba(131, 131, 255, 0.42) 0 3px, transparent 4px),
-        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.18) 0 42%, transparent 43%),
-        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.14) 0 60%, transparent 61%),
-        linear-gradient(140deg, rgba(7, 8, 18, 0.95), rgba(12, 14, 22, 0.95));
+        radial-gradient(circle at 18% 32%, rgba(112, 245, 224, 0.42) 0 10px, transparent 11px),
+        radial-gradient(circle at 76% 22%, rgba(136, 201, 255, 0.34) 0 8px, transparent 9px),
+        radial-gradient(circle at 38% 72%, rgba(140, 253, 198, 0.28) 0 6px, transparent 7px),
+        linear-gradient(130deg, rgba(4, 38, 45, 0.95), rgba(3, 14, 22, 0.95));
     }
 
     .our-work-card__media--apex {
+      --work-media-overlay: linear-gradient(to bottom, rgba(6, 8, 22, 0.01) 0%, rgba(6, 8, 22, 0.28) 100%);
       background:
-        linear-gradient(180deg, rgba(138, 184, 255, 0.16) 0 2px, transparent 2px 34px),
-        linear-gradient(90deg, rgba(118, 255, 228, 0.12) 0 1px, transparent 1px 26px),
-        radial-gradient(circle at 20% 30%, rgba(112, 145, 255, 0.34), transparent 48%),
-        radial-gradient(circle at 78% 70%, rgba(89, 232, 255, 0.22), transparent 45%),
-        linear-gradient(125deg, rgba(15, 19, 34, 0.96), rgba(8, 10, 18, 0.98));
+        repeating-linear-gradient(90deg, rgba(156, 176, 255, 0.28) 0 1px, transparent 1px 34px),
+        linear-gradient(180deg, rgba(185, 186, 255, 0.22) 0 2px, transparent 2px 30px),
+        radial-gradient(circle at 70% 65%, rgba(157, 175, 255, 0.3), transparent 48%),
+        linear-gradient(136deg, rgba(20, 26, 58, 0.94), rgba(7, 11, 22, 0.96));
     }
 
     .our-work-card__media--strategy {
+      --work-media-overlay: linear-gradient(to bottom, rgba(16, 7, 24, 0.02) 0%, rgba(16, 7, 24, 0.34) 100%);
       background:
-        linear-gradient(to right, rgba(194, 208, 237, 0.3) 0 30%, transparent 30% 32%, rgba(194, 208, 237, 0.24) 32% 56%, transparent 56% 58%, rgba(194, 208, 237, 0.26) 58% 100%),
-        linear-gradient(180deg, rgba(168, 177, 199, 0.24) 0 1px, transparent 1px 28px),
-        repeating-linear-gradient(0deg, rgba(168, 177, 199, 0.16) 0 1px, transparent 1px 24px),
-        repeating-linear-gradient(90deg, rgba(168, 177, 199, 0.12) 0 1px, transparent 1px 28px),
-        linear-gradient(150deg, rgba(30, 35, 48, 0.95), rgba(16, 18, 25, 0.98));
+        linear-gradient(90deg, rgba(213, 167, 255, 0.26) 0 18%, transparent 18% 22%, rgba(159, 192, 255, 0.22) 22% 48%, transparent 48% 52%, rgba(140, 237, 255, 0.24) 52% 100%),
+        repeating-linear-gradient(0deg, rgba(213, 181, 255, 0.16) 0 1px, transparent 1px 20px),
+        linear-gradient(146deg, rgba(44, 24, 62, 0.94), rgba(14, 11, 27, 0.97));
     }
 
     .our-work-card__index {
-      margin: 0 0 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 0 14px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(var(--work-accent-rgb), 0.44);
+      background: rgba(var(--work-accent-rgb), 0.17);
+      color: rgba(223, 237, 255, 0.96);
       font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 0.24em;
-      color: rgba(126, 181, 255, 0.9);
+      font-size: 11px;
+      letter-spacing: 0.2em;
     }
 
     .our-work-card__subtitle {
-      margin: -8px 0 10px;
-      font-size: 1.05rem;
-      color: rgba(255, 255, 255, 0.48);
+      margin: -2px 0 12px;
+      font-size: 0.97rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(175, 197, 233, 0.74);
     }
 
     @media screen and (min-width: 901px) {
@@ -477,14 +616,32 @@
       }
 
       .our-work-stack {
-        min-height: 560px;
+        min-height: 610px;
         --work-pad-y: 34px;
-        --work-pad-x: 24px;
+        --work-pad-x: 22px;
+      }
+
+      .our-work-progress {
+        top: 14px;
+        right: 16px;
+        width: 138px;
+      }
+
+      .our-work-progress__label {
+        font-size: 9px;
       }
 
       .our-work-card__media {
-        height: 156px;
-        margin-bottom: 14px;
+        height: 160px;
+        margin-bottom: 16px;
+      }
+
+      .our-work-card h2 {
+        font-size: 32px;
+      }
+
+      .our-work-card > p:not(.our-work-card__index):not(.our-work-card__subtitle) {
+        max-width: none;
       }
 
       .section__card {
@@ -979,64 +1136,71 @@
               data-4600="opacity:0"
               data-5600="opacity:1">
             <div class="tails__section__el tails__feature-card our-work-stack">
+              <div class="our-work-progress" aria-hidden="true">
+                <span class="our-work-progress__label"> Featured Builds </span>
+                <span class="our-work-progress__track">
+                  <span class="our-work-progress__bar"></span>
+                </span>
+              </div>
               <div class="our-work-card is-active" data-work-card="0" aria-hidden="false">
                 <div class="our-work-card__media our-work-card__media--ciperlux"></div>
                 <p class="our-work-card__index"> 01 </p>
-                <h2> CiperLux </h2>
-                <p class="our-work-card__subtitle"> Fintech Platform </p>
+                <h2> PulseOps </h2>
+                <p class="our-work-card__subtitle"> Incident Response Platform </p>
                 <p>
-                  AI-powered stock trading platform with real-time analytics and automated strategies.
+                  Real-time alert triage, runbook automation, and escalation routing for high-volume operations teams.
                 </p>
                 <div class="tails__tags">
                   <span class="tails__tag"> NEXT.JS </span>
-                  <span class="tails__tag"> PYTHON </span>
-                  <span class="tails__tag"> AI/ML </span>
+                  <span class="tails__tag"> GO </span>
+                  <span class="tails__tag"> EVENT STREAMS </span>
                 </div>
               </div>
 
               <div class="our-work-card" data-work-card="1" aria-hidden="true">
                 <div class="our-work-card__media our-work-card__media--nexus"></div>
                 <p class="our-work-card__index"> 02 </p>
-                <h2> NexusAI </h2>
-                <p class="our-work-card__subtitle"> AI Chat Platform </p>
+                <h2> RetailNerve </h2>
+                <p class="our-work-card__subtitle"> Omnichannel Commerce OS </p>
                 <p>
-                  Multi-model AI chatbot platform with voice synthesis, RAG knowledge retrieval, and real-time
-                  streaming.
+                  Inventory orchestration, AI demand forecasts, and fulfillment optimization across web, mobile, and
+                  store channels.
                 </p>
                 <div class="tails__tags">
-                  <span class="tails__tag"> NEXT.JS </span>
-                  <span class="tails__tag"> LANGCHAIN </span>
-                  <span class="tails__tag"> OPENAI </span>
+                  <span class="tails__tag"> REACT </span>
+                  <span class="tails__tag"> PYTHON </span>
+                  <span class="tails__tag"> POSTGRES </span>
                 </div>
               </div>
 
               <div class="our-work-card" data-work-card="2" aria-hidden="true">
                 <div class="our-work-card__media our-work-card__media--apex"></div>
                 <p class="our-work-card__index"> 03 </p>
-                <h2> Apex Finance </h2>
-                <p class="our-work-card__subtitle"> Wealth Operations Suite </p>
+                <h2> MedFlow AI </h2>
+                <p class="our-work-card__subtitle"> Clinical Workflow Copilot </p>
                 <p>
-                  Portfolio analytics, risk controls, and automated financial workflows built for high-growth teams.
+                  Structured intake, smart summarization, and compliance-ready audit trails for multi-clinic care
+                  delivery.
                 </p>
                 <div class="tails__tags">
-                  <span class="tails__tag"> REACT </span>
-                  <span class="tails__tag"> NODE.JS </span>
-                  <span class="tails__tag"> POSTGRES </span>
+                  <span class="tails__tag"> TYPESCRIPT </span>
+                  <span class="tails__tag"> RAG </span>
+                  <span class="tails__tag"> FHIR </span>
                 </div>
               </div>
 
               <div class="our-work-card" data-work-card="3" aria-hidden="true">
                 <div class="our-work-card__media our-work-card__media--strategy"></div>
                 <p class="our-work-card__index"> 04 </p>
-                <h2> Strategy Hub </h2>
-                <p class="our-work-card__subtitle"> Enterprise Suite </p>
+                <h2> Orbit Treasury </h2>
+                <p class="our-work-card__subtitle"> Finance Control Tower </p>
                 <p>
-                  Enterprise project management and strategic planning suite with real-time collaboration.
+                  Cash positioning, approval workflows, and anomaly monitoring for multi-entity finance operations.
                 </p>
                 <div class="tails__tags">
-                  <span class="tails__tag"> VUE.JS </span>
+                  <span class="tails__tag"> VUE </span>
                   <span class="tails__tag"> NODE.JS </span>
-                  <span class="tails__tag"> MONGODB </span>
+                  <span class="tails__tag"> SNOWFLAKE </span>
                 </div>
               </div>
             </div>
@@ -1284,6 +1448,10 @@
 
         var cards = stack.querySelectorAll('.our-work-card');
         if (!cards.length) return false;
+        var progressBar = stack.querySelector('.our-work-progress__bar');
+        var currentCard = null;
+        var currentIndex = 0;
+        var hasPlayedInitial = false;
 
         function clearVisualStyles(node) {
           if (!node || !node.style) return;
@@ -1291,6 +1459,19 @@
           node.style.visibility = '';
           node.style.transform = '';
           node.style.filter = '';
+        }
+
+        function getCardIndex(card) {
+          if (!card) return -1;
+          var raw = card.getAttribute('data-work-card') || '';
+          var index = parseInt(raw, 10);
+          return isNaN(index) ? 0 : index;
+        }
+
+        function updateProgress(index) {
+          if (!progressBar) return;
+          var safeIndex = Math.max(0, Math.min(cards.length - 1, index));
+          progressBar.style.width = (((safeIndex + 1) / cards.length) * 100) + '%';
         }
 
         function getCardAnimNodes(card) {
@@ -1301,9 +1482,13 @@
 
         function resetWorkCard(card) {
           if (!card) return;
+          card.classList.remove('is-leaving');
 
           TweenLite.killTweensOf(card);
           clearVisualStyles(card);
+          card.style.opacity = '0';
+          card.style.visibility = 'hidden';
+          card.style.transform = 'translate3d(32px, 0, 0) scale(0.97)';
 
           var media = card.querySelector('.our-work-card__media');
           if (media) {
@@ -1318,14 +1503,16 @@
           }
         }
 
-        function resetInactiveCards(activeCard) {
+        function resetInactiveCards(activeCard, previousCard) {
           for (var i = 0; i < cards.length; i++) {
             if (cards[i] === activeCard) continue;
+            if (cards[i] === previousCard) continue;
             resetWorkCard(cards[i]);
           }
         }
 
-        function animateNodeStagger(nodes, delayStart, delayStep) {
+        function animateNodeStagger(nodes, delayStart, delayStep, direction) {
+          var offsetX = direction > 0 ? 12 : -12;
           for (var i = 0; i < nodes.length; i++) {
             (function (node, delay) {
               TweenLite.killTweensOf(node);
@@ -1333,11 +1520,12 @@
 
               TweenLite.fromTo(
                 node,
-                0.34,
-                { opacity: 0, y: 10 },
+                0.36,
+                { opacity: 0, y: 10, x: offsetX },
                 {
                   opacity: 1,
                   y: 0,
+                  x: 0,
                   ease: Power2.easeOut,
                   delay: delay,
                   onComplete: function () {
@@ -1349,22 +1537,62 @@
           }
         }
 
-        function animateWorkCard(card) {
+        function animateWorkCard(card, force) {
           if (!card || !card.classList.contains('is-active')) return;
+          if (!force && currentCard === card) return;
 
-          resetInactiveCards(card);
-          resetWorkCard(card);
+          var nextIndex = getCardIndex(card);
+          if (nextIndex < 0) nextIndex = 0;
+          var direction = nextIndex >= currentIndex ? 1 : -1;
+          var previousCard = currentCard && currentCard !== card ? currentCard : null;
 
+          if (!hasPlayedInitial && !previousCard) {
+            direction = 1;
+          }
+
+          resetInactiveCards(card, previousCard);
+
+          if (previousCard) {
+            var leavingCard = previousCard;
+            leavingCard.classList.add('is-leaving');
+            leavingCard.style.visibility = 'visible';
+            leavingCard.style.pointerEvents = 'none';
+            TweenLite.killTweensOf(leavingCard);
+            TweenLite.fromTo(
+              leavingCard,
+              0.34,
+              { opacity: 1, x: 0, y: 0, scale: 1 },
+              {
+                opacity: 0,
+                x: direction > 0 ? -34 : 34,
+                y: -6,
+                scale: 0.968,
+                ease: Power2.easeIn,
+                onComplete: function () {
+                  resetWorkCard(leavingCard);
+                  leavingCard.style.pointerEvents = '';
+                }
+              }
+            );
+          }
+
+          card.classList.remove('is-leaving');
+          card.style.visibility = 'visible';
+          card.style.opacity = '1';
+          card.style.pointerEvents = 'auto';
+          TweenLite.killTweensOf(card);
           TweenLite.fromTo(
             card,
-            0.44,
-            { opacity: 0, y: 18, scale: 0.986 },
+            0.46,
+            { opacity: 0, x: direction > 0 ? 38 : -38, y: 10, scale: 0.964 },
             {
               opacity: 1,
+              x: 0,
               y: 0,
               scale: 1,
               ease: Power2.easeOut,
               onComplete: function () {
+                card.style.pointerEvents = '';
                 clearVisualStyles(card);
               }
             }
@@ -1374,8 +1602,8 @@
           if (media) {
             TweenLite.fromTo(
               media,
-              0.52,
-              { opacity: 0.58, scale: 1.02, y: 10 },
+              0.54,
+              { opacity: 0.5, scale: 1.08, y: 14 },
               {
                 opacity: 1,
                 scale: 1,
@@ -1389,7 +1617,11 @@
           }
 
           var nodes = getCardAnimNodes(card);
-          animateNodeStagger(nodes, 0.08, 0.024);
+          animateNodeStagger(nodes, 0.1, 0.026, direction);
+          updateProgress(nextIndex);
+          currentCard = card;
+          currentIndex = nextIndex;
+          hasPlayedInitial = true;
         }
 
         for (var i = 0; i < cards.length; i++) {
@@ -1398,9 +1630,7 @@
               for (var m = 0; m < mutations.length; m++) {
                 if (mutations[m].attributeName !== 'class' && mutations[m].attributeName !== 'aria-hidden') continue;
                 if (card.classList.contains('is-active')) {
-                  animateWorkCard(card);
-                } else {
-                  resetWorkCard(card);
+                  animateWorkCard(card, false);
                 }
               }
             });
@@ -1413,18 +1643,26 @@
             for (var i = 0; i < entries.length; i++) {
               if (!entries[i].isIntersecting) continue;
               var active = stack.querySelector('.our-work-card.is-active');
-              if (active) animateWorkCard(active);
+              if (active) animateWorkCard(active, !hasPlayedInitial);
             }
           }, { threshold: 0.5 });
           stackObserver.observe(stack);
         }
 
+        var initialActive = stack.querySelector('.our-work-card.is-active') || cards[0];
+        if (initialActive && !initialActive.classList.contains('is-active')) {
+          initialActive.classList.add('is-active');
+          initialActive.setAttribute('aria-hidden', 'false');
+        }
+
         for (var j = 0; j < cards.length; j++) {
-          if (cards[j].classList.contains('is-active')) {
-            animateWorkCard(cards[j]);
-          } else {
+          if (!cards[j].classList.contains('is-active')) {
             resetWorkCard(cards[j]);
           }
+        }
+
+        if (initialActive) {
+          animateWorkCard(initialActive, true);
         }
 
         stack.__workCardAnimReady = true;
