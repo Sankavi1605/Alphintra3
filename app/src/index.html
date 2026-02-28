@@ -145,6 +145,78 @@
       text-decoration: none;
     }
 
+    .hello__title {
+      max-width: min(860px, 90vw);
+      margin: 0 auto;
+      text-align: center;
+      pointer-events: auto;
+    }
+
+    .hello__title h1 {
+      letter-spacing: 0.18em;
+    }
+
+    .hero-subheadline {
+      margin: 20px auto 0;
+      max-width: min(760px, 90vw);
+      color: rgba(235, 242, 255, 0.78);
+      font-size: clamp(14px, 1.55vw, 20px);
+      line-height: 1.62;
+      letter-spacing: 0.02em;
+      text-wrap: balance;
+    }
+
+    .hero-cta-row {
+      margin-top: 22px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 176px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(170, 201, 255, 0.3);
+      background: rgba(8, 12, 22, 0.58);
+      color: rgba(238, 245, 255, 0.92);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+      cursor: pointer;
+    }
+
+    .hero-cta:hover {
+      border-color: rgba(132, 208, 255, 0.55);
+      background: rgba(16, 26, 46, 0.8);
+      color: rgba(248, 252, 255, 1);
+    }
+
+    .hero-cta--primary {
+      border-color: rgba(106, 179, 255, 0.7);
+      background: linear-gradient(120deg, rgba(34, 82, 175, 0.72), rgba(22, 44, 90, 0.72));
+      box-shadow: 0 10px 26px rgba(21, 55, 125, 0.35);
+    }
+
+    .hero-cta--primary:hover {
+      border-color: rgba(136, 203, 255, 0.9);
+      background: linear-gradient(120deg, rgba(45, 99, 202, 0.78), rgba(26, 56, 112, 0.78));
+    }
+
+    .tails__contact-email {
+      margin: 14px 0 0;
+      color: rgba(196, 214, 240, 0.86);
+      font-size: 0.92rem;
+      letter-spacing: 0.03em;
+    }
+
     html.mode-3d .section__card .tails__feature-card {
       background: linear-gradient(160deg, rgba(18, 22, 32, 0.24), rgba(10, 12, 18, 0.2)) !important;
       border: 1px solid rgba(255, 255, 255, 0.09) !important;
@@ -663,6 +735,33 @@
         max-width: none;
       }
 
+      .hello__title {
+        max-width: min(94vw, 520px);
+      }
+
+      .hello__title h1 {
+        letter-spacing: 0.1em;
+      }
+
+      .hero-subheadline {
+        margin-top: 14px;
+        font-size: clamp(12px, 3.5vw, 15px);
+        line-height: 1.5;
+        letter-spacing: 0.01em;
+      }
+
+      .hero-cta-row {
+        margin-top: 16px;
+        gap: 10px;
+      }
+
+      .hero-cta {
+        min-width: 148px;
+        padding: 10px 14px;
+        font-size: 9px;
+        letter-spacing: 0.1em;
+      }
+
       html.mode-2d .section__card {
         top: auto;
         margin: 40px auto 0 !important;
@@ -1091,16 +1190,17 @@
 
         <div class="menu__items">
           <a class="menu__item menu__items--3D" data-section="hello"> Home </a>
-          <a class="menu__item menu__items--3D" data-section="drop"> ENGINEERING THE FUTURE </a>
+          <a class="menu__item menu__items--3D" data-section="beams"> ABOUT ALPHINTRA </a>
+          <a class="menu__item menu__items--3D" data-section="drop"> WHY ALPHINTRA </a>
           <a class="menu__item menu__items--3D" data-section="ball"> WEB AND MOBILE </a>
-          <a class="menu__item menu__items--3D" data-section="flow"> AI AND AUTOMATION </a>
-          <a class="menu__item menu__items--3D" data-section="neons"> COMPANY SNAPSHOT </a>
+          <a class="menu__item menu__items--3D" data-section="flow"> AI AND INTELLIGENT SYSTEMS </a>
+          <a class="menu__item menu__items--3D" data-section="neons"> DELIVERY TRACKS </a>
           <a class="menu__item menu__items--3D" data-section="height"> ENTERPRISE BACKEND </a>
-          <a class="menu__item menu__items--3D" data-section="wave"> UI UX AND 3D </a>
+          <a class="menu__item menu__items--3D" data-section="wave"> UI UX AND INTERACTIVE 3D </a>
           <a class="menu__item menu__items--3D" data-section="face"> OUR WORK </a>
           <a class="menu__item menu__items--3D" data-section="rocks"> ALPHINTRA WAY </a>
           <a class="menu__item menu__items--3D" data-section="galaxy"> THE TEAM </a>
-          <a class="menu__item menu__items--3D" data-section="gravity"> ABOUT ALPHINTRA </a>
+          <a class="menu__item menu__items--3D" data-section="gravity"> ENGINEERING PARTNER </a>
           <a class="menu__item menu__items--3D" data-section="end"> LET'S TALK </a>
         </div>
       </div>
@@ -1120,7 +1220,16 @@
         <div class="heads__section heads__section--hello">
           <div class="part part--title hello__title">
             <h1 class="text--white text--noMargin"> ALPHINTRA </h1>
-            <h1 class="text--white text--noMargin"> WE ARE ALPHINTRA </h1>
+            <h1 class="text--white text--noMargin"> ENGINEERING PARTNER </h1>
+            <h1 class="text--white text--noMargin"> FOR AMBITIOUS TEAMS </h1>
+            <p class="hero-subheadline">
+              We design and build AI-driven, cloud-native, production-ready systems for ambitious startups and
+              enterprise teams.
+            </p>
+            <div class="hero-cta-row">
+              <a class="hero-cta hero-cta--primary" href="#" data-hero-action="start"> Start a Project </a>
+              <a class="hero-cta" href="#" data-hero-action="work"> View Our Work </a>
+            </div>
           </div>
           <div class="part part--smoke"
               data-0="transform:translate3d(0px, 0px, 0px)"
@@ -1147,13 +1256,15 @@
             <div class="tails__section__el tails__feature-card">
               <h2> About Alphintra </h2>
               <p>
-                Alphintra builds AI, web, mobile, and cloud products for teams that need reliable execution,
-                measurable progress, and production-ready delivery.
+                Alphintra is a product engineering company focused on building scalable AI, web, mobile, and cloud
+                systems. We work with founders and product teams to transform ideas into reliable, production-ready
+                platforms. From architecture to deployment, we combine technical depth with execution speed. We do not
+                just write code. We build systems that scale.
               </p>
               <div class="tails__tags">
-                <span class="tails__tag"> PRODUCT DELIVERY </span>
-                <span class="tails__tag"> ENGINEERING QUALITY </span>
-                <span class="tails__tag"> SCALE READY </span>
+                <span class="tails__tag"> SCALABLE ARCHITECTURE </span>
+                <span class="tails__tag"> PRODUCTION READY </span>
+                <span class="tails__tag"> EXECUTION SPEED </span>
               </div>
             </div>
           </div>
@@ -1172,13 +1283,16 @@
             <div class="tails__section__el tails__feature-card">
               <h2> Why Alphintra </h2>
               <p>
-                We combine product thinking, design precision, and engineering execution to ship reliable digital
-                products for startups and enterprise teams.
+                We combine product strategy, engineering precision, and modern architecture to deliver measurable
+                outcomes. Our approach focuses on clear technical foundations, scalable system design, secure cloud
+                infrastructure, and long-term maintainability. We operate like embedded partners, not outsourced
+                vendors.
               </p>
               <div class="tails__tags">
-                <span class="tails__tag"> AI WEB MOBILE CLOUD </span>
-                <span class="tails__tag"> PRODUCT + ENGINEERING </span>
-                <span class="tails__tag"> FAST DELIVERY </span>
+                <span class="tails__tag"> TECHNICAL FOUNDATIONS </span>
+                <span class="tails__tag"> SCALABLE DESIGN </span>
+                <span class="tails__tag"> SECURE INFRASTRUCTURE </span>
+                <span class="tails__tag"> LONG-TERM MAINTAINABILITY </span>
               </div>
             </div>
           </div>
@@ -1198,10 +1312,11 @@
               data-1700="opacity:0"
               data-2000="opacity:1">
             <div class="tails__section__el tails__feature-card">
-              <h2> High-Performance Applications </h2>
+              <h2> High-Performance Web &amp; Mobile Applications </h2>
               <p>
-                We craft SEO-optimized web applications with Next.js and stunning cross-platform mobile experiences with Flutter.
-                Blazing fast, pixel perfect, and built to scale.
+                We build fast, SEO-optimized web platforms and cross-platform mobile applications designed for
+                real-world scale. From startup MVPs to enterprise dashboards, our applications are built for
+                performance, security, and long-term growth.
               </p>
               <div class="tails__tags">
                 <span class="tails__tag"> NEXT.JS </span>
@@ -1228,17 +1343,18 @@
               data-2000="opacity:0"
               data-2700="opacity:1">
             <div class="tails__section__el tails__feature-card">
-              <h2> Intelligent Systems </h2>
+              <h2> AI &amp; Intelligent Systems </h2>
               <p>
-                Moving beyond basic apps with LangChain and RAG workflows. We integrate LLMs into business processes
-                to make organizations smarter, faster, and more data-driven.
+                We design AI-powered systems that integrate directly into business workflows. From LLM integrations
+                and RAG architectures to automation pipelines and data-driven applications, we build intelligent
+                systems that deliver real operational value.
               </p>
               <div class="tails__tags">
-                <span class="tails__tag"> LANGCHAIN </span>
+                <span class="tails__tag"> LLMS </span>
                 <span class="tails__tag"> RAG </span>
-                <span class="tails__tag"> GPT </span>
+                <span class="tails__tag"> AUTOMATION </span>
                 <span class="tails__tag"> PYTHON </span>
-                <span class="tails__tag"> VECTOR DB </span>
+                <span class="tails__tag"> VECTOR DATABASES </span>
               </div>
             </div>
           </div>
@@ -1256,7 +1372,7 @@
               data-2600="opacity:0"
               data-3400="opacity:1">
             <h1 class="text--white text--center text--noMargin"> COMPANY </h1>
-            <h1 class="text--white text--center text--noMargin"> SNAPSHOT </h1>
+            <h1 class="text--white text--center text--noMargin"> DELIVERY TRACKS </h1>
           </div>
           <div class="part section__card section__card--neons-left"
               data-2600="opacity:0"
@@ -1264,12 +1380,12 @@
             <div class="tails__section__el tails__feature-card">
               <h2> Startup Launch Track </h2>
               <p>
-                Turn your idea into a production-ready product with fast iteration cycles, clear milestones, and a
-                dedicated team from discovery to launch.
+                Turn your idea into a production-ready product with short build cycles, clear milestones, and weekly
+                visibility from discovery to launch.
               </p>
               <div class="tails__tags">
                 <span class="tails__tag"> MVP ACCELERATION </span>
-                <span class="tails__tag"> FAST ITERATION </span>
+                <span class="tails__tag"> RAPID DELIVERY </span>
                 <span class="tails__tag"> PRODUCT STRATEGY </span>
               </div>
             </div>
@@ -1280,13 +1396,13 @@
             <div class="tails__section__el tails__feature-card">
               <h2> Growth &amp; Enterprise Track </h2>
               <p>
-                Modernize existing systems with scalable cloud architecture, AI automation, and measurable delivery
-                outcomes aligned to your business KPIs.
+                Modernize existing systems with scalable architecture, AI automation, and measurable releases aligned
+                to business outcomes.
               </p>
               <div class="tails__tags">
                 <span class="tails__tag"> AI AUTOMATION </span>
                 <span class="tails__tag"> SCALE &amp; SECURITY </span>
-                <span class="tails__tag"> CLOUD DELIVERY </span>
+                <span class="tails__tag"> CLOUD MODERNIZATION </span>
               </div>
             </div>
           </div>
@@ -1303,16 +1419,18 @@
               data-3500="opacity:0"
               data-3800="opacity:1">
             <div class="tails__section__el tails__feature-card">
-              <h2> Rock-Solid Infrastructure </h2>
+              <h2> Enterprise-Grade Backend &amp; Cloud Infrastructure </h2>
               <p>
-                Spring Boot microservices deployed on GCP with Docker. Designed for 99.9% uptime, horizontal scaling,
-                and enterprise-grade security.
+                Scalable backend systems built for performance and reliability. We design microservices architectures,
+                deploy on secure cloud environments, and implement CI/CD pipelines to ensure consistent delivery.
+                Built for uptime. Built for growth.
               </p>
               <div class="tails__tags">
                 <span class="tails__tag"> SPRING BOOT </span>
-                <span class="tails__tag"> JAVA </span>
+                <span class="tails__tag"> NODE.JS </span>
                 <span class="tails__tag"> DOCKER </span>
                 <span class="tails__tag"> GCP </span>
+                <span class="tails__tag"> AWS </span>
                 <span class="tails__tag"> POSTGRESQL </span>
               </div>
             </div>
@@ -1327,16 +1445,17 @@
             data-3800="opacity:0"
             data-5000="opacity:1">
               <h1 class="text--white text--left text--noMargin"> UI UX AND </h1>
-              <h1 class="text--white text--left text--noMargin"> 3D DESIGN </h1>
+              <h1 class="text--white text--left text--noMargin"> INTERACTIVE 3D </h1>
           </div>
           <div class="part section__card"
               data-3800="opacity:0"
               data-5000="opacity:1">
             <div class="tails__section__el tails__feature-card">
-              <h2> Immersive Experiences </h2>
+              <h2> Immersive UI/UX &amp; Interactive Design </h2>
               <p>
-                High-fidelity prototyping in Figma, interactive 3D experiences with Three.js, and designs that
-                captivate. We bridge creativity and code.
+                We combine design precision with engineering to create high-fidelity digital experiences. From advanced
+                UI systems to interactive 3D web environments, we bridge creativity and code to deliver memorable
+                products.
               </p>
               <div class="tails__tags">
                 <span class="tails__tag"> FIGMA </span>
@@ -1369,10 +1488,28 @@
               <div class="our-work-card is-active" data-work-card="0" aria-hidden="false">
                 <div class="our-work-card__media our-work-card__media--ciperlux"></div>
                 <p class="our-work-card__index"> 01 </p>
+                <h2> CipherLux </h2>
+                <p class="our-work-card__subtitle"> AI Capital Management Platform </p>
+                <p>
+                  AI-powered financial intelligence platform designed for scalable, real-time market environments with
+                  cloud-native architecture, modular AI integration, secure APIs, and production deployment pipelines.
+                  Engineered for sub-200ms p95 APIs and 99.95% availability targets.
+                </p>
+                <div class="tails__tags">
+                  <span class="tails__tag"> CLOUD NATIVE </span>
+                  <span class="tails__tag"> AI INTEGRATION </span>
+                  <span class="tails__tag"> SECURE APIS </span>
+                </div>
+              </div>
+
+              <div class="our-work-card" data-work-card="1" aria-hidden="true">
+                <div class="our-work-card__media our-work-card__media--nexus"></div>
+                <p class="our-work-card__index"> 02 </p>
                 <h2> PulseOps </h2>
                 <p class="our-work-card__subtitle"> Incident Response Platform </p>
                 <p>
-                  Real-time alert triage, runbook automation, and escalation routing for high-volume operations teams.
+                  Real-time incident triage, runbook automation, and escalation routing for high-volume operations.
+                  Built to keep response latency low and incident throughput high.
                 </p>
                 <div class="tails__tags">
                   <span class="tails__tag"> NEXT.JS </span>
@@ -1381,50 +1518,35 @@
                 </div>
               </div>
 
-              <div class="our-work-card" data-work-card="1" aria-hidden="true">
-                <div class="our-work-card__media our-work-card__media--nexus"></div>
-                <p class="our-work-card__index"> 02 </p>
+              <div class="our-work-card" data-work-card="2" aria-hidden="true">
+                <div class="our-work-card__media our-work-card__media--apex"></div>
+                <p class="our-work-card__index"> 03 </p>
                 <h2> RetailNerve </h2>
                 <p class="our-work-card__subtitle"> Omnichannel Commerce OS </p>
                 <p>
-                  Inventory orchestration, AI demand forecasts, and fulfillment optimization across web, mobile, and
-                  store channels.
+                  Inventory orchestration, AI demand forecasting, and fulfillment optimization across web, mobile, and
+                  store channels to improve revenue predictability.
                 </p>
                 <div class="tails__tags">
                   <span class="tails__tag"> REACT </span>
                   <span class="tails__tag"> PYTHON </span>
-                  <span class="tails__tag"> POSTGRES </span>
-                </div>
-              </div>
-
-              <div class="our-work-card" data-work-card="2" aria-hidden="true">
-                <div class="our-work-card__media our-work-card__media--apex"></div>
-                <p class="our-work-card__index"> 03 </p>
-                <h2> MedFlow AI </h2>
-                <p class="our-work-card__subtitle"> Clinical Workflow Copilot </p>
-                <p>
-                  Structured intake, smart summarization, and compliance-ready audit trails for multi-clinic care
-                  delivery.
-                </p>
-                <div class="tails__tags">
-                  <span class="tails__tag"> TYPESCRIPT </span>
-                  <span class="tails__tag"> RAG </span>
-                  <span class="tails__tag"> FHIR </span>
+                  <span class="tails__tag"> POSTGRESQL </span>
                 </div>
               </div>
 
               <div class="our-work-card" data-work-card="3" aria-hidden="true">
                 <div class="our-work-card__media our-work-card__media--strategy"></div>
                 <p class="our-work-card__index"> 04 </p>
-                <h2> Orbit Treasury </h2>
-                <p class="our-work-card__subtitle"> Finance Control Tower </p>
+                <h2> MedFlow AI </h2>
+                <p class="our-work-card__subtitle"> Clinical Workflow Copilot </p>
                 <p>
-                  Cash positioning, approval workflows, and anomaly monitoring for multi-entity finance operations.
+                  Structured intake, smart summarization, and compliance-ready audit trails for multi-clinic care
+                  delivery with AI-assisted workflows.
                 </p>
                 <div class="tails__tags">
-                  <span class="tails__tag"> VUE </span>
-                  <span class="tails__tag"> NODE.JS </span>
-                  <span class="tails__tag"> SNOWFLAKE </span>
+                  <span class="tails__tag"> TYPESCRIPT </span>
+                  <span class="tails__tag"> RAG </span>
+                  <span class="tails__tag"> FHIR </span>
                 </div>
               </div>
             </div>
@@ -1447,8 +1569,10 @@
             <div class="tails__section__el tails__feature-card">
               <h2> The Alphintra Way </h2>
               <p>
-                Discovery -> Design -> Sprint -> Deploy. Understanding goals, high-fidelity prototyping, agile
-                development with weekly demos, and production deployment with continuous monitoring.
+                1. Discovery: align goals, define architecture, and validate technical feasibility. 2. Design:
+                high-fidelity UI/UX prototypes and system planning. 3. Sprint: agile development with weekly demos and
+                milestone tracking. 4. Deploy: production-ready release with monitoring and continuous optimization.
+                Clear milestones, transparent execution, measurable progress.
               </p>
               <div class="tails__tags">
                 <span class="tails__tag"> DISCOVERY </span>
@@ -1476,14 +1600,15 @@
             <div class="tails__section__el tails__feature-card">
               <h2> Built by Makers </h2>
               <p>
-                Born from UCSC, grown into a full-service tech agency. Our team spans frontend engineering, backend
-                and cloud architecture, AI and machine learning, and UI UX with 3D design.
+                Alphintra was founded by engineers with deep expertise in frontend, backend, cloud infrastructure, AI
+                systems, and interactive design. We are builders first. We think in systems. We execute with precision.
               </p>
               <div class="tails__tags">
                 <span class="tails__tag"> FRONTEND </span>
-                <span class="tails__tag"> BACKEND &amp; CLOUD </span>
-                <span class="tails__tag"> AI &amp; ML </span>
-                <span class="tails__tag"> UI UX &amp; 3D </span>
+                <span class="tails__tag"> BACKEND </span>
+                <span class="tails__tag"> CLOUD INFRASTRUCTURE </span>
+                <span class="tails__tag"> AI SYSTEMS </span>
+                <span class="tails__tag"> INTERACTIVE DESIGN </span>
               </div>
             </div>
           </div>
@@ -1499,14 +1624,15 @@
             <div class="tails__section__el tails__feature-card">
               <h2> Engineering Partner for Ambitious Teams </h2>
               <p>
-                Alphintra is a product engineering company focused on AI, web, mobile, cloud, and interactive 3D.
-                We work as an embedded partner and deliver measurable outcomes with clear milestones.
+                Whether you are launching a startup product or modernizing enterprise infrastructure, we act as your
+                long-term engineering partner. Embedded technical teams, AI and automation systems, scalable cloud
+                architecture, and product-focused execution. We build what others only plan.
               </p>
               <div class="tails__tags">
-                <span class="tails__tag"> PRODUCT ENGINEERING </span>
-                <span class="tails__tag"> AI WEB MOBILE CLOUD </span>
-                <span class="tails__tag"> EMBEDDED TEAM </span>
-                <span class="tails__tag"> OUTCOME FOCUSED </span>
+                <span class="tails__tag"> EMBEDDED TEAMS </span>
+                <span class="tails__tag"> AI &amp; AUTOMATION </span>
+                <span class="tails__tag"> SCALABLE CLOUD </span>
+                <span class="tails__tag"> PRODUCT EXECUTION </span>
               </div>
             </div>
           </div>
@@ -1527,14 +1653,15 @@
               data-7000="opacity:0"
               data-7400="opacity:1">
             <div class="tails__section__el tails__feature-card">
-              <h2> Start a Project </h2>
+              <h2> Let&apos;s Build Something Meaningful </h2>
               <p>
-                Tell us what you are building. Web, mobile, AI, or enterprise. Reach us at hello@alphintra.com and we
-                will make it happen.
+                Tell us what you are building: AI platform, SaaS product, enterprise system, or digital experience.
+                We will help you architect it, build it, and scale it.
               </p>
               <div class="tails__card-actions">
-                <a class="tails__link" href="mailto:alphintratech@gmail.com"> GET IN TOUCH </a>
+                <a class="tails__link" href="mailto:hello@alphintra.com"> Get in Touch </a>
               </div>
+              <p class="tails__contact-email"> Email: hello@alphintra.com </p>
             </div>
           </div>
         </div>
@@ -1893,10 +2020,47 @@
         return true;
       }
 
+      function bindHeroActions() {
+        if (document.documentElement.__heroActionsReady) return;
+
+        function goToSection(sectionName) {
+          var menuTarget = document.querySelector('.menu .menu__item[data-section="' + sectionName + '"]');
+          if (!menuTarget) return;
+
+          if (typeof menuTarget.click === 'function') {
+            menuTarget.click();
+            return;
+          }
+
+          var evt = document.createEvent('MouseEvents');
+          evt.initEvent('click', true, true);
+          menuTarget.dispatchEvent(evt);
+        }
+
+        var startButton = document.querySelector('[data-hero-action="start"]');
+        if (startButton) {
+          startButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            goToSection('end');
+          });
+        }
+
+        var workButton = document.querySelector('[data-hero-action="work"]');
+        if (workButton) {
+          workButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            goToSection('face');
+          });
+        }
+
+        document.documentElement.__heroActionsReady = true;
+      }
+
       function bootCardEnhancements() {
         var logoReady = initHeroLogoGsap();
         var sectionReady = initCardScrollAnimations();
         var workReady = initOurWorkCardAnimations();
+        bindHeroActions();
 
         if (logoReady && sectionReady && workReady) return;
         setTimeout(bootCardEnhancements, 140);
