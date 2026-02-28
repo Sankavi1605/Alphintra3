@@ -52,7 +52,7 @@ var HASH = HASH || (function () {
         var body = '&body=Hi Alphintra team, I would like to discuss a project.';
 
         $email.attr('href', [
-          'mailto:hello@alphintra.com',
+          'mailto:alphintratech@gmail.com',
           subject,
           body
         ].join(''));
