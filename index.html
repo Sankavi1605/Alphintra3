@@ -46,6 +46,13 @@
   />
   <meta name="twitter:image" content="https://www.alphintra.com/logo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      if (window.location.search.indexOf('bg=1') !== -1) {
+        document.documentElement.classList.add('bg-only-mode');
+      }
+    })();
+  </script>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -78,6 +85,36 @@
       overflow-x: hidden;
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
+    }
+
+    html.bg-only-mode,
+    html.bg-only-mode body {
+      overflow: hidden !important;
+    }
+
+    html.bg-only-mode #desktop-body,
+    html.bg-only-mode .menu,
+    html.bg-only-mode .hero-logo,
+    html.bg-only-mode .tails,
+    html.bg-only-mode .help,
+    html.bg-only-mode .trigger,
+    html.bg-only-mode .map,
+    html.bg-only-mode .loader {
+      display: none !important;
+    }
+
+    html.bg-only-mode .heads__sections {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      visibility: hidden !important;
+    }
+
+    html.bg-only-mode .heads__viewport {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      z-index: 1 !important;
     }
 
     .section__card h2 {
@@ -143,6 +180,244 @@
       justify-content: center;
       min-width: 220px;
       text-decoration: none;
+    }
+
+    .tails__detail-points {
+      margin: 16px 0 0;
+      padding-left: 18px;
+      color: rgba(229, 236, 248, 0.72);
+      font-size: 0.92rem;
+      line-height: 1.62;
+    }
+
+    .tails__detail-points li {
+      margin-bottom: 8px;
+    }
+
+    .tails__flow-slider {
+      position: relative;
+      --flow-accent-rgb: 170, 208, 255;
+    }
+
+    .tails__flow-slider__viewport {
+      overflow: hidden;
+      border-radius: 24px;
+      box-shadow: inset 0 0 0 1px rgba(154, 189, 246, 0.15);
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .tails__flow-slider.is-dragging .tails__flow-slider__viewport {
+      cursor: grabbing;
+    }
+
+    .tails__flow-slider__track {
+      display: flex;
+      width: 200%;
+      transform: translate3d(0, 0, 0);
+      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    .tails__flow-slider[data-flow-index='1'] .tails__flow-slider__track {
+      transform: translate3d(-50%, 0, 0);
+    }
+
+    .tails__flow-slider__card {
+      flex: 0 0 50%;
+      box-sizing: border-box;
+      min-height: 0;
+      margin-bottom: 0 !important;
+      border-radius: 24px !important;
+      padding: 38px 34px 28px !important;
+    }
+
+    .tails__flow-slider__card h2 {
+      margin-bottom: 16px !important;
+    }
+
+    .tails__flow-slider__card p {
+      max-width: none !important;
+      margin-bottom: 18px !important;
+    }
+
+    .tails__flow-slider__card .tails__tags {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .tails__flow-slider__card .tails__detail-points {
+      margin-top: 14px;
+      padding-left: 22px;
+    }
+
+    .tails__flow-next-note {
+      margin: 10px 6px 0;
+      color: rgba(185, 208, 243, 0.7);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .tails__flow-slider__footer {
+      margin-top: 10px;
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid rgba(156, 187, 248, 0.16);
+      border-radius: 14px;
+      background: rgba(8, 12, 22, 0.42);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .tails__flow-slider__status {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .tails__flow-slider__hint {
+      margin: 0;
+      color: rgba(189, 211, 245, 0.78);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .tails__flow-slider__index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 44px;
+      height: 22px;
+      padding: 0 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(var(--flow-accent-rgb), 0.34);
+      background: rgba(var(--flow-accent-rgb), 0.12);
+      color: rgba(228, 242, 255, 0.88);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .tails__flow-slider__controls {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+
+    .tails__flow-slider__dots {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .tails__flow-slider__dot {
+      width: 9px;
+      height: 9px;
+      padding: 0;
+      border: 1px solid rgba(214, 228, 255, 0.56);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: none;
+      cursor: pointer;
+      transition: transform 0.22s ease, border-color 0.22s ease, background-color 0.22s ease;
+    }
+
+    .tails__flow-slider__dot.is-active {
+      border-color: rgba(181, 214, 255, 0.96);
+      background: rgba(182, 216, 255, 0.8);
+      transform: scale(1.08);
+    }
+
+    .tails__flow-slider__nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tails__flow-slider__nav-btn {
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      border: 1px solid rgba(198, 221, 255, 0.42);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(232, 244, 255, 0.92);
+      font-size: 16px;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .tails__flow-slider__nav-btn:hover {
+      transform: scale(1.06);
+      border-color: rgba(208, 230, 255, 0.75);
+      background: rgba(124, 182, 255, 0.16);
+    }
+
+    .section-next-arrow {
+      position: fixed;
+      right: 26px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 280;
+      width: 56px;
+      height: 56px;
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      border-radius: 999px;
+      background: rgba(7, 9, 15, 0.78);
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px) saturate(110%);
+      -webkit-backdrop-filter: blur(8px) saturate(110%);
+      color: rgba(255, 255, 255, 0.92);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .section-next-arrow:hover {
+      transform: translateY(-50%) scale(1.06);
+      border-color: rgba(255, 255, 255, 0.58);
+      background: rgba(14, 18, 28, 0.9);
+    }
+
+    .section-next-arrow[aria-disabled="true"] {
+      opacity: 0.32;
+      pointer-events: none;
+      transform: translateY(-50%) scale(0.96);
+    }
+
+    .section-next-arrow__glyph {
+      font-size: 34px;
+      line-height: 1;
+      margin-left: 2px;
+    }
+
+    html.bg-only-mode .section-next-arrow {
+      display: none !important;
+    }
+
+    html.mode-3d .heads__section .part--title:not(.hello__title) {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
     }
 
     .hello__title {
@@ -270,7 +545,7 @@
 
     .our-work-stack {
       position: relative;
-      min-height: 380px;
+      min-height: 640px;
       padding: 0 !important;
       --work-pad-y: 54px;
       --work-pad-x: 42px;
@@ -315,6 +590,16 @@
       z-index: 6;
     }
 
+    .our-work-stack.is-detail-open::before,
+    .our-work-stack.is-detail-open::after {
+      opacity: 0;
+    }
+
+    .our-work-stack.is-detail-open.tails__feature-card {
+      background: rgba(6, 9, 16, 0.9) !important;
+      border-color: rgba(171, 198, 248, 0.34) !important;
+    }
+
     .our-work-progress {
       position: absolute;
       right: 22px;
@@ -323,6 +608,7 @@
       z-index: 7;
       text-align: right;
       pointer-events: none;
+      transition: opacity 0.28s ease, transform 0.38s ease;
     }
 
     .our-work-progress__label {
@@ -360,7 +646,7 @@
       position: absolute;
       inset: 0;
       box-sizing: border-box;
-      padding: 46px var(--work-pad-x) 28px;
+      padding: 48px var(--work-pad-x) 34px;
       display: block;
       opacity: 0;
       visibility: hidden;
@@ -404,13 +690,16 @@
       position: relative;
       display: block;
       width: calc(100% + (var(--work-pad-x) * 2));
-      height: 0;
-      margin: calc(var(--work-pad-y) * -1) calc(var(--work-pad-x) * -1) 10px;
+      height: clamp(140px, 18vw, 210px);
+      margin: calc(var(--work-pad-y) * -1) calc(var(--work-pad-x) * -1) 22px;
       border-radius: 0;
       border: 0;
       overflow: hidden;
       box-shadow: none;
       transition: none;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .our-work-card__media::before {
@@ -428,7 +717,7 @@
       position: absolute;
       inset: 0;
       background: var(--work-media-overlay, linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 34%, rgba(0, 0, 0, 0.34) 100%));
-      opacity: 0;
+      opacity: 1;
       pointer-events: none;
     }
 
@@ -448,7 +737,7 @@
 
     .our-work-card > p:not(.our-work-card__index):not(.our-work-card__subtitle) {
       margin: 0 0 22px;
-      max-width: 88%;
+      max-width: none;
       color: rgba(214, 226, 247, 0.82);
       line-height: 1.58;
     }
@@ -471,37 +760,31 @@
     }
 
     .our-work-card__media--ciperlux {
-      --work-media-overlay: linear-gradient(to bottom, rgba(2, 6, 18, 0.04) 0%, rgba(2, 8, 20, 0.3) 100%);
-      background:
-        repeating-linear-gradient(168deg, rgba(74, 136, 255, 0.42) 0 2px, transparent 2px 21px),
-        repeating-linear-gradient(0deg, rgba(107, 159, 255, 0.18) 0 1px, transparent 1px 22px),
-        linear-gradient(150deg, rgba(10, 26, 78, 0.92), rgba(5, 11, 29, 0.96));
+      --work-media-overlay: linear-gradient(to bottom, rgba(2, 6, 18, 0.08) 0%, rgba(2, 8, 20, 0.58) 100%);
+      background-image:
+        linear-gradient(160deg, rgba(6, 16, 44, 0.18) 0%, rgba(6, 16, 44, 0.7) 100%),
+        url('/app/public/img/qubitz/AIHero.jpg');
     }
 
     .our-work-card__media--nexus {
-      --work-media-overlay: linear-gradient(to bottom, rgba(3, 12, 16, 0.02) 0%, rgba(3, 12, 16, 0.3) 100%);
-      background:
-        radial-gradient(circle at 18% 32%, rgba(112, 245, 224, 0.42) 0 10px, transparent 11px),
-        radial-gradient(circle at 76% 22%, rgba(136, 201, 255, 0.34) 0 8px, transparent 9px),
-        radial-gradient(circle at 38% 72%, rgba(140, 253, 198, 0.28) 0 6px, transparent 7px),
-        linear-gradient(130deg, rgba(4, 38, 45, 0.95), rgba(3, 14, 22, 0.95));
+      --work-media-overlay: linear-gradient(to bottom, rgba(3, 12, 16, 0.08) 0%, rgba(3, 12, 16, 0.54) 100%);
+      background-image:
+        linear-gradient(132deg, rgba(4, 34, 43, 0.18) 0%, rgba(3, 14, 22, 0.68) 100%),
+        url('/app/public/img/qubitz/ERPCRMhero.jpg');
     }
 
     .our-work-card__media--apex {
-      --work-media-overlay: linear-gradient(to bottom, rgba(6, 8, 22, 0.01) 0%, rgba(6, 8, 22, 0.28) 100%);
-      background:
-        repeating-linear-gradient(90deg, rgba(156, 176, 255, 0.28) 0 1px, transparent 1px 34px),
-        linear-gradient(180deg, rgba(185, 186, 255, 0.22) 0 2px, transparent 2px 30px),
-        radial-gradient(circle at 70% 65%, rgba(157, 175, 255, 0.3), transparent 48%),
-        linear-gradient(136deg, rgba(20, 26, 58, 0.94), rgba(7, 11, 22, 0.96));
+      --work-media-overlay: linear-gradient(to bottom, rgba(6, 8, 22, 0.08) 0%, rgba(6, 8, 22, 0.56) 100%);
+      background-image:
+        linear-gradient(138deg, rgba(20, 26, 58, 0.16) 0%, rgba(7, 11, 22, 0.72) 100%),
+        url('/app/public/img/qubitz/digitalMarketingHero.jpg');
     }
 
     .our-work-card__media--strategy {
-      --work-media-overlay: linear-gradient(to bottom, rgba(16, 7, 24, 0.02) 0%, rgba(16, 7, 24, 0.34) 100%);
-      background:
-        linear-gradient(90deg, rgba(213, 167, 255, 0.26) 0 18%, transparent 18% 22%, rgba(159, 192, 255, 0.22) 22% 48%, transparent 48% 52%, rgba(140, 237, 255, 0.24) 52% 100%),
-        repeating-linear-gradient(0deg, rgba(213, 181, 255, 0.16) 0 1px, transparent 1px 20px),
-        linear-gradient(146deg, rgba(44, 24, 62, 0.94), rgba(14, 11, 27, 0.97));
+      --work-media-overlay: linear-gradient(to bottom, rgba(16, 7, 24, 0.08) 0%, rgba(16, 7, 24, 0.58) 100%);
+      background-image:
+        linear-gradient(148deg, rgba(44, 24, 62, 0.22) 0%, rgba(14, 11, 27, 0.72) 100%),
+        url('/app/public/img/qubitz/UIUXHero.jpg');
     }
 
     .our-work-card__index {
@@ -525,6 +808,588 @@
       text-transform: uppercase;
       letter-spacing: 0.14em;
       color: rgba(175, 197, 233, 0.74);
+    }
+
+    .our-work-card__actions {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .our-work-card__button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(var(--work-accent-rgb), 0.46);
+      background: rgba(var(--work-accent-rgb), 0.15);
+      color: rgba(241, 247, 255, 0.95);
+      text-decoration: none;
+      font-family: inherit;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 0.22s ease, background-color 0.22s ease, color 0.22s ease;
+    }
+
+    .our-work-card__button:hover {
+      border-color: rgba(var(--work-accent-rgb), 0.78);
+      background: rgba(var(--work-accent-rgb), 0.28);
+      color: #fff;
+    }
+
+    .our-work-detail {
+      position: absolute;
+      inset: 0;
+      z-index: 11;
+      box-sizing: border-box;
+      padding: 0;
+      border-radius: 24px;
+      background: transparent;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translate3d(102%, 0, 0);
+      transition: transform 0.52s cubic-bezier(0.2, 0.9, 0.2, 1), opacity 0.28s ease, visibility 0.28s ease;
+      overflow: hidden;
+    }
+
+    .our-work-stack.is-detail-open .our-work-detail {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .our-work-stack.is-detail-open .our-work-progress {
+      opacity: 0;
+      transform: translate3d(-16px, 0, 0);
+    }
+
+    .our-work-stack.is-detail-open .our-work-card.is-active {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transform: translate3d(-20%, 0, 0) scale(0.96) !important;
+      pointer-events: none !important;
+      transition: opacity 0.24s ease, transform 0.42s ease;
+    }
+
+    .our-work-detail__topbar {
+      min-height: 58px;
+      padding: 0 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(168, 195, 248, 0.24);
+      background: rgba(10, 12, 20, 0.62);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .our-work-detail__brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(241, 248, 255, 0.95);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    .our-work-detail__brand img {
+      width: 16px;
+      height: 16px;
+      filter: brightness(0) invert(1);
+    }
+
+    .our-work-detail__topnav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .our-work-detail__topnav span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(185, 209, 255, 0.34);
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(232, 242, 255, 0.9);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .our-work-detail__body {
+      min-height: 0;
+      flex: 1;
+      height: 100%;
+      display: block;
+    }
+
+    .our-work-detail__sidebar {
+      border-radius: 14px;
+      border: 1px solid rgba(165, 193, 247, 0.26);
+      background: rgba(10, 14, 24, 0.62);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 0;
+    }
+
+    .our-work-detail__eyebrow {
+      margin: 0;
+      color: rgba(191, 213, 247, 0.8);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .our-work-detail__index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 6px;
+      min-width: 30px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(176, 203, 255, 0.42);
+      background: rgba(153, 185, 255, 0.14);
+      color: rgba(229, 241, 255, 0.96);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+    }
+
+    .our-work-detail__sidebar-title {
+      margin: 0;
+      color: rgba(245, 251, 255, 0.98);
+      font-size: 1.95rem;
+      line-height: 1.05;
+    }
+
+    .our-work-detail__menu {
+      display: grid;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .our-work-detail__menu span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      border-radius: 11px;
+      border: 1px solid rgba(178, 202, 247, 0.28);
+      background: rgba(255, 255, 255, 0.04);
+      color: rgba(225, 238, 255, 0.86);
+      padding: 0 12px;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .our-work-detail__menu span.is-active {
+      border-color: rgba(204, 222, 255, 0.62);
+      background: rgba(255, 255, 255, 0.13);
+      color: #fff;
+    }
+
+    .our-work-detail__back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 34px;
+      padding: 0 14px;
+      margin-top: auto;
+      border-radius: 999px;
+      border: 1px solid rgba(183, 207, 255, 0.42);
+      background: rgba(153, 185, 255, 0.12);
+      color: rgba(234, 242, 255, 0.96);
+      font-family: inherit;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 0.22s ease, background-color 0.22s ease, color 0.22s ease;
+    }
+
+    .our-work-detail__back:hover {
+      border-color: rgba(191, 217, 255, 0.74);
+      background: rgba(153, 185, 255, 0.22);
+      color: #fff;
+    }
+
+    .our-work-detail__back-glyph {
+      font-size: 15px;
+      line-height: 1;
+    }
+
+    .our-work-detail__main {
+      position: relative;
+      border-radius: inherit;
+      border: 0;
+      background: transparent;
+      overflow: hidden;
+      min-height: 0;
+      height: 100%;
+    }
+
+    .our-work-detail__hero {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      filter: grayscale(100%) contrast(1.08) brightness(0.62);
+      transform: scale(1.02);
+    }
+
+    .our-work-detail__hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(98deg, rgba(5, 7, 13, 0.86) 0%, rgba(5, 7, 13, 0.66) 48%, rgba(5, 7, 13, 0.34) 100%),
+        radial-gradient(100% 90% at 92% 50%, rgba(5, 7, 12, 0.46) 0%, rgba(5, 7, 12, 0.08) 58%, rgba(5, 7, 12, 0) 75%);
+    }
+
+    .our-work-detail__content {
+      position: absolute;
+      z-index: 2;
+      top: 16px;
+      left: 16px;
+      bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 6px;
+      width: min(880px, 67%);
+      max-width: none;
+      margin: 0;
+      padding: 12px 14px;
+      border-radius: 0;
+      border: 0;
+      background: linear-gradient(108deg, rgba(6, 9, 15, 0.64) 0%, rgba(6, 9, 15, 0.38) 56%, rgba(6, 9, 15, 0.12) 100%);
+      box-shadow: none;
+      backdrop-filter: blur(4px) saturate(112%);
+      -webkit-backdrop-filter: blur(4px) saturate(112%);
+      overflow: hidden;
+    }
+
+    .our-work-detail__title {
+      margin: 0;
+      color: rgba(245, 251, 255, 0.98);
+      font-size: clamp(30px, 3.6vw, 58px);
+      line-height: 1;
+      letter-spacing: 0.01em;
+    }
+
+    .our-work-detail__subtitle {
+      margin: 0;
+      color: rgba(176, 199, 238, 0.84);
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .our-work-detail__description {
+      margin: 0;
+      color: rgba(224, 235, 253, 0.9);
+      line-height: 1.28;
+      font-size: 0.82rem;
+      max-width: 56ch;
+    }
+
+    .our-work-detail__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .our-work-detail__tags span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 0 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(179, 205, 255, 0.34);
+      background: rgba(168, 194, 244, 0.12);
+      color: rgba(228, 240, 255, 0.94);
+      font-size: 8px;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .our-work-detail__actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      margin-top: 0;
+    }
+
+    .our-work-detail__action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 30px;
+      padding: 0 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(191, 214, 255, 0.48);
+      background: rgba(170, 195, 243, 0.2);
+      color: rgba(240, 248, 255, 0.96);
+      font-family: inherit;
+      font-size: 8px;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 0.22s ease, background-color 0.22s ease;
+    }
+
+    .our-work-detail__action:hover {
+      border-color: rgba(215, 229, 255, 0.78);
+      background: rgba(189, 213, 255, 0.28);
+    }
+
+    .our-work-detail__action--ghost {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .our-work-detail__insights {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .our-work-detail__points {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .our-work-detail__points li {
+      border: 0;
+      border-left: 2px solid rgba(169, 198, 247, 0.42);
+      background: transparent;
+      padding: 1px 0 1px 8px;
+      min-height: 0;
+    }
+
+    .our-work-detail__point-title {
+      margin: 0;
+      color: rgba(239, 247, 255, 0.96);
+      font-size: 0.8rem;
+      letter-spacing: 0.01em;
+    }
+
+    .our-work-detail__point-text {
+      margin: 3px 0 0;
+      color: rgba(214, 228, 250, 0.84);
+      line-height: 1.22;
+      font-size: 0.7rem;
+    }
+
+    .our-work-detail__mini-nav {
+      margin-top: auto;
+      display: grid;
+      gap: 8px;
+    }
+
+    .our-work-detail__mini-nav span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(182, 206, 251, 0.32);
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(222, 237, 255, 0.86);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .our-work-detail__mini-nav span.is-active {
+      border-color: rgba(209, 226, 255, 0.7);
+      background: rgba(255, 255, 255, 0.16);
+      color: #fff;
+    }
+
+    .our-work-detail__inline-back {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 5;
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      margin: 0;
+      border-radius: 999px;
+      border: 1px solid rgba(191, 214, 255, 0.56);
+      background: rgba(10, 16, 30, 0.72);
+      color: rgba(241, 248, 255, 0.95);
+      font-family: inherit;
+      font-size: 16px;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.32);
+    }
+
+    .our-work-detail__inline-back:hover {
+      border-color: rgba(215, 229, 255, 0.78);
+      background: rgba(22, 34, 56, 0.92);
+    }
+
+    .our-work-detail__inline-back-glyph {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1;
+      transform: translateX(-1px) translateY(-0.5px);
+    }
+
+    .our-work-detail__inline-back span:last-child {
+      display: none;
+    }
+
+    .our-work-detail__topbar,
+    .our-work-detail__sidebar,
+    .our-work-detail__insights {
+      display: none;
+    }
+
+    .our-work-detail__body {
+      display: block;
+      height: 100%;
+    }
+
+    .our-work-detail__main {
+      min-height: 0;
+      height: 100%;
+      border-radius: inherit;
+      overflow: hidden;
+    }
+
+    .our-work-detail__content {
+      top: 16px;
+      left: 16px;
+      bottom: 16px;
+      width: min(880px, 67%);
+      max-width: none;
+      margin: 0;
+      padding: 38px 14px 12px;
+    }
+
+    .our-work-detail__points--inline {
+      margin-top: 6px;
+      width: min(900px, 100%);
+      max-width: min(900px, 100%);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .our-work-detail__points--inline li {
+      min-height: 0;
+    }
+
+    @media screen and (min-width: 901px) and (max-width: 1500px), screen and (min-width: 901px) and (max-height: 940px) {
+      .our-work-detail__content {
+        gap: 5px;
+        width: min(820px, 70%);
+        padding: 34px 12px 10px;
+      }
+
+      .our-work-detail__title {
+        font-size: clamp(26px, 3vw, 42px);
+      }
+
+      .our-work-detail__description {
+        font-size: 0.78rem;
+        line-height: 1.24;
+      }
+
+      .our-work-detail__tags {
+        gap: 5px;
+        margin-bottom: 2px;
+      }
+
+      .our-work-detail__tags span {
+        min-height: 20px;
+        padding: 0 7px;
+        font-size: 7px;
+      }
+
+      .our-work-detail__actions {
+        gap: 5px;
+      }
+
+      .our-work-detail__action {
+        min-height: 26px;
+        padding: 0 8px;
+        font-size: 8px;
+      }
+
+      .our-work-detail__points--inline {
+        margin-top: 4px;
+        gap: 5px;
+      }
+
+      .our-work-detail__point-title {
+        font-size: 0.76rem;
+      }
+
+      .our-work-detail__point-text {
+        font-size: 0.66rem;
+        line-height: 1.2;
+      }
+    }
+
+    @media screen and (min-width: 901px) and (max-width: 1280px), screen and (min-width: 901px) and (max-height: 820px) {
+      .our-work-detail__content {
+        width: min(760px, 72%);
+        gap: 4px;
+      }
+
+      .our-work-detail__subtitle {
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+      }
+
+      .our-work-detail__title {
+        font-size: clamp(24px, 2.6vw, 36px);
+      }
+
+      .our-work-detail__description {
+        font-size: 0.74rem;
+        line-height: 1.2;
+        max-width: 50ch;
+      }
+
+      .our-work-detail__points--inline {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .our-work-detail__point-title {
+        font-size: 0.72rem;
+      }
+
+      .our-work-detail__point-text {
+        font-size: 0.62rem;
+      }
     }
 
     @media screen and (min-width: 901px) {
@@ -663,6 +1528,19 @@
         transform: translateY(-50%);
       }
 
+      html.mode-3d .heads__section--face.active-3d-card .section__card.is-work-detail-open {
+        left: 4% !important;
+        right: auto;
+        top: 56%;
+        width: min(1520px, 92vw);
+        max-width: none;
+      }
+
+      html.mode-3d .heads__section--face.active-3d-card .section__card.is-work-detail-open .our-work-stack {
+        min-height: min(72vh, 760px);
+        height: min(72vh, 760px);
+      }
+
       html.mode-3d .heads__section--rocks.active-3d-card .section__card {
         top: 66%;
         left: 5% !important;
@@ -703,7 +1581,8 @@
       }
 
       .our-work-stack {
-        min-height: 430px;
+        min-height: min(72dvh, 620px);
+        height: min(72dvh, 620px);
         --work-pad-y: 34px;
         --work-pad-x: 22px;
       }
@@ -723,8 +1602,76 @@
       }
 
       .our-work-card__media {
-        height: 0;
-        margin-bottom: 10px;
+        height: clamp(124px, 32vw, 170px);
+        margin-bottom: 16px;
+      }
+
+      .our-work-detail {
+        padding: 0;
+        overflow: hidden;
+      }
+
+      .our-work-detail__topbar {
+        min-height: 52px;
+        padding: 0 10px;
+      }
+
+      .our-work-detail__topnav {
+        display: none;
+      }
+
+      .our-work-detail__body {
+        grid-template-columns: 1fr;
+      }
+
+      .our-work-detail__sidebar {
+        gap: 8px;
+      }
+
+      .our-work-detail__content {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        width: auto;
+        max-width: none;
+        margin: 0;
+        padding: 34px 12px 12px;
+        overflow: hidden;
+      }
+
+      .our-work-detail__title {
+        font-size: clamp(24px, 8vw, 34px);
+      }
+
+      .our-work-detail__insights {
+        margin-top: 2px;
+      }
+
+      .our-work-detail__point-text {
+        font-size: 0.68rem;
+        line-height: 1.2;
+      }
+
+      .our-work-detail__content {
+        width: auto;
+        max-width: none;
+      }
+
+      .our-work-detail__points--inline {
+        margin-top: 6px;
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .our-work-detail__action--ghost {
+        display: inline-flex;
+      }
+
+      html.mode-3d .heads__section--face.active-3d-card .section__card .tails__feature-card.our-work-stack {
+        max-height: none;
+        overflow: hidden;
+        touch-action: auto;
       }
 
       .our-work-card h2 {
@@ -733,6 +1680,78 @@
 
       .our-work-card > p:not(.our-work-card__index):not(.our-work-card__subtitle) {
         max-width: none;
+      }
+
+      .tails__flow-slider__card {
+        min-height: 0;
+        padding: 20px 16px 14px !important;
+        border-radius: 20px !important;
+        overflow: hidden;
+      }
+
+      .tails__flow-slider__card p {
+        margin-bottom: 12px !important;
+      }
+
+      .tails__flow-slider__card .tails__detail-points {
+        margin-top: 10px;
+        padding-left: 18px;
+      }
+
+      .tails__flow-slider__footer {
+        padding: 7px 8px;
+      }
+
+      .tails__flow-slider__hint {
+        max-width: 175px;
+        font-size: 9px;
+        letter-spacing: 0.1em;
+      }
+
+      .tails__flow-slider__index {
+        min-width: 40px;
+        height: 20px;
+        font-size: 9px;
+      }
+
+      .tails__flow-slider__dot {
+        width: 8px;
+        height: 8px;
+      }
+
+      .tails__flow-slider__nav-btn {
+        width: 22px;
+        height: 22px;
+        font-size: 14px;
+      }
+
+      .tails__flow-next-note {
+        margin-top: 8px;
+        font-size: 9px;
+        letter-spacing: 0.1em;
+      }
+
+      @media screen and (max-height: 820px) {
+        html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card {
+          padding: 16px 14px !important;
+        }
+
+        html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card h2 {
+          font-size: clamp(15px, 4.8vw, 20px) !important;
+        }
+
+        html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card p {
+          font-size: clamp(10px, 3vw, 12px) !important;
+          line-height: 1.34;
+        }
+
+        html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card .tails__detail-points li {
+          -webkit-line-clamp: 1;
+        }
+
+        .tails__flow-next-note {
+          display: none;
+        }
       }
 
       .hello__title {
@@ -894,34 +1913,58 @@
       }
 
       html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card {
-        padding: 22px 20px !important;
-        border-radius: 20px !important;
+        padding: 20px 16px !important;
+        border-radius: 18px !important;
         pointer-events: auto !important;
         background: linear-gradient(160deg, rgba(18, 22, 32, 0.24), rgba(10, 12, 18, 0.2)) !important;
         border: 1px solid rgba(255, 255, 255, 0.09) !important;
         box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
         backdrop-filter: blur(10px) saturate(102%) !important;
         -webkit-backdrop-filter: blur(10px) saturate(102%) !important;
-        max-height: min(48dvh, 380px);
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior-y: contain;
+        max-height: none;
+        overflow: hidden;
         touch-action: pan-y;
       }
 
       html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card h2 {
-        font-size: clamp(17px, 5.8vw, 26px) !important;
-        line-height: 1.3;
+        font-size: clamp(16px, 5.2vw, 23px) !important;
+        line-height: 1.24;
       }
 
       html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card p {
-        font-size: clamp(12px, 3.5vw, 15px) !important;
-        line-height: 1.58;
+        font-size: clamp(11px, 3.2vw, 13px) !important;
+        line-height: 1.42;
       }
 
       html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card .tails__tag {
-        font-size: 9px !important;
+        font-size: 8px !important;
         letter-spacing: 0.1em !important;
+        padding: 5px 9px !important;
+      }
+
+      html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card .tails__tags {
+        margin-top: 6px;
+        gap: 6px;
+      }
+
+      html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card .tails__detail-points {
+        margin-top: 8px;
+        padding-left: 16px;
+        font-size: 0.78rem;
+        line-height: 1.34;
+      }
+
+      html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card .tails__detail-points li {
+        margin-bottom: 4px;
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
+
+      html.mode-3d .heads__section--flow.active-3d-card .tails__flow-slider__viewport,
+      html.mode-3d .heads__section--flow.active-3d-card .tails__flow-slider__card {
+        touch-action: pan-x;
       }
 
       html.mode-3d .heads__section--face.active-3d-card .part--title {
@@ -990,6 +2033,16 @@
 
       html.mode-3d .menu__button__line--bottom {
         bottom: 2px !important;
+      }
+
+      .section-next-arrow {
+        right: 14px;
+        width: 46px;
+        height: 46px;
+      }
+
+      .section-next-arrow__glyph {
+        font-size: 28px;
       }
     }
   </style>
@@ -1171,9 +2224,6 @@
                 </div>
               </div>
               <div class="keys">
-                <div class="key key--left">
-                  <div class="key__triangle key__triangle--left"></div>
-                </div>
                 <div class="key key--bottom">
                   <div class="key__triangle key__triangle--bottom"></div>
                 </div>
@@ -1228,6 +2278,11 @@
           <path class="hero-logo__slash" d="M56 472L330 258L456 214L342 312L74 450L56 472Z" fill="#FFFFFF"/>
         </svg>
       </div>
+
+      <button class="section-next-arrow" type="button" aria-label="Go to next section">
+        <span class="section-next-arrow__glyph">&#8250;</span>
+      </button>
+
 
       <div class="heads__viewport">
       </div>
@@ -1327,20 +2382,45 @@
           <div class="part section__card"
               data-1700="opacity:0"
               data-2000="opacity:1">
-            <div class="tails__section__el tails__feature-card">
-              <h2> High-Performance Web &amp; Mobile Applications </h2>
-              <p>
-                We build fast, SEO-optimized web platforms and cross-platform mobile applications designed for
-                real-world scale. From startup MVPs to enterprise dashboards, our applications are built for
-                performance, security, and long-term growth.
-              </p>
-              <div class="tails__tags">
-                <span class="tails__tag"> NEXT.JS </span>
-                <span class="tails__tag"> REACT </span>
-                <span class="tails__tag"> FLUTTER </span>
-                <span class="tails__tag"> TYPESCRIPT </span>
-                <span class="tails__tag"> TAILWIND </span>
+            <div class="tails__flow-slider" data-flow-slider data-flow-index="0">
+              <div class="tails__flow-slider__viewport">
+                <div class="tails__flow-slider__track">
+                  <article class="tails__section__el tails__feature-card tails__flow-slider__card is-active" data-flow-card="0" aria-hidden="false">
+                    <h2> High-Performance Web &amp; Mobile Applications </h2>
+                    <p>
+                      We build fast, SEO-optimized web platforms and cross-platform mobile applications designed for
+                      real-world scale across startups and enterprise teams.
+                    </p>
+                    <div class="tails__tags">
+                      <span class="tails__tag"> NEXT.JS </span>
+                      <span class="tails__tag"> REACT </span>
+                      <span class="tails__tag"> FLUTTER </span>
+                    </div>
+                    <ul class="tails__detail-points">
+                      <li>Custom web systems aligned with business goals and operational workflows.</li>
+                      <li>Product UX engineered for conversion, retention, and daily usability.</li>
+                    </ul>
+                  </article>
+                  <article class="tails__section__el tails__feature-card tails__flow-slider__card" data-flow-card="1" aria-hidden="true">
+                    <h2> Delivery, Security &amp; Scale </h2>
+                    <p>
+                      From MVP launch to growth-stage platforms, we ship stable releases with strong security baselines,
+                      observability, and long-term maintainability.
+                    </p>
+                    <div class="tails__tags">
+                      <span class="tails__tag"> TYPESCRIPT </span>
+                      <span class="tails__tag"> TAILWIND </span>
+                      <span class="tails__tag"> CI/CD </span>
+                    </div>
+                    <ul class="tails__detail-points">
+                      <li>Native and cross-platform mobile delivery for Android and iOS.</li>
+                      <li>Security-first architecture, performance tuning, and optimization.</li>
+                      <li>Release workflows with QA gates and measurable engineering standards.</li>
+                    </ul>
+                  </article>
+                </div>
               </div>
+              <p class="tails__flow-next-note">Next card available. Use the right-side arrow.</p>
             </div>
           </div>
           <div class="part part--sphere"
@@ -1358,20 +2438,47 @@
           <div class="part section__card"
               data-2000="opacity:0"
               data-2700="opacity:1">
-            <div class="tails__section__el tails__feature-card">
-              <h2> AI &amp; Intelligent Systems </h2>
-              <p>
-                We design AI-powered systems that integrate directly into business workflows. From LLM integrations
-                and RAG architectures to automation pipelines and data-driven applications, we build intelligent
-                systems that deliver real operational value.
-              </p>
-              <div class="tails__tags">
-                <span class="tails__tag"> LLMS </span>
-                <span class="tails__tag"> RAG </span>
-                <span class="tails__tag"> AUTOMATION </span>
-                <span class="tails__tag"> PYTHON </span>
-                <span class="tails__tag"> VECTOR DATABASES </span>
+            <div class="tails__flow-slider" data-flow-slider data-flow-index="0">
+              <div class="tails__flow-slider__viewport">
+                <div class="tails__flow-slider__track">
+                  <article class="tails__section__el tails__feature-card tails__flow-slider__card is-active" data-flow-card="0" aria-hidden="false">
+                    <h2> AI &amp; Intelligent Systems </h2>
+                    <p>
+                      We design AI-powered systems that integrate directly into business workflows. From LLM integrations
+                      and RAG architectures to automation pipelines, we build intelligent systems that deliver measurable
+                      operational value.
+                    </p>
+                    <div class="tails__tags">
+                      <span class="tails__tag"> LLMS </span>
+                      <span class="tails__tag"> RAG </span>
+                      <span class="tails__tag"> AUTOMATION </span>
+                    </div>
+                    <ul class="tails__detail-points">
+                      <li>Outcome-driven AI strategies based on measurable business priorities.</li>
+                      <li>Rapid delivery cycles that validate value before full-scale rollout.</li>
+                      <li>Built-in data quality checks for stable and trustworthy outputs.</li>
+                    </ul>
+                  </article>
+                  <article class="tails__section__el tails__feature-card tails__flow-slider__card" data-flow-card="1" aria-hidden="true">
+                    <h2> AI Ops &amp; Integrations </h2>
+                    <p>
+                      We productionize AI with resilient backend services, retrieval pipelines, and monitoring across
+                      prompts, models, and automation workflows so teams can scale with confidence.
+                    </p>
+                    <div class="tails__tags">
+                      <span class="tails__tag"> PYTHON </span>
+                      <span class="tails__tag"> VECTOR DATABASES </span>
+                      <span class="tails__tag"> AGENT WORKFLOWS </span>
+                    </div>
+                    <ul class="tails__detail-points">
+                      <li>Production-ready architecture with monitoring, security, and governance.</li>
+                      <li>Continuous optimization of prompts, retrieval, and workflow automation.</li>
+                      <li>Integration with ERP, CRM, and internal tools for end-to-end adoption.</li>
+                    </ul>
+                  </article>
+                </div>
               </div>
+              <p class="tails__flow-next-note">Next card available. Use the right-side arrow.</p>
             </div>
           </div>
           <div class="part part--neons"
@@ -1404,6 +2511,11 @@
                 <span class="tails__tag"> RAPID DELIVERY </span>
                 <span class="tails__tag"> PRODUCT STRATEGY </span>
               </div>
+              <ul class="tails__detail-points">
+                <li>Audience research, campaign strategy, and structured execution paths.</li>
+                <li>Content optimization and funnel-focused performance monitoring.</li>
+                <li>Ongoing ROI optimization through data-led iteration cycles.</li>
+              </ul>
             </div>
           </div>
           <div class="part section__card section__card--neons-right"
@@ -1420,6 +2532,11 @@
                 <span class="tails__tag"> SCALE &amp; SECURITY </span>
                 <span class="tails__tag"> CLOUD MODERNIZATION </span>
               </div>
+              <ul class="tails__detail-points">
+                <li>Dedicated specialists embedded into your delivery workflow.</li>
+                <li>Flexible team scaling based on roadmap and sprint priorities.</li>
+                <li>Transparent reporting and quality governance across streams.</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -1434,21 +2551,45 @@
           <div class="part section__card"
               data-3500="opacity:0"
               data-3800="opacity:1">
-            <div class="tails__section__el tails__feature-card">
-              <h2> Enterprise-Grade Backend &amp; Cloud Infrastructure </h2>
-              <p>
-                Scalable backend systems built for performance and reliability. We design microservices architectures,
-                deploy on secure cloud environments, and implement CI/CD pipelines to ensure consistent delivery.
-                Built for uptime. Built for growth.
-              </p>
-              <div class="tails__tags">
-                <span class="tails__tag"> SPRING BOOT </span>
-                <span class="tails__tag"> NODE.JS </span>
-                <span class="tails__tag"> DOCKER </span>
-                <span class="tails__tag"> GCP </span>
-                <span class="tails__tag"> AWS </span>
-                <span class="tails__tag"> POSTGRESQL </span>
+            <div class="tails__flow-slider" data-flow-slider data-flow-index="0">
+              <div class="tails__flow-slider__viewport">
+                <div class="tails__flow-slider__track">
+                  <article class="tails__section__el tails__feature-card tails__flow-slider__card is-active" data-flow-card="0" aria-hidden="false">
+                    <h2> Enterprise Backend Foundations </h2>
+                    <p>
+                      Scalable backend systems built for performance and reliability. We design microservices
+                      architectures and delivery pipelines built for uptime and long-term growth.
+                    </p>
+                    <div class="tails__tags">
+                      <span class="tails__tag"> SPRING BOOT </span>
+                      <span class="tails__tag"> NODE.JS </span>
+                      <span class="tails__tag"> DOCKER </span>
+                    </div>
+                    <ul class="tails__detail-points">
+                      <li>Service architecture and APIs aligned to business-critical workflows.</li>
+                      <li>Structured CI/CD pipelines with release quality and rollback safety.</li>
+                    </ul>
+                  </article>
+                  <article class="tails__section__el tails__feature-card tails__flow-slider__card" data-flow-card="1" aria-hidden="true">
+                    <h2> Cloud Infrastructure &amp; Data Operations </h2>
+                    <p>
+                      We deploy secure cloud environments and stable data layers with observability, governance, and
+                      continuous optimization for mission-critical systems.
+                    </p>
+                    <div class="tails__tags">
+                      <span class="tails__tag"> GCP </span>
+                      <span class="tails__tag"> AWS </span>
+                      <span class="tails__tag"> POSTGRESQL </span>
+                    </div>
+                    <ul class="tails__detail-points">
+                      <li>ERP and CRM implementation tailored to your process architecture.</li>
+                      <li>Tool integrations with dashboards for operational visibility.</li>
+                      <li>Post-launch support, training, and process optimization.</li>
+                    </ul>
+                  </article>
+                </div>
               </div>
+              <p class="tails__flow-next-note">Next card available. Use the right-side arrow.</p>
             </div>
           </div>
           <div class="part part--height"
@@ -1466,20 +2607,45 @@
           <div class="part section__card"
               data-3800="opacity:0"
               data-5000="opacity:1">
-            <div class="tails__section__el tails__feature-card">
-              <h2> Immersive UI/UX &amp; Interactive Design </h2>
-              <p>
-                We combine design precision with engineering to create high-fidelity digital experiences. From advanced
-                UI systems to interactive 3D web environments, we bridge creativity and code to deliver memorable
-                products.
-              </p>
-              <div class="tails__tags">
-                <span class="tails__tag"> FIGMA </span>
-                <span class="tails__tag"> THREE.JS </span>
-                <span class="tails__tag"> GSAP </span>
-                <span class="tails__tag"> FRAMER MOTION </span>
-                <span class="tails__tag"> WEBGL </span>
+            <div class="tails__flow-slider" data-flow-slider data-flow-index="0">
+              <div class="tails__flow-slider__viewport">
+                <div class="tails__flow-slider__track">
+                  <article class="tails__section__el tails__feature-card tails__flow-slider__card is-active" data-flow-card="0" aria-hidden="false">
+                    <h2> Immersive UI/UX Systems </h2>
+                    <p>
+                      We combine design precision with engineering to create high-fidelity digital experiences with
+                      strong usability, visual consistency, and measurable product outcomes.
+                    </p>
+                    <div class="tails__tags">
+                      <span class="tails__tag"> FIGMA </span>
+                      <span class="tails__tag"> UX RESEARCH </span>
+                      <span class="tails__tag"> DESIGN SYSTEMS </span>
+                    </div>
+                    <ul class="tails__detail-points">
+                      <li>User-centered design process from discovery to usability validation.</li>
+                      <li>Consistent interface systems with high design-to-code fidelity.</li>
+                    </ul>
+                  </article>
+                  <article class="tails__section__el tails__feature-card tails__flow-slider__card" data-flow-card="1" aria-hidden="true">
+                    <h2> Interactive 3D Experience Engineering </h2>
+                    <p>
+                      From advanced UI systems to interactive 3D web environments, we bridge creativity and code to
+                      deliver high-performance, memorable digital products.
+                    </p>
+                    <div class="tails__tags">
+                      <span class="tails__tag"> THREE.JS </span>
+                      <span class="tails__tag"> GSAP </span>
+                      <span class="tails__tag"> FRAMER MOTION </span>
+                      <span class="tails__tag"> WEBGL </span>
+                    </div>
+                    <ul class="tails__detail-points">
+                      <li>Motion and interaction engineered for clarity, speed, and engagement.</li>
+                      <li>Performance tuning for smooth animations across desktop and mobile.</li>
+                    </ul>
+                  </article>
+                </div>
               </div>
+              <p class="tails__flow-next-note">Next card available. Use the right-side arrow.</p>
             </div>
           </div>
         </div>
@@ -1516,6 +2682,9 @@
                   <span class="tails__tag"> AI INTEGRATION </span>
                   <span class="tails__tag"> SECURE APIS </span>
                 </div>
+                <div class="our-work-card__actions">
+                  <button class="our-work-card__button" type="button" data-work-detail-open> View Detail </button>
+                </div>
               </div>
 
               <div class="our-work-card" data-work-card="1" aria-hidden="true">
@@ -1531,6 +2700,9 @@
                   <span class="tails__tag"> NEXT.JS </span>
                   <span class="tails__tag"> GO </span>
                   <span class="tails__tag"> EVENT STREAMS </span>
+                </div>
+                <div class="our-work-card__actions">
+                  <button class="our-work-card__button" type="button" data-work-detail-open> View Detail </button>
                 </div>
               </div>
 
@@ -1548,6 +2720,9 @@
                   <span class="tails__tag"> PYTHON </span>
                   <span class="tails__tag"> POSTGRESQL </span>
                 </div>
+                <div class="our-work-card__actions">
+                  <button class="our-work-card__button" type="button" data-work-detail-open> View Detail </button>
+                </div>
               </div>
 
               <div class="our-work-card" data-work-card="3" aria-hidden="true">
@@ -1563,6 +2738,70 @@
                   <span class="tails__tag"> TYPESCRIPT </span>
                   <span class="tails__tag"> RAG </span>
                   <span class="tails__tag"> FHIR </span>
+                </div>
+                <div class="our-work-card__actions">
+                  <button class="our-work-card__button" type="button" data-work-detail-open> View Detail </button>
+                </div>
+              </div>
+              <div class="our-work-detail" aria-hidden="true">
+                <div class="our-work-detail__topbar">
+                  <div class="our-work-detail__brand">
+                    <img src="/app/public/img/alphintra-mark.svg" alt="Alphintra" />
+                    <span> Alphintra Projects </span>
+                  </div>
+                  <div class="our-work-detail__topnav">
+                    <span> Our Work </span>
+                    <span> Services </span>
+                    <span> Contact </span>
+                  </div>
+                </div>
+                <div class="our-work-detail__body">
+                  <aside class="our-work-detail__sidebar">
+                    <p class="our-work-detail__eyebrow">
+                      Featured Build
+                      <span class="our-work-detail__index"> 01 </span>
+                    </p>
+                    <h3 class="our-work-detail__sidebar-title"> CipherLux </h3>
+                    <div class="our-work-detail__menu">
+                      <span class="is-active"> Overview </span>
+                      <span> Gallery </span>
+                      <span> Delivery Model </span>
+                    </div>
+                    <button class="our-work-detail__back" type="button" data-work-detail-back>
+                      <span class="our-work-detail__back-glyph">&#8249;</span>
+                      <span> Projects </span>
+                    </button>
+                  </aside>
+                  <section class="our-work-detail__main">
+                    <div class="our-work-detail__hero"></div>
+                    <div class="our-work-detail__content">
+                      <button class="our-work-detail__inline-back" type="button" data-work-detail-back aria-label="Back to projects">
+                        <span class="our-work-detail__inline-back-glyph">&#8592;</span>
+                        <span> Projects </span>
+                      </button>
+                      <p class="our-work-detail__subtitle"> AI Capital Management Platform </p>
+                      <h3 class="our-work-detail__title"> CipherLux </h3>
+                      <p class="our-work-detail__description"></p>
+                      <div class="our-work-detail__tags"></div>
+                      <div class="our-work-detail__actions">
+                        <button class="our-work-detail__action" type="button" data-work-detail-image>
+                          View Project Images
+                        </button>
+                        <button class="our-work-detail__action our-work-detail__action--ghost" type="button" data-work-detail-back>
+                          Back to Work Section
+                        </button>
+                      </div>
+                      <ul class="our-work-detail__points our-work-detail__points--inline"></ul>
+                    </div>
+                  </section>
+                  <aside class="our-work-detail__insights">
+                    <ul class="our-work-detail__points"></ul>
+                    <div class="our-work-detail__mini-nav">
+                      <span class="is-active"> Overview </span>
+                      <span> Gallery </span>
+                      <span> Delivery Model </span>
+                    </div>
+                  </aside>
                 </div>
               </div>
             </div>
@@ -1582,20 +2821,42 @@
           <div class="part section__card"
               data-5200="opacity:0"
               data-5800="opacity:1">
-            <div class="tails__section__el tails__feature-card">
-              <h2> The Alphintra Way </h2>
-              <p>
-                1. Discovery: align goals, define architecture, and validate technical feasibility. 2. Design:
-                high-fidelity UI/UX prototypes and system planning. 3. Sprint: agile development with weekly demos and
-                milestone tracking. 4. Deploy: production-ready release with monitoring and continuous optimization.
-                Clear milestones, transparent execution, measurable progress.
-              </p>
-              <div class="tails__tags">
-                <span class="tails__tag"> DISCOVERY </span>
-                <span class="tails__tag"> DESIGN </span>
-                <span class="tails__tag"> SPRINT </span>
-                <span class="tails__tag"> DEPLOY </span>
+            <div class="tails__flow-slider" data-flow-slider data-flow-index="0">
+              <div class="tails__flow-slider__viewport">
+                <div class="tails__flow-slider__track">
+                  <article class="tails__section__el tails__feature-card tails__flow-slider__card is-active" data-flow-card="0" aria-hidden="false">
+                    <h2> The Alphintra Way: Discovery &amp; Design </h2>
+                    <p>
+                      Discovery aligns goals, architecture, and technical feasibility. Design converts requirements into
+                      high-fidelity UI/UX prototypes and clear system plans.
+                    </p>
+                    <div class="tails__tags">
+                      <span class="tails__tag"> DISCOVERY </span>
+                      <span class="tails__tag"> DESIGN </span>
+                    </div>
+                    <ul class="tails__detail-points">
+                      <li>Clear scope and priority mapping before implementation begins.</li>
+                      <li>Architecture decisions documented with delivery impact in mind.</li>
+                    </ul>
+                  </article>
+                  <article class="tails__section__el tails__feature-card tails__flow-slider__card" data-flow-card="1" aria-hidden="true">
+                    <h2> The Alphintra Way: Sprint &amp; Deploy </h2>
+                    <p>
+                      Sprint execution runs in agile cycles with weekly demos and milestone tracking. Deploy focuses on
+                      production-ready releases, monitoring, and continuous optimization.
+                    </p>
+                    <div class="tails__tags">
+                      <span class="tails__tag"> SPRINT </span>
+                      <span class="tails__tag"> DEPLOY </span>
+                    </div>
+                    <ul class="tails__detail-points">
+                      <li>Transparent progress checkpoints with practical delivery updates.</li>
+                      <li>Measured improvements after launch through data and iteration.</li>
+                    </ul>
+                  </article>
+                </div>
               </div>
+              <p class="tails__flow-next-note">Next card available. Use the right-side arrow.</p>
             </div>
           </div>
           <div class="part part--rocks"
@@ -1637,19 +2898,43 @@
           <div class="part section__card"
               data-6200="opacity:0"
               data-6800="opacity:1">
-            <div class="tails__section__el tails__feature-card">
-              <h2> Engineering Partner for Ambitious Teams </h2>
-              <p>
-                Whether you are launching a startup product or modernizing enterprise infrastructure, we act as your
-                long-term engineering partner. Embedded technical teams, AI and automation systems, scalable cloud
-                architecture, and product-focused execution. We build what others only plan.
-              </p>
-              <div class="tails__tags">
-                <span class="tails__tag"> EMBEDDED TEAMS </span>
-                <span class="tails__tag"> AI &amp; AUTOMATION </span>
-                <span class="tails__tag"> SCALABLE CLOUD </span>
-                <span class="tails__tag"> PRODUCT EXECUTION </span>
+            <div class="tails__flow-slider" data-flow-slider data-flow-index="0">
+              <div class="tails__flow-slider__viewport">
+                <div class="tails__flow-slider__track">
+                  <article class="tails__section__el tails__feature-card tails__flow-slider__card is-active" data-flow-card="0" aria-hidden="false">
+                    <h2> Engineering Partner for Ambitious Teams </h2>
+                    <p>
+                      Whether you are launching a startup product or modernizing enterprise infrastructure, we operate
+                      as a long-term engineering partner embedded into your roadmap and delivery model.
+                    </p>
+                    <div class="tails__tags">
+                      <span class="tails__tag"> EMBEDDED TEAMS </span>
+                      <span class="tails__tag"> AI &amp; AUTOMATION </span>
+                    </div>
+                    <ul class="tails__detail-points">
+                      <li>Role-matched experts across frontend, backend, cloud, and AI systems.</li>
+                      <li>Domain ownership with consistent technical decision-making across sprints.</li>
+                    </ul>
+                  </article>
+                  <article class="tails__section__el tails__feature-card tails__flow-slider__card" data-flow-card="1" aria-hidden="true">
+                    <h2> Execution Model Built for Scale </h2>
+                    <p>
+                      We combine scalable cloud architecture and product-focused execution with predictable governance to
+                      deliver measurable outcomes over long-term partnerships.
+                    </p>
+                    <div class="tails__tags">
+                      <span class="tails__tag"> SCALABLE CLOUD </span>
+                      <span class="tails__tag"> PRODUCT EXECUTION </span>
+                      <span class="tails__tag"> DELIVERY GOVERNANCE </span>
+                    </div>
+                    <ul class="tails__detail-points">
+                      <li>Predictable sprint delivery with low-surprise quality controls.</li>
+                      <li>Long-term partnership model with measurable delivery outcomes.</li>
+                    </ul>
+                  </article>
+                </div>
               </div>
+              <p class="tails__flow-next-note">Next card available. Use the right-side arrow.</p>
             </div>
           </div>
           <div class="part part--gravity"
@@ -1819,6 +3104,136 @@
         var currentCard = null;
         var currentIndex = 0;
         var hasPlayedInitial = false;
+        var detailPanel = stack.querySelector('.our-work-detail');
+        var detailBackButtons = detailPanel ? detailPanel.querySelectorAll('[data-work-detail-back]') : [];
+        var detailImageBtn = detailPanel ? detailPanel.querySelector('[data-work-detail-image]') : null;
+        var detailSectionCard = stack.closest('.section__card');
+        var detailHero = detailPanel ? detailPanel.querySelector('.our-work-detail__hero') : null;
+        var detailIndex = detailPanel ? detailPanel.querySelector('.our-work-detail__index') : null;
+        var detailSidebarTitle = detailPanel ? detailPanel.querySelector('.our-work-detail__sidebar-title') : null;
+        var detailTitle = detailPanel ? detailPanel.querySelector('.our-work-detail__title') : null;
+        var detailSubtitle = detailPanel ? detailPanel.querySelector('.our-work-detail__subtitle') : null;
+        var detailDescription = detailPanel ? detailPanel.querySelector('.our-work-detail__description') : null;
+        var detailTags = detailPanel ? detailPanel.querySelector('.our-work-detail__tags') : null;
+        var detailPoints = detailPanel ? detailPanel.querySelector('.our-work-detail__points--inline') : null;
+        var detailData = {
+          0: {
+            description: 'CipherLux is an institutional AI capital platform built for live market operations. It combines streaming data ingestion, model-driven insight services, secure execution APIs, and governance-ready monitoring so teams can trade, analyze, and operate on one resilient system.',
+            points: [
+              {
+                title: 'Core Platform',
+                text: 'Unified services for portfolios, signals, execution pipelines, and observability in one cloud-native architecture.'
+              },
+              {
+                title: 'Intelligence Layer',
+                text: 'Real-time feature pipelines, adaptive forecasting models, and confidence scoring for decision support.'
+              },
+              {
+                title: 'Performance',
+                text: 'Sub-200ms p95 API responses for high-frequency operational endpoints and market insight retrieval.'
+              },
+              {
+                title: 'Security',
+                text: 'Role-based access, encrypted event streams, and immutable audit traces across workflows.'
+              },
+              {
+                title: 'Delivery Model',
+                text: '99.95% availability target with multi-zone failover, monitored CI/CD, and controlled release gates.'
+              }
+            ],
+            images: [
+              { src: '/app/public/img/qubitz/AIHero.jpg', alt: 'CipherLux overview', caption: 'AI market intelligence and signal orchestration.' },
+              { src: '/app/public/img/qubitz/ERPCRMhero.jpg', alt: 'CipherLux architecture', caption: 'Operational architecture and secure integration layer.' }
+            ]
+          },
+          1: {
+            description: 'PulseOps is a mission-control incident response platform for high-volume digital operations. It centralizes alert streams, prioritizes incidents with rule and model signals, and executes runbook automations to reduce downtime and response fatigue.',
+            points: [
+              {
+                title: 'Incident Control',
+                text: 'Single-pane command center for alert ingestion, triage queues, owner assignment, and status timelines.'
+              },
+              {
+                title: 'Automation',
+                text: 'Runbook execution for repetitive operational steps including remediation checks and rollback triggers.'
+              },
+              {
+                title: 'Routing Engine',
+                text: 'Dynamic escalation policies based on severity, service ownership, and on-call schedules.'
+              },
+              {
+                title: 'Response Outcomes',
+                text: 'Lower acknowledgment and recovery times through guided actions and prioritized workflows.'
+              },
+              {
+                title: 'Reliability',
+                text: 'Stable event-stream processing with replay support for bursty and large-scale incident volumes.'
+              }
+            ],
+            images: [
+              { src: '/app/public/img/qubitz/ERPCRMhero.jpg', alt: 'PulseOps operations', caption: 'Incident response control panel concept.' },
+              { src: '/app/public/img/qubitz/servicesHero.png', alt: 'PulseOps service map', caption: 'Service topology and escalation pathway visualization.' }
+            ]
+          },
+          2: {
+            description: 'RetailNerve is an omnichannel commerce operating system that connects merchandising, inventory, forecasting, campaigns, and fulfillment. It helps retail teams make faster decisions with shared data, predictive planning, and channel-aware execution.',
+            points: [
+              {
+                title: 'Commerce Backbone',
+                text: 'Unified product, stock, and order orchestration across web, mobile apps, and physical store touchpoints.'
+              },
+              {
+                title: 'Forecasting',
+                text: 'Demand models that consider seasonality, campaign signals, and locality behavior for planning accuracy.'
+              },
+              {
+                title: 'Inventory Health',
+                text: 'Adaptive replenishment and allocation logic to reduce stockouts, overstocks, and aging inventory.'
+              },
+              {
+                title: 'Conversion',
+                text: 'Channel-specific journey optimization from discovery to checkout with measurable funnel visibility.'
+              },
+              {
+                title: 'Revenue Visibility',
+                text: 'Real-time margin, campaign attribution, and performance reporting across every sales channel.'
+              }
+            ],
+            images: [
+              { src: '/app/public/img/qubitz/digitalMarketingHero.jpg', alt: 'RetailNerve storefront', caption: 'Commerce and campaign orchestration experience.' },
+              { src: '/app/public/img/qubitz/UIUXHero.jpg', alt: 'RetailNerve customer flow', caption: 'Customer journey and checkout flow optimization.' }
+            ]
+          },
+          3: {
+            description: 'MedFlow AI is a clinical workflow copilot for intake, triage, encounter documentation, and care coordination. It combines structured workflows with AI assistance while maintaining auditability, policy controls, and interoperability standards required in healthcare operations.',
+            points: [
+              {
+                title: 'Clinical Intake',
+                text: 'Structured data capture and guided triage pathways to improve consistency at the point of care.'
+              },
+              {
+                title: 'Documentation',
+                text: 'AI-assisted note generation and summarization that reduces manual chart completion time.'
+              },
+              {
+                title: 'Care Coordination',
+                text: 'Follow-up task orchestration, patient status visibility, and workflow handoffs across care teams.'
+              },
+              {
+                title: 'Governance',
+                text: 'Policy-aware prompts, traceable model actions, and complete audit logs for compliance readiness.'
+              },
+              {
+                title: 'Interoperability',
+                text: 'FHIR-compatible integration layer for EHR and existing clinical infrastructure connectivity.'
+              }
+            ],
+            images: [
+              { src: '/app/public/img/qubitz/extendedHero.jpg', alt: 'MedFlow AI dashboard', caption: 'Clinical operations cockpit and triage surfaces.' },
+              { src: '/app/public/img/qubitz/aboutback.jpg', alt: 'MedFlow AI network', caption: 'Connected care network and workflow layer.' }
+            ]
+          }
+        };
 
         function clearVisualStyles(node) {
           if (!node || !node.style) return;
@@ -1843,8 +3258,123 @@
 
         function getCardAnimNodes(card) {
           return card.querySelectorAll(
-            '.our-work-card__index, h2, .our-work-card__subtitle, p:not(.our-work-card__index):not(.our-work-card__subtitle), .tails__tag'
+            '.our-work-card__index, h2, .our-work-card__subtitle, p:not(.our-work-card__index):not(.our-work-card__subtitle), .tails__tag, .our-work-card__button'
           );
+        }
+
+        function getCardText(card, selector) {
+          if (!card) return '';
+          var node = card.querySelector(selector);
+          if (!node) return '';
+          return (node.textContent || '').trim();
+        }
+
+        function clearChildren(node) {
+          if (!node) return;
+          while (node.firstChild) {
+            node.removeChild(node.firstChild);
+          }
+        }
+
+        function getDetailDataForCard(card) {
+          var index = getCardIndex(card);
+          if (detailData[index]) return detailData[index];
+          return detailData[0] || { points: [], images: [] };
+        }
+
+        function renderDetailTags(card) {
+          if (!detailTags) return;
+          clearChildren(detailTags);
+          var tags = card ? card.querySelectorAll('.tails__tag') : [];
+          for (var i = 0; i < tags.length; i++) {
+            var chip = document.createElement('span');
+            chip.textContent = (tags[i].textContent || '').trim();
+            detailTags.appendChild(chip);
+          }
+        }
+
+        function renderDetailPoints(data) {
+          if (!detailPoints) return;
+          clearChildren(detailPoints);
+          var points = (data && data.points) ? data.points : [];
+          var viewportWidth = window.innerWidth || document.documentElement.clientWidth || 0;
+          var viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
+          var maxPoints = 3;
+          if (viewportWidth <= 900) {
+            maxPoints = 1;
+          } else if (viewportWidth <= 1280 || viewportHeight <= 820) {
+            maxPoints = 2;
+          }
+          var visiblePoints = Math.min(points.length, maxPoints);
+          for (var i = 0; i < visiblePoints; i++) {
+            var li = document.createElement('li');
+            var title = document.createElement('p');
+            title.className = 'our-work-detail__point-title';
+            title.textContent = points[i].title || '';
+            li.appendChild(title);
+
+            var text = document.createElement('p');
+            text.className = 'our-work-detail__point-text';
+            text.textContent = points[i].text || '';
+            li.appendChild(text);
+
+            detailPoints.appendChild(li);
+          }
+        }
+
+        function populateDetailPanel(card) {
+          if (!detailPanel || !card) return;
+
+          var data = getDetailDataForCard(card);
+          var media = card.querySelector('.our-work-card__media');
+          var images = (data && data.images) ? data.images : [];
+          detailPanel.__heroImages = images;
+          detailPanel.__heroImageIndex = 0;
+          if (detailHero) {
+            if (images.length && images[0].src) {
+              detailHero.style.backgroundImage = 'url("' + images[0].src + '")';
+            } else if (media) {
+              detailHero.style.backgroundImage = window.getComputedStyle(media).backgroundImage;
+            }
+          }
+
+          if (detailIndex) {
+            detailIndex.textContent = (getCardText(card, '.our-work-card__index') || '01').replace(/\s+/g, '');
+          }
+          if (detailSidebarTitle) {
+            detailSidebarTitle.textContent = getCardText(card, 'h2');
+          }
+          if (detailTitle) {
+            detailTitle.textContent = getCardText(card, 'h2');
+          }
+          if (detailSubtitle) {
+            detailSubtitle.textContent = getCardText(card, '.our-work-card__subtitle');
+          }
+          if (detailDescription) {
+            detailDescription.textContent = data.description || getCardText(card, 'p:not(.our-work-card__index):not(.our-work-card__subtitle)');
+          }
+
+          renderDetailTags(card);
+          renderDetailPoints(data);
+        }
+
+        function closeDetailPanel() {
+          if (!detailPanel) return;
+          stack.classList.remove('is-detail-open');
+          if (detailSectionCard) {
+            detailSectionCard.classList.remove('is-work-detail-open');
+          }
+          detailPanel.setAttribute('aria-hidden', 'true');
+        }
+
+        function openDetailPanel(card) {
+          if (!detailPanel || !card) return;
+          populateDetailPanel(card);
+          stack.classList.add('is-detail-open');
+          if (detailSectionCard) {
+            detailSectionCard.classList.add('is-work-detail-open');
+          }
+          detailPanel.setAttribute('aria-hidden', 'false');
         }
 
         function resetWorkCard(card) {
@@ -1989,6 +3519,10 @@
           currentCard = card;
           currentIndex = nextIndex;
           hasPlayedInitial = true;
+
+          if (stack.classList.contains('is-detail-open')) {
+            populateDetailPanel(card);
+          }
         }
 
         for (var i = 0; i < cards.length; i++) {
@@ -2032,7 +3566,280 @@
           animateWorkCard(initialActive, true);
         }
 
+        if (detailPanel) {
+          detailPanel.setAttribute('aria-hidden', 'true');
+
+          var openButtons = stack.querySelectorAll('[data-work-detail-open]');
+          for (var k = 0; k < openButtons.length; k++) {
+            (function (button) {
+              button.addEventListener('click', function (event) {
+                event.preventDefault();
+                var ownerCard = button.closest('.our-work-card');
+                if (!ownerCard) return;
+                openDetailPanel(ownerCard);
+              });
+            })(openButtons[k]);
+          }
+
+          for (var b = 0; b < detailBackButtons.length; b++) {
+            detailBackButtons[b].addEventListener('click', function () {
+              closeDetailPanel();
+            });
+          }
+
+          if (detailImageBtn) {
+            detailImageBtn.addEventListener('click', function () {
+              var images = detailPanel.__heroImages || [];
+              if (!images.length || !detailHero) return;
+              var nextIndex = (detailPanel.__heroImageIndex + 1) % images.length;
+              detailPanel.__heroImageIndex = nextIndex;
+              detailHero.style.backgroundImage = 'url("' + images[nextIndex].src + '")';
+            });
+          }
+
+          window.addEventListener('resize', function () {
+            if (!stack.classList.contains('is-detail-open')) return;
+            var activeCard = currentCard || stack.querySelector('.our-work-card.is-active');
+            if (!activeCard) return;
+            populateDetailPanel(activeCard);
+          });
+
+          document.addEventListener('keydown', function (event) {
+            if (event.key !== 'Escape') return;
+            if (!stack.classList.contains('is-detail-open')) return;
+            closeDetailPanel();
+          });
+
+          var section = stack.closest('.heads__section');
+          if (window.MutationObserver && section) {
+            var detailSectionObserver = new MutationObserver(function (mutations) {
+              for (var x = 0; x < mutations.length; x++) {
+                if (mutations[x].attributeName !== 'class') continue;
+                if (section.classList.contains('active-3d-card')) continue;
+                closeDetailPanel();
+              }
+            });
+            detailSectionObserver.observe(section, { attributes: true, attributeFilter: ['class'] });
+          }
+        }
+
         stack.__workCardAnimReady = true;
+        return true;
+      }
+
+      function initFlowCardSlider() {
+        if (document.documentElement.__flowSliderReady) return true;
+
+        var sliders = document.querySelectorAll('[data-flow-slider]');
+        if (!sliders.length) {
+          document.documentElement.__flowSliderReady = true;
+          return true;
+        }
+
+        function findHeadSection(node) {
+          var current = node;
+          while (current && current !== document) {
+            if (current.classList && current.classList.contains('heads__section')) return current;
+            current = current.parentNode;
+          }
+          return null;
+        }
+
+        function setupSlider(slider) {
+          if (!slider || slider.__flowSliderReady) return;
+
+          var viewport = slider.querySelector('.tails__flow-slider__viewport');
+          var track = slider.querySelector('.tails__flow-slider__track');
+          var cards = slider.querySelectorAll('.tails__flow-slider__card');
+          if (!viewport || !track || cards.length < 2) return;
+
+          var cardCount = cards.length;
+          var currentIndex = 0;
+          var pointerId = null;
+          var tracking = false;
+          var dragAxis = '';
+          var startX = 0;
+          var startY = 0;
+          var deltaX = 0;
+          var deltaY = 0;
+          var swipeThreshold = 34;
+          var wheelLock = false;
+          var section = findHeadSection(slider);
+
+          function normalizeIndex(index, wrap) {
+            if (wrap) {
+              if (index < 0) return cardCount - 1;
+              if (index >= cardCount) return 0;
+              return index;
+            }
+            if (index < 0) return 0;
+            if (index >= cardCount) return cardCount - 1;
+            return index;
+          }
+
+          function render(nextIndex, options) {
+            var opts = options || {};
+            var wrap = opts.wrap !== false;
+            var skipTransition = !!opts.skipTransition;
+
+            currentIndex = normalizeIndex(nextIndex, wrap);
+            slider.setAttribute('data-flow-index', String(currentIndex));
+
+            track.style.transition = skipTransition ? 'none' : '';
+
+            var shift = -(100 / cardCount) * currentIndex;
+            track.style.transform = 'translate3d(' + shift + '%, 0, 0)';
+
+            for (var i = 0; i < cards.length; i++) {
+              var isActive = i === currentIndex;
+              cards[i].classList.toggle('is-active', isActive);
+              cards[i].setAttribute('aria-hidden', isActive ? 'false' : 'true');
+            }
+
+            if (skipTransition) {
+              requestAnimationFrame(function () {
+                track.style.transition = '';
+              });
+            }
+          }
+
+          slider.__flowSliderCanNext = function () {
+            return currentIndex < (cardCount - 1);
+          };
+
+          slider.__flowSliderNext = function (options) {
+            var opts = options || {};
+            var wrap = opts.wrap !== false;
+            if (!wrap && currentIndex >= (cardCount - 1)) return false;
+            render(currentIndex + 1, { wrap: wrap, skipTransition: false });
+            return true;
+          };
+
+          slider.__flowSliderPrev = function (options) {
+            var opts = options || {};
+            var wrap = opts.wrap !== false;
+            if (!wrap && currentIndex <= 0) return false;
+            render(currentIndex - 1, { wrap: wrap, skipTransition: false });
+            return true;
+          };
+
+          slider.__flowSliderReset = function () {
+            render(0, { wrap: false, skipTransition: true });
+          };
+
+          function startGesture(clientX, clientY, nextPointerId) {
+            pointerId = nextPointerId;
+            tracking = true;
+            dragAxis = '';
+            startX = clientX;
+            startY = clientY;
+            deltaX = 0;
+            deltaY = 0;
+            slider.classList.add('is-dragging');
+          }
+
+          function moveGesture(clientX, clientY, event) {
+            if (!tracking) return;
+            deltaX = clientX - startX;
+            deltaY = clientY - startY;
+
+            if (!dragAxis) {
+              if (Math.abs(deltaX) < 8 && Math.abs(deltaY) < 8) return;
+              dragAxis = Math.abs(deltaX) > Math.abs(deltaY) ? 'x' : 'y';
+            }
+
+            if (dragAxis === 'x' && event && event.cancelable) {
+              event.preventDefault();
+            }
+          }
+
+          function endGesture() {
+            if (!tracking) return;
+            tracking = false;
+            pointerId = null;
+            slider.classList.remove('is-dragging');
+
+            if (dragAxis !== 'x') return;
+            if (Math.abs(deltaX) < swipeThreshold) return;
+            if (Math.abs(deltaX) < Math.abs(deltaY) * 1.2) return;
+
+            if (deltaX > 0) {
+              slider.__flowSliderNext({ wrap: true });
+            } else {
+              slider.__flowSliderPrev({ wrap: true });
+            }
+          }
+
+          viewport.addEventListener('pointerdown', function (event) {
+            if (event.pointerType === 'mouse' && event.button !== 0) return;
+            startGesture(event.clientX, event.clientY, event.pointerId);
+            if (viewport.setPointerCapture) {
+              try {
+                viewport.setPointerCapture(event.pointerId);
+              } catch (e) {}
+            }
+          });
+
+          viewport.addEventListener('pointermove', function (event) {
+            if (!tracking) return;
+            if (pointerId !== null && event.pointerId !== pointerId) return;
+            moveGesture(event.clientX, event.clientY, event);
+          });
+
+          window.addEventListener('pointerup', function (event) {
+            if (!tracking) return;
+            if (pointerId !== null && event.pointerId !== pointerId) return;
+            endGesture();
+          });
+
+          window.addEventListener('pointercancel', function (event) {
+            if (!tracking) return;
+            if (pointerId !== null && event.pointerId !== pointerId) return;
+            tracking = false;
+            pointerId = null;
+            slider.classList.remove('is-dragging');
+          });
+
+          viewport.addEventListener('wheel', function (event) {
+            var horizontalDelta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : 0;
+            if (!horizontalDelta && event.shiftKey && Math.abs(event.deltaY) > 0) {
+              horizontalDelta = event.deltaY;
+            }
+            if (Math.abs(horizontalDelta) < 12) return;
+            if (event.cancelable) event.preventDefault();
+            if (wheelLock) return;
+
+            wheelLock = true;
+            if (horizontalDelta > 0) {
+              slider.__flowSliderNext({ wrap: true });
+            } else {
+              slider.__flowSliderPrev({ wrap: true });
+            }
+            setTimeout(function () {
+              wheelLock = false;
+            }, 260);
+          }, { passive: false });
+
+          if (section && window.MutationObserver) {
+            var sectionObserver = new MutationObserver(function (mutations) {
+              for (var i = 0; i < mutations.length; i++) {
+                if (mutations[i].attributeName !== 'class') continue;
+                if (!section.classList.contains('active-3d-card')) continue;
+                slider.__flowSliderReset();
+              }
+            });
+            sectionObserver.observe(section, { attributes: true, attributeFilter: ['class'] });
+          }
+
+          render(0, { wrap: false, skipTransition: true });
+          slider.__flowSliderReady = true;
+        }
+
+        for (var s = 0; s < sliders.length; s++) {
+          setupSlider(sliders[s]);
+        }
+
+        document.documentElement.__flowSliderReady = true;
         return true;
       }
 
@@ -2040,17 +3847,34 @@
         if (document.documentElement.__heroActionsReady) return;
 
         function goToSection(sectionName) {
-          var menuTarget = document.querySelector('.menu .menu__item[data-section="' + sectionName + '"]');
-          if (!menuTarget) return;
+          var sectionIndexMap = {
+            hello: 0,
+            beams: 1,
+            drop: 2,
+            ball: 3,
+            flow: 4,
+            neons: 5,
+            height: 6,
+            wave: 7,
+            face: 8,
+            rocks: 9,
+            galaxy: 10,
+            gravity: 11,
+            end: 12
+          };
 
-          if (typeof menuTarget.click === 'function') {
-            menuTarget.click();
-            return;
+          var index = sectionIndexMap[sectionName];
+          if (index !== undefined) {
+            var mapNode = document.querySelector('.map .map__node[data-index="' + index + '"]');
+            if (mapNode) {
+              mapNode.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+              return;
+            }
           }
 
-          var evt = document.createEvent('MouseEvents');
-          evt.initEvent('click', true, true);
-          menuTarget.dispatchEvent(evt);
+          var menuTarget = document.querySelector('.menu .menu__item[data-section="' + sectionName + '"]');
+          if (!menuTarget) return;
+          menuTarget.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
         }
 
         var startButton = document.querySelector('[data-hero-action="start"]');
@@ -2072,13 +3896,130 @@
         document.documentElement.__heroActionsReady = true;
       }
 
+      function bindSectionArrow() {
+        if (document.documentElement.__sectionArrowReady) return;
+
+        var arrow = document.querySelector('.section-next-arrow');
+        if (!arrow) return;
+        var sections = document.querySelectorAll('.heads__section');
+
+        function getActiveMapIndex() {
+          var activeNode = document.querySelector('.map .map__node.is-active');
+          if (!activeNode) return -1;
+          var value = Number(activeNode.getAttribute('data-index'));
+          return isNaN(value) ? -1 : value;
+        }
+
+        function goToMapIndex(index) {
+          var mapNode = document.querySelector('.map .map__node[data-index="' + index + '"]');
+          if (!mapNode) return false;
+          mapNode.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+          return true;
+        }
+
+        function getActiveSection() {
+          return document.querySelector('.heads__section.active-3d-card');
+        }
+
+        function shouldShowArrow() {
+          var activeSection = getActiveSection();
+          if (!activeSection) return false;
+          var activeSlider = activeSection.querySelector('[data-flow-slider]');
+          if (!activeSlider) return false;
+          return activeSlider.querySelectorAll('.tails__flow-slider__card').length > 1;
+        }
+
+        function syncArrowVisibility() {
+          var visible = shouldShowArrow();
+          arrow.style.display = visible ? '' : 'none';
+          arrow.setAttribute('aria-hidden', visible ? 'false' : 'true');
+        }
+
+        var cardWheelLock = false;
+        document.addEventListener('wheel', function (event) {
+          var activeSection = getActiveSection();
+          if (!activeSection) return;
+          if (!activeSection.contains(event.target)) return;
+
+          var inCard = event.target.closest && event.target.closest('.section__card .tails__feature-card');
+          if (!inCard) return;
+
+          var inFlowViewport = event.target.closest && event.target.closest('.tails__flow-slider__viewport');
+          if (inFlowViewport) {
+            var horizontalIntent = Math.abs(event.deltaX) > Math.abs(event.deltaY);
+            if (!horizontalIntent && event.shiftKey && Math.abs(event.deltaY) > 0) {
+              horizontalIntent = true;
+            }
+            if (horizontalIntent) return;
+          }
+
+          if (Math.abs(event.deltaY) < 12) return;
+          if (event.cancelable) event.preventDefault();
+          if (cardWheelLock) return;
+
+          var nodes = document.querySelectorAll('.map .map__node');
+          if (!nodes.length) return;
+          var currentIndex = getActiveMapIndex();
+          if (currentIndex < 0) currentIndex = 0;
+
+          var direction = event.deltaY > 0 ? 1 : -1;
+          var nextIndex = Math.max(0, Math.min(nodes.length - 1, currentIndex + direction));
+          if (nextIndex === currentIndex) return;
+
+          cardWheelLock = true;
+          goToMapIndex(nextIndex);
+          setTimeout(function () {
+            cardWheelLock = false;
+          }, 280);
+        }, { passive: false });
+
+        arrow.addEventListener('click', function () {
+          if (arrow.style.display === 'none') return;
+          var activeSection = document.querySelector('.heads__section.active-3d-card');
+          if (activeSection) {
+            var activeSlider = activeSection.querySelector('[data-flow-slider]');
+            if (activeSlider && typeof activeSlider.__flowSliderNext === 'function') {
+              var moved = activeSlider.__flowSliderNext({ wrap: false });
+              if (moved) return;
+            }
+          }
+
+          var nodes = document.querySelectorAll('.map .map__node');
+          if (!nodes.length) return;
+
+          var currentIndex = getActiveMapIndex();
+          if (currentIndex < 0) currentIndex = 0;
+          var nextIndex = (currentIndex + 1) % nodes.length;
+          goToMapIndex(nextIndex);
+        });
+
+        if (window.MutationObserver && sections.length) {
+          for (var i = 0; i < sections.length; i++) {
+            (function (section) {
+              var observer = new MutationObserver(function (mutations) {
+                for (var m = 0; m < mutations.length; m++) {
+                  if (mutations[m].attributeName !== 'class') continue;
+                  syncArrowVisibility();
+                }
+              });
+              observer.observe(section, { attributes: true, attributeFilter: ['class'] });
+            })(sections[i]);
+          }
+        }
+
+        syncArrowVisibility();
+        document.documentElement.__sectionArrowReady = true;
+      }
+
       function bootCardEnhancements() {
         var logoReady = initHeroLogoGsap();
         var sectionReady = initCardScrollAnimations();
         var workReady = initOurWorkCardAnimations();
+        var flowReady = initFlowCardSlider();
         bindHeroActions();
+        bindSectionArrow();
 
-        if (logoReady && sectionReady && workReady) return;
+        if (logoReady && sectionReady && workReady && flowReady) return;
         setTimeout(bootCardEnhancements, 140);
       }
 
