@@ -841,6 +841,7 @@
       letter-spacing: 0.16em;
       text-transform: uppercase;
       cursor: pointer;
+      touch-action: manipulation;
       transition: border-color 0.22s ease, background-color 0.22s ease, color 0.22s ease;
     }
 
@@ -3274,6 +3275,73 @@
           progressBar.style.width = (((safeIndex + 1) / cards.length) * 100) + '%';
         }
 
+        function setActiveCardByIndex(index, options) {
+          var opts = options || {};
+          var wrap = opts.wrap !== false;
+          var force = !!opts.force;
+          var nextIndex = Number(index);
+          if (isNaN(nextIndex)) nextIndex = 0;
+
+          if (wrap) {
+            if (nextIndex < 0) nextIndex = cards.length - 1;
+            if (nextIndex >= cards.length) nextIndex = 0;
+          } else {
+            nextIndex = Math.max(0, Math.min(cards.length - 1, nextIndex));
+          }
+
+          var nextCard = cards[nextIndex];
+          if (!nextCard) return false;
+
+          var alreadyActive =
+            !force &&
+            currentCard === nextCard &&
+            nextCard.classList.contains('is-active') &&
+            nextCard.getAttribute('aria-hidden') !== 'true';
+          if (alreadyActive) return false;
+
+          for (var i = 0; i < cards.length; i++) {
+            var isActive = i === nextIndex;
+            cards[i].classList.toggle('is-active', isActive);
+            cards[i].setAttribute('aria-hidden', isActive ? 'false' : 'true');
+          }
+
+          return true;
+        }
+
+        function stepActiveCard(step, options) {
+          if (!cards.length) return false;
+          var baseIndex = currentIndex;
+          if (!currentCard) {
+            var active = stack.querySelector('.our-work-card.is-active');
+            baseIndex = active ? getCardIndex(active) : 0;
+          }
+          return setActiveCardByIndex(baseIndex + step, options);
+        }
+
+        stack.__workCardCanNext = function () {
+          return currentIndex < (cards.length - 1);
+        };
+
+        stack.__workCardCanPrev = function () {
+          return currentIndex > 0;
+        };
+
+        stack.__workCardNext = function (options) {
+          var opts = options || {};
+          if (opts.wrap === undefined) opts.wrap = false;
+          return stepActiveCard(1, opts);
+        };
+
+        stack.__workCardPrev = function (options) {
+          var opts = options || {};
+          if (opts.wrap === undefined) opts.wrap = false;
+          return stepActiveCard(-1, opts);
+        };
+
+        stack.__workCardReset = function () {
+          setActiveCardByIndex(0, { wrap: false, force: true });
+        };
+
         function getCardAnimNodes(card) {
           return card.querySelectorAll(
             '.our-work-card__index, h2, .our-work-card__subtitle, p:not(.our-work-card__index):not(.our-work-card__subtitle), .tails__tag, .our-work-card__button'
@@ -3584,16 +3652,117 @@
           animateWorkCard(initialActive, true);
         }
 
+        var workPointerId = null;
+        var workTracking = false;
+        var workAxis = '';
+        var workStartX = 0;
+        var workStartY = 0;
+        var workDeltaX = 0;
+        var workDeltaY = 0;
+        var workSwipeThreshold = 34;
+        var workSwipeLock = false;
+
+        function startWorkGesture(clientX, clientY, pointerId) {
+          if (stack.classList.contains('is-detail-open')) return;
+          workPointerId = pointerId;
+          workTracking = true;
+          workAxis = '';
+          workStartX = clientX;
+          workStartY = clientY;
+          workDeltaX = 0;
+          workDeltaY = 0;
+        }
+
+        function moveWorkGesture(clientX, clientY, event) {
+          if (!workTracking) return;
+          workDeltaX = clientX - workStartX;
+          workDeltaY = clientY - workStartY;
+
+          if (!workAxis) {
+            if (Math.abs(workDeltaX) < 8 && Math.abs(workDeltaY) < 8) return;
+            workAxis = Math.abs(workDeltaX) > Math.abs(workDeltaY) ? 'x' : 'y';
+          }
+
+          if (workAxis === 'x' && event && event.cancelable) {
+            event.preventDefault();
+          }
+        }
+
+        function endWorkGesture() {
+          if (!workTracking) return;
+          workTracking = false;
+          workPointerId = null;
+
+          if (workAxis !== 'x') return;
+          if (Math.abs(workDeltaX) < workSwipeThreshold) return;
+          if (Math.abs(workDeltaX) < Math.abs(workDeltaY) * 1.15) return;
+          if (workSwipeLock) return;
+          if (stack.classList.contains('is-detail-open')) return;
+
+          workSwipeLock = true;
+          if (workDeltaX < 0) {
+            stack.__workCardNext({ wrap: false });
+          } else {
+            stack.__workCardPrev({ wrap: false });
+          }
+          setTimeout(function () {
+            workSwipeLock = false;
+          }, 220);
+        }
+
+        stack.addEventListener('pointerdown', function (event) {
+          if (event.pointerType === 'mouse' && event.button !== 0) return;
+          if (event.pointerType === 'touch') return;
+          startWorkGesture(event.clientX, event.clientY, event.pointerId);
+          if (stack.setPointerCapture) {
+            try {
+              stack.setPointerCapture(event.pointerId);
+            } catch (e) {}
+          }
+        });
+
+        stack.addEventListener('pointermove', function (event) {
+          if (!workTracking) return;
+          if (workPointerId !== null && event.pointerId !== workPointerId) return;
+          moveWorkGesture(event.clientX, event.clientY, event);
+        });
+
+        window.addEventListener('pointerup', function (event) {
+          if (!workTracking) return;
+          if (workPointerId !== null && event.pointerId !== workPointerId) return;
+          endWorkGesture();
+        });
+
+        window.addEventListener('pointercancel', function (event) {
+          if (!workTracking) return;
+          if (workPointerId !== null && event.pointerId !== workPointerId) return;
+          workTracking = false;
+          workPointerId = null;
+        });
+
         if (detailPanel) {
           detailPanel.setAttribute('aria-hidden', 'true');
 
           var openButtons = stack.querySelectorAll('[data-work-detail-open]');
           for (var k = 0; k < openButtons.length; k++) {
             (function (button) {
+              button.addEventListener('touchstart', function (event) {
+                event.stopPropagation();
+              }, { passive: true });
+
+              button.addEventListener('touchend', function (event) {
+                if (event.cancelable) event.preventDefault();
+                event.stopPropagation();
+                var ownerCard = button.closest('.our-work-card');
+                if (!ownerCard || ownerCard.getAttribute('aria-hidden') === 'true') return;
+                openDetailPanel(ownerCard);
+              }, { passive: false });
+
               button.addEventListener('click', function (event) {
                 event.preventDefault();
+                event.stopPropagation();
                 var ownerCard = button.closest('.our-work-card');
-                if (!ownerCard) return;
+                if (!ownerCard || ownerCard.getAttribute('aria-hidden') === 'true') return;
                 openDetailPanel(ownerCard);
               });
             })(openButtons[k]);
@@ -3942,10 +4111,19 @@
         function shouldShowArrow() {
           var activeSection = getActiveSection();
           if (!activeSection) return false;
-          if (window.innerWidth <= 900) return true;
+          var activeWorkStack = activeSection.querySelector('.our-work-stack');
+          if (window.innerWidth <= 900) {
+            if (activeWorkStack && activeWorkStack.classList.contains('is-detail-open')) return false;
+            return true;
+          }
           var activeSlider = activeSection.querySelector('[data-flow-slider]');
-          if (!activeSlider) return false;
-          return activeSlider.querySelectorAll('.tails__flow-slider__card').length > 1;
+          if (activeSlider) {
+            return activeSlider.querySelectorAll('.tails__flow-slider__card').length > 1;
+          }
+          if (activeWorkStack) {
+            return activeWorkStack.querySelectorAll('.our-work-card').length > 1;
+          }
+          return false;
         }
 
         function syncArrowVisibility() {
@@ -3996,10 +4174,26 @@
           if (arrow.style.display === 'none') return;
           var activeSection = document.querySelector('.heads__section.active-3d-card');
           if (activeSection) {
+            var activeWorkStack = activeSection.querySelector('.our-work-stack');
+            if (
+              activeWorkStack &&
+              !activeWorkStack.classList.contains('is-detail-open') &&
+              typeof activeWorkStack.__workCardNext === 'function'
+            ) {
+              var movedWorkCard = activeWorkStack.__workCardNext({ wrap: false });
+              if (movedWorkCard) {
+                syncArrowVisibility();
+                return;
+              }
+            }
+
             var activeSlider = activeSection.querySelector('[data-flow-slider]');
             if (activeSlider && typeof activeSlider.__flowSliderNext === 'function') {
               var moved = activeSlider.__flowSliderNext({ wrap: false });
-              if (moved) return;
+              if (moved) {
+                syncArrowVisibility();
+                return;
+              }
             }
           }
 
@@ -4035,8 +4229,14 @@
         var touchTracking = false;
         var touchInActiveSection = false;
         var touchInFlowViewport = false;
+        var touchWorkStack = null;
 
         document.addEventListener('touchstart', function (event) {
+          touchTracking = false;
+          touchInActiveSection = false;
+          touchInFlowViewport = false;
+          touchWorkStack = null;
+
           var activeSection = getActiveSection();
           if (!activeSection) return;
           if (!activeSection.contains(event.target)) return;
@@ -4049,6 +4249,7 @@
           touchTracking = true;
           touchInActiveSection = true;
           touchInFlowViewport = !!(event.target.closest && event.target.closest('.tails__flow-slider__viewport'));
+          touchWorkStack = event.target.closest ? event.target.closest('.our-work-stack') : null;
         }, { passive: true });
 
         document.addEventListener('touchend', function (event) {
@@ -4063,6 +4264,21 @@
           var absX = Math.abs(deltaX);
           var absY = Math.abs(deltaY);
           if (absX < 24 && absY < 24) return;
+
+          if (touchWorkStack && !touchWorkStack.classList.contains('is-detail-open')) {
+            if (absX > absY * 1.12 && absX >= 32) {
+              var workMoved = false;
+              if (deltaX < 0 && typeof touchWorkStack.__workCardNext === 'function') {
+                workMoved = touchWorkStack.__workCardNext({ wrap: false });
+              } else if (deltaX > 0 && typeof touchWorkStack.__workCardPrev === 'function') {
+                workMoved = touchWorkStack.__workCardPrev({ wrap: false });
+              }
+              if (workMoved) {
+                syncArrowVisibility();
+                return;
+              }
+            }
+          }
 
           if (touchInFlowViewport && absX > absY * 1.1) return;
           if (absY <= absX * 1.12) return;
@@ -4096,6 +4312,14 @@
               observer.observe(section, { attributes: true, attributeFilter: ['class'] });
             })(sections[i]);
           }
+        }
+
+        var workStack = document.querySelector('.our-work-stack');
+        if (window.MutationObserver && workStack) {
+          var workStackObserver = new MutationObserver(function () {
+            syncArrowVisibility();
+          });
+          workStackObserver.observe(workStack, { attributes: true, subtree: true, attributeFilter: ['class', 'aria-hidden'] });
         }
 
         syncArrowVisibility();
