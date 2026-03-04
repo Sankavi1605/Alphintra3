@@ -389,6 +389,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      touch-action: manipulation;
       transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
     }
 
@@ -1702,6 +1703,10 @@
 
       .tails__flow-slider__card p {
         margin-bottom: 12px !important;
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
       }
 
       .tails__flow-slider__card .tails__detail-points {
@@ -2047,13 +2052,15 @@
       }
 
       .section-next-arrow {
-        right: 14px;
-        width: 46px;
-        height: 46px;
+        right: calc(env(safe-area-inset-right, 0px) + 10px);
+        width: 44px;
+        height: 44px;
+        z-index: 340;
       }
 
       .section-next-arrow__glyph {
-        font-size: 28px;
+        font-size: 24px;
+        margin-left: 1px;
       }
     }
   </style>
@@ -3935,6 +3942,7 @@
         function shouldShowArrow() {
           var activeSection = getActiveSection();
           if (!activeSection) return false;
+          if (window.innerWidth <= 900) return true;
           var activeSlider = activeSection.querySelector('[data-flow-slider]');
           if (!activeSlider) return false;
           return activeSlider.querySelectorAll('.tails__flow-slider__card').length > 1;
@@ -3984,7 +3992,7 @@
           }, 280);
         }, { passive: false });
 
-        arrow.addEventListener('click', function () {
+        function activateArrow() {
           if (arrow.style.display === 'none') return;
           var activeSection = document.querySelector('.heads__section.active-3d-card');
           if (activeSection) {
@@ -4002,7 +4010,79 @@
           if (currentIndex < 0) currentIndex = 0;
           var nextIndex = (currentIndex + 1) % nodes.length;
           goToMapIndex(nextIndex);
+        }
+
+        var arrowInputLock = false;
+        function runArrowAction(event) {
+          if (event && event.cancelable) event.preventDefault();
+          if (arrowInputLock) return;
+          arrowInputLock = true;
+          activateArrow();
+          setTimeout(function () {
+            arrowInputLock = false;
+          }, 220);
+        }
+
+        arrow.addEventListener('click', runArrowAction);
+        arrow.addEventListener('pointerup', function (event) {
+          if (event.pointerType === 'mouse') return;
+          runArrowAction(event);
         });
+
+        var touchSwipeLock = false;
+        var touchStartX = 0;
+        var touchStartY = 0;
+        var touchTracking = false;
+        var touchInActiveSection = false;
+        var touchInFlowViewport = false;
+
+        document.addEventListener('touchstart', function (event) {
+          var activeSection = getActiveSection();
+          if (!activeSection) return;
+          if (!activeSection.contains(event.target)) return;
+
+          var point = event.changedTouches && event.changedTouches[0];
+          if (!point) return;
+
+          touchStartX = point.clientX;
+          touchStartY = point.clientY;
+          touchTracking = true;
+          touchInActiveSection = true;
+          touchInFlowViewport = !!(event.target.closest && event.target.closest('.tails__flow-slider__viewport'));
+        }, { passive: true });
+
+        document.addEventListener('touchend', function (event) {
+          if (!touchTracking || !touchInActiveSection) return;
+          touchTracking = false;
+
+          var point = event.changedTouches && event.changedTouches[0];
+          if (!point) return;
+
+          var deltaX = point.clientX - touchStartX;
+          var deltaY = point.clientY - touchStartY;
+          var absX = Math.abs(deltaX);
+          var absY = Math.abs(deltaY);
+          if (absX < 24 && absY < 24) return;
+
+          if (touchInFlowViewport && absX > absY * 1.1) return;
+          if (absY <= absX * 1.12) return;
+          if (touchSwipeLock) return;
+
+          var nodes = document.querySelectorAll('.map .map__node');
+          if (!nodes.length) return;
+          var currentIndex = getActiveMapIndex();
+          if (currentIndex < 0) currentIndex = 0;
+
+          var direction = deltaY < 0 ? 1 : -1;
+          var nextIndex = Math.max(0, Math.min(nodes.length - 1, currentIndex + direction));
+          if (nextIndex === currentIndex) return;
+
+          touchSwipeLock = true;
+          goToMapIndex(nextIndex);
+          setTimeout(function () {
+            touchSwipeLock = false;
+          }, 320);
+        }, { passive: true });
 
         if (window.MutationObserver && sections.length) {
           for (var i = 0; i < sections.length; i++) {
