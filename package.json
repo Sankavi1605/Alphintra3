@@ -2,6 +2,13 @@
   "name": "2015",
   "debug": false,
   "watch": false,
+  "scripts": {
+    "dev": "node local-server.js",
+    "start": "node local-server.js",
+    "serve": "node local-server.js",
+    "serve:gulp": "gulp serve",
+    "build": "gulp build"
+  },
   "devDependencies": {
     "browserify": "^6.3.2",
     "browserify-shim": "^3.8.0",

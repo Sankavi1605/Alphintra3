@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PulseOps | Alphintra</title>
+  <link rel="stylesheet" href="/assets/pages/service-pages.css" />
+  <link rel="stylesheet" href="/assets/pages/project-detail.css" />
+</head>
+<body class="service-page project-page">
+  <canvas class="service-page__particles"></canvas>
+  <div class="service-page__veil"></div>
+
+  <div class="service-page__shell">
+    <header class="service-topbar">
+      <a class="service-topbar__brand" href="/index.html#face">
+        <img src="/app/public/img/alphintra-mark.svg" alt="Alphintra" />
+        <span>Alphintra Projects</span>
+      </a>
+      <nav class="service-topbar__nav">
+        <a href="/index.html#face">Our Work</a>
+        <a href="/index.html#flow">Services</a>
+        <a href="/index.html#end">Contact</a>
+      </nav>
+    </header>
+
+    <div class="service-layout project-layout">
+      <aside class="service-sidebar">
+        <p class="service-sidebar__eyebrow">Featured Build 02</p>
+        <h2 class="service-sidebar__title">PulseOps</h2>
+        <nav class="service-sidebar__nav">
+          <a href="#overview">Overview</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#delivery">Delivery Model</a>
+        </nav>
+        <div class="service-sidebar__quick">
+          <a class="project-back-link" href="/index.html#face">Back to OUR WORK</a>
+        </div>
+      </aside>
+
+      <main class="service-content">
+        <section class="service-hero" id="overview" style="--hero-image:url('/app/public/img/qubitz/ERPCRMhero.jpg');">
+          <div class="service-hero__grid">
+            <div>
+              <p class="service-hero__eyebrow">Incident Response Platform</p>
+              <h1>PulseOps</h1>
+              <p>
+                Mission-control dashboard for high-volume incident operations. PulseOps centralizes triage,
+                orchestrates runbooks, and routes escalations to keep critical systems healthy at scale.
+              </p>
+              <div class="service-tags">
+                <span>Next.js</span>
+                <span>Go</span>
+                <span>Event Streams</span>
+                <span>Runbook Automation</span>
+              </div>
+              <div class="project-cta">
+                <a class="project-btn" href="#gallery">View Project Images</a>
+                <a class="project-btn project-btn--ghost" href="/index.html#face">Back to Work Section</a>
+              </div>
+            </div>
+            <div class="service-hero__stack">
+              <article class="service-hero-card">
+                <h3>Response Time</h3>
+                <p>Median acknowledgment under 90 seconds through AI-prioritized incident queues.</p>
+              </article>
+              <article class="service-hero-card">
+                <h3>Coverage</h3>
+                <p>Integrated alerting from apps, infra, and security channels in one command center.</p>
+              </article>
+              <article class="service-hero-card">
+                <h3>Reliability</h3>
+                <p>Graceful degradation strategy with queue replay and deterministic state recovery.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="service-section" id="gallery">
+          <div class="service-section__head">
+            <p>Project Images</p>
+            <h2>PulseOps Interface and Workflow</h2>
+            <p class="lead">Operational UI concepts and execution surfaces used during system design.</p>
+          </div>
+          <div class="service-gallery service-gallery--two project-gallery">
+            <figure class="service-media-card">
+              <img src="/app/public/img/qubitz/ERPCRMhero.jpg" alt="PulseOps operations view" />
+              <figcaption>Central control panel concept for incidents, alerts, and recovery actions.</figcaption>
+            </figure>
+            <figure class="service-media-card">
+              <img src="/app/public/img/qubitz/servicesHero.png" alt="PulseOps system topology" />
+              <figcaption>Service topology and escalation flow snapshot for distributed teams.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="service-section" id="delivery">
+          <div class="service-section__head">
+            <p>Delivery Model</p>
+            <h2>Execution Outcomes</h2>
+          </div>
+          <div class="project-kpi">
+            <article class="project-kpi__item">
+              <p class="project-kpi__label">Incidents / Day</p>
+              <p class="project-kpi__value">4.8K</p>
+            </article>
+            <article class="project-kpi__item">
+              <p class="project-kpi__label">Mean Time To Resolve</p>
+              <p class="project-kpi__value">-37%</p>
+            </article>
+            <article class="project-kpi__item">
+              <p class="project-kpi__label">Automation Runs</p>
+              <p class="project-kpi__value">22K/mo</p>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="/assets/pages/service-pages.js"></script>
+</body>
+</html>
