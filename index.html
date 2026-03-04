@@ -2001,16 +2001,30 @@
       }
 
       html.mode-3d .heads__section--neons.active-3d-card .section__card {
-        width: min(88vw, 390px);
+        width: min(92vw, 460px);
       }
 
-      html.mode-3d .heads__section--neons.active-3d-card .section__card--neons-left {
-        top: calc(env(safe-area-inset-top, 0px) + 96px);
-        bottom: auto;
-      }
-
+      html.mode-3d .heads__section--neons.active-3d-card .section__card--neons-left,
       html.mode-3d .heads__section--neons.active-3d-card .section__card--neons-right {
-        bottom: calc(env(safe-area-inset-bottom, 0px) + 14px);
+        display: none;
+        left: 50% !important;
+        right: auto !important;
+        top: auto;
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 12px);
+        transform: translateX(-50%) !important;
+      }
+
+      html.mode-3d .heads__section--neons.active-3d-card .section__card--neons-left.is-mobile-active,
+      html.mode-3d .heads__section--neons.active-3d-card .section__card--neons-right.is-mobile-active {
+        display: block;
+      }
+
+      html.mode-3d .heads__section--neons.active-3d-card .section__card--neons-left.is-mobile-active {
+        z-index: 13 !important;
+      }
+
+      html.mode-3d .heads__section--neons.active-3d-card .section__card--neons-right.is-mobile-active {
+        z-index: 13 !important;
       }
 
       html.mode-3d .heads {
@@ -2516,7 +2530,7 @@
             <h1 class="text--white text--center text--noMargin"> COMPANY </h1>
             <h1 class="text--white text--center text--noMargin"> DELIVERY TRACKS </h1>
           </div>
-          <div class="part section__card section__card--neons-left"
+          <div class="part section__card section__card--neons-left is-mobile-active"
               data-2600="opacity:0"
               data-3400="opacity:1">
             <div class="tails__section__el tails__feature-card">
@@ -3137,6 +3151,7 @@
         var detailPoints = detailPanel ? detailPanel.querySelector('.our-work-detail__points--inline') : null;
         var detailData = {
           0: {
+            url: '/project-cipherlux.html',
             description: 'CipherLux is an institutional AI capital platform built for live market operations. It combines streaming data ingestion, model-driven insight services, secure execution APIs, and governance-ready monitoring so teams can trade, analyze, and operate on one resilient system.',
             points: [
               {
@@ -3166,6 +3181,7 @@
             ]
           },
           1: {
+            url: '/project-pulseops.html',
             description: 'PulseOps is a mission-control incident response platform for high-volume digital operations. It centralizes alert streams, prioritizes incidents with rule and model signals, and executes runbook automations to reduce downtime and response fatigue.',
             points: [
               {
@@ -3195,6 +3211,7 @@
             ]
           },
           2: {
+            url: '/project-retailnerve.html',
             description: 'RetailNerve is an omnichannel commerce operating system that connects merchandising, inventory, forecasting, campaigns, and fulfillment. It helps retail teams make faster decisions with shared data, predictive planning, and channel-aware execution.',
             points: [
               {
@@ -3224,6 +3241,7 @@
             ]
           },
           3: {
+            url: '/project-medflow-ai.html',
             description: 'MedFlow AI is a clinical workflow copilot for intake, triage, encounter documentation, and care coordination. It combines structured workflows with AI assistance while maintaining auditability, policy controls, and interoperability standards required in healthcare operations.',
             points: [
               {
@@ -3461,6 +3479,17 @@
             detailSectionCard.classList.add('is-work-detail-open');
           }
           detailPanel.setAttribute('aria-hidden', 'false');
+        }
+
+        function openDetailFromCard(card) {
+          if (!card) return;
+          var data = getDetailDataForCard(card);
+          var viewportWidth = window.innerWidth || document.documentElement.clientWidth || 0;
+          if (viewportWidth <= 900 && data && data.url) {
+            window.location.href = data.url;
+            return;
+          }
+          openDetailPanel(card);
         }
 
         function resetWorkCard(card) {
@@ -3755,7 +3784,7 @@
                 event.stopPropagation();
                 var ownerCard = button.closest('.our-work-card');
                 if (!ownerCard || ownerCard.getAttribute('aria-hidden') === 'true') return;
-                openDetailPanel(ownerCard);
+                openDetailFromCard(ownerCard);
               }, { passive: false });
 
               button.addEventListener('click', function (event) {
@@ -3763,7 +3792,7 @@
                 event.stopPropagation();
                 var ownerCard = button.closest('.our-work-card');
                 if (!ownerCard || ownerCard.getAttribute('aria-hidden') === 'true') return;
-                openDetailPanel(ownerCard);
+                openDetailFromCard(ownerCard);
               });
             })(openButtons[k]);
           }
@@ -4022,9 +4051,105 @@
           slider.__flowSliderReady = true;
         }
 
+        function setupNeonsMobileCards() {
+          var neonsSection = document.querySelector('.heads__section--neons');
+          if (!neonsSection || neonsSection.__neonsMobileReady) return;
+
+          var neonsCards = neonsSection.querySelectorAll('.section__card--neons-left, .section__card--neons-right');
+          if (!neonsCards.length) {
+            neonsSection.__neonsMobileReady = true;
+            return;
+          }
+
+          var currentIndex = 0;
+
+          function normalizeIndex(index, wrap) {
+            if (wrap) {
+              if (index < 0) return neonsCards.length - 1;
+              if (index >= neonsCards.length) return 0;
+              return index;
+            }
+            if (index < 0) return 0;
+            if (index >= neonsCards.length) return neonsCards.length - 1;
+            return index;
+          }
+
+          function render(index, options) {
+            var opts = options || {};
+            var wrap = opts.wrap !== false;
+            var force = !!opts.force;
+
+            if (window.innerWidth > 900) {
+              for (var i = 0; i < neonsCards.length; i++) {
+                neonsCards[i].classList.remove('is-mobile-active');
+                neonsCards[i].setAttribute('aria-hidden', 'false');
+              }
+              currentIndex = 0;
+              neonsSection.setAttribute('data-neons-index', '0');
+              return false;
+            }
+
+            var nextIndex = normalizeIndex(index, wrap);
+            var alreadyActive = !force && currentIndex === nextIndex && neonsCards[nextIndex].classList.contains('is-mobile-active');
+            if (alreadyActive) return false;
+            currentIndex = nextIndex;
+
+            neonsSection.setAttribute('data-neons-index', String(currentIndex));
+            for (var i = 0; i < neonsCards.length; i++) {
+              var isActive = i === currentIndex;
+              neonsCards[i].classList.toggle('is-mobile-active', isActive);
+              neonsCards[i].setAttribute('aria-hidden', isActive ? 'false' : 'true');
+            }
+            return true;
+          }
+
+          neonsSection.__neonsMobileCanNext = function () {
+            if (window.innerWidth > 900) return false;
+            return currentIndex < (neonsCards.length - 1);
+          };
+
+          neonsSection.__neonsMobileNext = function (options) {
+            if (window.innerWidth > 900) return false;
+            var opts = options || {};
+            if (opts.wrap === undefined) opts.wrap = false;
+            return render(currentIndex + 1, opts);
+          };
+
+          neonsSection.__neonsMobilePrev = function (options) {
+            if (window.innerWidth > 900) return false;
+            var opts = options || {};
+            if (opts.wrap === undefined) opts.wrap = false;
+            return render(currentIndex - 1, opts);
+          };
+
+          neonsSection.__neonsMobileReset = function () {
+            render(0, { wrap: false, force: true });
+          };
+
+          window.addEventListener('resize', function () {
+            render(currentIndex, { wrap: false, force: true });
+          });
+
+          if (window.MutationObserver) {
+            var neonsSectionObserver = new MutationObserver(function (mutations) {
+              for (var i = 0; i < mutations.length; i++) {
+                if (mutations[i].attributeName !== 'class') continue;
+                if (!neonsSection.classList.contains('active-3d-card')) continue;
+                render(0, { wrap: false, force: true });
+              }
+            });
+            neonsSectionObserver.observe(neonsSection, { attributes: true, attributeFilter: ['class'] });
+          }
+
+          render(0, { wrap: false, force: true });
+          neonsSection.__neonsMobileReady = true;
+        }
+
         for (var s = 0; s < sliders.length; s++) {
           setupSlider(sliders[s]);
         }
+
+        setupNeonsMobileCards();
 
         document.documentElement.__flowSliderReady = true;
         return true;
@@ -4187,6 +4312,18 @@
               }
             }
 
+            if (
+              activeSection.classList &&
+              activeSection.classList.contains('heads__section--neons') &&
+              typeof activeSection.__neonsMobileNext === 'function'
+            ) {
+              var movedNeonsCard = activeSection.__neonsMobileNext({ wrap: false });
+              if (movedNeonsCard) {
+                syncArrowVisibility();
+                return;
+              }
+            }
+
             var activeSlider = activeSection.querySelector('[data-flow-slider]');
             if (activeSlider && typeof activeSlider.__flowSliderNext === 'function') {
               var moved = activeSlider.__flowSliderNext({ wrap: false });
@@ -4230,12 +4367,14 @@
         var touchInActiveSection = false;
         var touchInFlowViewport = false;
         var touchWorkStack = null;
+        var touchActiveSection = null;
 
         document.addEventListener('touchstart', function (event) {
           touchTracking = false;
           touchInActiveSection = false;
           touchInFlowViewport = false;
           touchWorkStack = null;
+          touchActiveSection = null;
 
           var activeSection = getActiveSection();
           if (!activeSection) return;
@@ -4250,6 +4389,7 @@
           touchInActiveSection = true;
           touchInFlowViewport = !!(event.target.closest && event.target.closest('.tails__flow-slider__viewport'));
           touchWorkStack = event.target.closest ? event.target.closest('.our-work-stack') : null;
+          touchActiveSection = activeSection;
         }, { passive: true });
 
         document.addEventListener('touchend', function (event) {
@@ -4264,6 +4404,26 @@
           var absX = Math.abs(deltaX);
           var absY = Math.abs(deltaY);
           if (absX < 24 && absY < 24) return;
+
+          if (
+            touchActiveSection &&
+            touchActiveSection.classList &&
+            touchActiveSection.classList.contains('heads__section--neons') &&
+            typeof touchActiveSection.__neonsMobileNext === 'function' &&
+            absX > absY * 1.12 &&
+            absX >= 32
+          ) {
+            var neonsMoved = false;
+            if (deltaX < 0) {
+              neonsMoved = touchActiveSection.__neonsMobileNext({ wrap: false });
+            } else if (deltaX > 0 && typeof touchActiveSection.__neonsMobilePrev === 'function') {
+              neonsMoved = touchActiveSection.__neonsMobilePrev({ wrap: false });
+            }
+            if (neonsMoved) {
+              syncArrowVisibility();
+              return;
+            }
+          }
 
           if (touchWorkStack && !touchWorkStack.classList.contains('is-detail-open')) {
             if (absX > absY * 1.12 && absX >= 32) {
