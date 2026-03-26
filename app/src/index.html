@@ -8,6 +8,7 @@
     name="description"
     content="Alphintra engineers high-performance AI, web, mobile, and cloud products with immersive 3D experiences for startups and enterprises."
   />
+  <meta name="keywords" content="Alphintra, AI Engineering, Web Development, Mobile Development, Cloud Architecture, 3D Experiences, Digital Marketing, ERP CRM Solutions, Extended Team, UI/UX Design, IT Services" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="author" content="Alphintra" />
   <meta name="theme-color" content="#050508" />
@@ -64,7 +65,7 @@
           "url": "https://www.alphintra.com/",
           "logo": "https://www.alphintra.com/logo.png",
           "description": "Engineering-focused studio building AI, web, mobile, cloud, and interactive 3D products.",
-          "email": "alphintratech@gmail.com"
+          "email": "contact@alphintra.com"
         },
         {
           "@type": "WebSite",
@@ -370,9 +371,55 @@
       background: rgba(124, 182, 255, 0.16);
     }
 
+    .section-prev-arrow {
+      position: fixed;
+      left: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 280;
+      width: 56px;
+      height: 56px;
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      border-radius: 999px;
+      background: rgba(7, 9, 15, 0.78);
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px) saturate(110%);
+      -webkit-backdrop-filter: blur(8px) saturate(110%);
+      color: rgba(255, 255, 255, 0.92);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      touch-action: manipulation;
+      transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .section-prev-arrow:hover {
+      transform: translateY(-50%) scale(1.06);
+      border-color: rgba(255, 255, 255, 0.58);
+      background: rgba(14, 18, 28, 0.9);
+    }
+
+    .section-prev-arrow[aria-disabled="true"] {
+      opacity: 0.32;
+      pointer-events: none;
+      transform: translateY(-50%) scale(0.96);
+    }
+
+    .section-prev-arrow__glyph {
+      font-size: 34px;
+      line-height: 1;
+      margin-right: 4px;
+      margin-bottom: 2px;
+    }
+
+    html.bg-only-mode .section-prev-arrow {
+      display: none !important;
+    }
+
     .section-next-arrow {
       position: fixed;
-      right: 26px;
+      right: 40px;
       top: 50%;
       transform: translateY(-50%);
       z-index: 280;
@@ -408,7 +455,7 @@
     .section-next-arrow__glyph {
       font-size: 34px;
       line-height: 1;
-      margin-left: 2px;
+      margin-left: 4px;
     }
 
     html.bg-only-mode .section-next-arrow {
@@ -2066,8 +2113,20 @@
         bottom: 2px !important;
       }
 
+      .section-prev-arrow {
+        left: calc(env(safe-area-inset-left, 0px) + 24px);
+        width: 44px;
+        height: 44px;
+        z-index: 340;
+      }
+
+      .section-prev-arrow__glyph {
+        font-size: 24px;
+        margin-right: 1px;
+      }
+
       .section-next-arrow {
-        right: calc(env(safe-area-inset-right, 0px) + 10px);
+        right: calc(env(safe-area-inset-right, 0px) + 24px);
         width: 44px;
         height: 44px;
         z-index: 340;
@@ -2312,6 +2371,9 @@
         </svg>
       </div>
 
+      <button class="section-prev-arrow" type="button" aria-label="Go to previous section">
+        <span class="section-prev-arrow__glyph">&#8249;</span>
+      </button>
       <button class="section-next-arrow" type="button" aria-label="Go to next section">
         <span class="section-next-arrow__glyph">&#8250;</span>
       </button>
@@ -2817,7 +2879,10 @@
                       <p class="our-work-detail__description"></p>
                       <div class="our-work-detail__tags"></div>
                       <div class="our-work-detail__actions">
-                        <button class="our-work-detail__action" type="button" data-work-detail-image>
+                        <a href="#" class="our-work-detail__action" data-work-detail-link>
+                          Open Project
+                        </a>
+                        <button class="our-work-detail__action our-work-detail__action--ghost" type="button" data-work-detail-image>
                           View Project Images
                         </button>
                         <button class="our-work-detail__action our-work-detail__action--ghost" type="button" data-work-detail-back>
@@ -2993,9 +3058,9 @@
                 We will help you architect it, build it, and scale it.
               </p>
               <div class="tails__card-actions">
-                <a class="tails__link" href="mailto:alphintratech@gmail.com"> Get in Touch </a>
+                <a class="tails__link" href="mailto:contact@alphintra.com"> Get in Touch </a>
               </div>
-              <p class="tails__contact-email"> Email: alphintratech@gmail.com </p>
+              <p class="tails__contact-email"> Email: contact@alphintra.com </p>
             </div>
           </div>
         </div>
@@ -3138,7 +3203,23 @@
         var currentIndex = 0;
         var hasPlayedInitial = false;
         var detailPanel = stack.querySelector('.our-work-detail');
-        var detailBackButtons = detailPanel ? detailPanel.querySelectorAll('[data-work-detail-back]') : [];
+        
+      document.body.addEventListener('click', function(e) {
+        if (e.target.closest('[data-work-detail-back]')) {
+          e.preventDefault();
+          e.stopPropagation();
+          closeDetailPanel();
+        }
+      });
+      document.body.addEventListener('touchend', function(e) {
+        if (e.target.closest('[data-work-detail-back]')) {
+          // If we prevent default here we might block scrolling, but back button doesn't scroll
+          e.preventDefault();
+          e.stopPropagation();
+          closeDetailPanel();
+        }
+      });
+      var detailBackButtons = detailPanel ? detailPanel.querySelectorAll('[data-work-detail-back]') : [];
         var detailImageBtn = detailPanel ? detailPanel.querySelector('[data-work-detail-image]') : null;
         var detailSectionCard = stack.closest('.section__card');
         var detailHero = detailPanel ? detailPanel.querySelector('.our-work-detail__hero') : null;
@@ -3458,11 +3539,22 @@
             detailDescription.textContent = data.description || getCardText(card, 'p:not(.our-work-card__index):not(.our-work-card__subtitle)');
           }
 
+          var detailLinkBtn = detailPanel.querySelector('[data-work-detail-link]');
+          if (detailLinkBtn) {
+            if (data && data.url) {
+              detailLinkBtn.style.display = '';
+              detailLinkBtn.href = data.url;
+            } else {
+              detailLinkBtn.style.display = 'none';
+              detailLinkBtn.href = '#';
+            }
+          }
+
           renderDetailTags(card);
           renderDetailPoints(data);
         }
 
-        function closeDetailPanel() {
+        function closeDetailPanel() { console.log("closeDetailPanel called");
           if (!detailPanel) return;
           stack.classList.remove('is-detail-open');
           if (detailSectionCard) {
@@ -3734,6 +3826,7 @@
         }
 
         stack.addEventListener('pointerdown', function (event) {
+          if (stack.classList.contains('is-detail-open')) return;
           if (event.pointerType === 'mouse' && event.button !== 0) return;
           if (event.pointerType === 'touch') return;
           startWorkGesture(event.clientX, event.clientY, event.pointerId);
@@ -3769,9 +3862,13 @@
           var openButtons = stack.querySelectorAll('[data-work-detail-open]');
           for (var k = 0; k < openButtons.length; k++) {
             (function (button) {
-              button.addEventListener('touchstart', function (event) {
-                event.stopPropagation();
-              }, { passive: true });
+              button.addEventListener('pointerdown', function (event) {
+                  event.stopPropagation();
+                });
+                
+                button.addEventListener('touchstart', function (event) {
+                  event.stopPropagation();
+                }, { passive: true });
 
               button.addEventListener('touchend', function (event) {
                 if (event.cancelable) event.preventDefault();
@@ -3792,6 +3889,7 @@
           }
 
           for (var b = 0; b < detailBackButtons.length; b++) {
+            detailBackButtons[b].addEventListener('pointerdown', function (e) { e.stopPropagation(); });
             detailBackButtons[b].addEventListener('click', function () {
               closeDetailPanel();
             });
@@ -3915,6 +4013,10 @@
 
           slider.__flowSliderCanNext = function () {
             return currentIndex < (cardCount - 1);
+          };
+
+          slider.__flowSliderCanPrev = function () {
+            return currentIndex > 0;
           };
 
           slider.__flowSliderNext = function (options) {
@@ -4102,6 +4204,11 @@
             return currentIndex < (neonsCards.length - 1);
           };
 
+          neonsSection.__neonsMobileCanPrev = function () {
+            if (window.innerWidth > 900) return false;
+            return currentIndex > 0;
+          };
+
           neonsSection.__neonsMobileNext = function (options) {
             if (window.innerWidth > 900) return false;
             var opts = options || {};
@@ -4205,8 +4312,9 @@
       function bindSectionArrow() {
         if (document.documentElement.__sectionArrowReady) return;
 
-        var arrow = document.querySelector('.section-next-arrow');
-        if (!arrow) return;
+        var nextArrow = document.querySelector('.section-next-arrow');
+        var prevArrow = document.querySelector('.section-prev-arrow');
+        if (!nextArrow || !prevArrow) return;
         var sections = document.querySelectorAll('.heads__section');
 
         function getActiveMapIndex() {
@@ -4227,31 +4335,49 @@
           return document.querySelector('.heads__section.active-3d-card');
         }
 
-        function shouldShowArrow() {
+                function shouldShowArrow() {
           var activeSection = getActiveSection();
-          if (!activeSection) return false;
+          var defaultRet = { prev: false, next: false };
+          if (!activeSection) return defaultRet;
+          
           var activeWorkStack = activeSection.querySelector('.our-work-stack');
-          if (window.innerWidth <= 900) {
-            if (activeWorkStack && activeWorkStack.classList.contains('is-detail-open')) return false;
-            return true;
-          }
           var activeSlider = activeSection.querySelector('[data-flow-slider]');
-          if (activeSlider) {
-            return activeSlider.querySelectorAll('.tails__flow-slider__card').length > 1;
+          
+          if (window.innerWidth <= 900) {
+            if (activeWorkStack && activeWorkStack.classList.contains('is-detail-open')) return defaultRet;
+            
+            if (activeSection.classList && activeSection.classList.contains('heads__section--neons') && typeof activeSection.__neonsMobileCanNext === 'function') {
+              return { prev: activeSection.__neonsMobileCanPrev(), next: activeSection.__neonsMobileCanNext() };
+            }
+            if (activeWorkStack && typeof activeWorkStack.__workCardCanNext === 'function') {
+              return { prev: activeWorkStack.__workCardCanPrev(), next: activeWorkStack.__workCardCanNext() };
+            }
+            if (activeSlider && typeof activeSlider.__flowSliderCanNext === 'function') {
+              return { prev: activeSlider.__flowSliderCanPrev(), next: activeSlider.__flowSliderCanNext() };
+            }
+            return defaultRet;
           }
-          if (activeWorkStack) {
-            return activeWorkStack.querySelectorAll('.our-work-card').length > 1;
+          
+          if (activeSlider && typeof activeSlider.__flowSliderCanNext === 'function') {
+            return { prev: activeSlider.__flowSliderCanPrev(), next: activeSlider.__flowSliderCanNext() };
           }
-          return false;
+          
+          if (activeWorkStack && typeof activeWorkStack.__workCardCanNext === 'function') {
+            return { prev: activeWorkStack.__workCardCanPrev(), next: activeWorkStack.__workCardCanNext() };
+          }
+          
+          return defaultRet;
         }
 
         function syncArrowVisibility() {
           var visible = shouldShowArrow();
-          arrow.style.display = visible ? '' : 'none';
-          arrow.setAttribute('aria-hidden', visible ? 'false' : 'true');
+          nextArrow.style.display = visible.next ? '' : 'none';
+          nextArrow.setAttribute('aria-hidden', visible.next ? 'false' : 'true');
+          prevArrow.style.display = visible.prev ? '' : 'none';
+          prevArrow.setAttribute('aria-hidden', visible.prev ? 'false' : 'true');
         }
 
-        var cardWheelLock = false;
+var cardWheelLock = false;
         document.addEventListener('wheel', function (event) {
           var activeSection = getActiveSection();
           if (!activeSection) return;
@@ -4311,8 +4437,8 @@
           }, 280);
         }, { passive: false });
 
-        function activateArrow() {
-          if (arrow.style.display === 'none') return;
+        function activateNextArrow() {
+          if (nextArrow.style.display === 'none') return;
           var activeSection = document.querySelector('.heads__section.active-3d-card');
           if (activeSection) {
             var activeWorkStack = activeSection.querySelector('.our-work-stack');
@@ -4359,21 +4485,86 @@
           goToMapIndex(nextIndex);
         }
 
-        var arrowInputLock = false;
-        function runArrowAction(event) {
+        function activatePrevArrow() {
+          if (prevArrow.style.display === 'none') return;
+          var activeSection = document.querySelector('.heads__section.active-3d-card');
+          if (activeSection) {
+            var activeWorkStack = activeSection.querySelector('.our-work-stack');
+            if (
+              activeWorkStack &&
+              !activeWorkStack.classList.contains('is-detail-open') &&
+              typeof activeWorkStack.__workCardPrev === 'function'
+            ) {
+              var movedWorkCard = activeWorkStack.__workCardPrev({ wrap: false });
+              if (movedWorkCard) {
+                syncArrowVisibility();
+                return;
+              }
+            }
+
+            if (
+              activeSection.classList &&
+              activeSection.classList.contains('heads__section--neons') &&
+              typeof activeSection.__neonsMobilePrev === 'function'
+            ) {
+              var movedNeonsCard = activeSection.__neonsMobilePrev({ wrap: false });
+              if (movedNeonsCard) {
+                syncArrowVisibility();
+                return;
+              }
+            }
+
+            var activeSlider = activeSection.querySelector('[data-flow-slider]');
+            if (activeSlider && typeof activeSlider.__flowSliderPrev === 'function') {
+              var moved = activeSlider.__flowSliderPrev({ wrap: false });
+              if (moved) {
+                syncArrowVisibility();
+                return;
+              }
+            }
+          }
+
+          var nodes = document.querySelectorAll('.map .map__node');
+          if (!nodes.length) return;
+
+          var currentIndex = getActiveMapIndex();
+          if (currentIndex < 0) currentIndex = 0;
+          var prevIndex = (currentIndex - 1 + nodes.length) % nodes.length;
+          goToMapIndex(prevIndex);
+        }
+
+        var arrowNextInputLock = false;
+        function runNextArrowAction(event) {
           if (event && event.cancelable) event.preventDefault();
-          if (arrowInputLock) return;
-          arrowInputLock = true;
-          activateArrow();
+          if (arrowNextInputLock) return;
+          arrowNextInputLock = true;
+          activateNextArrow();
           setTimeout(function () {
-            arrowInputLock = false;
+            arrowNextInputLock = false;
           }, 220);
         }
 
-        arrow.addEventListener('click', runArrowAction);
-        arrow.addEventListener('pointerup', function (event) {
+        var arrowPrevInputLock = false;
+        function runPrevArrowAction(event) {
+          if (event && event.cancelable) event.preventDefault();
+          if (arrowPrevInputLock) return;
+          arrowPrevInputLock = true;
+          activatePrevArrow();
+          setTimeout(function () {
+            arrowPrevInputLock = false;
+          }, 220);
+        }
+
+        nextArrow.addEventListener('click', runNextArrowAction);
+        nextArrow.addEventListener('pointerup', function (event) {
           if (event.pointerType === 'mouse') return;
-          runArrowAction(event);
+          runNextArrowAction(event);
+        });
+
+        prevArrow.addEventListener('click', runPrevArrowAction);
+        prevArrow.addEventListener('pointerup', function (event) {
+          if (event.pointerType === 'mouse') return;
+          runPrevArrowAction(event);
         });
 
         var touchSwipeLock = false;
