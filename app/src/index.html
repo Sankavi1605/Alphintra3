@@ -359,7 +359,7 @@
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.05);
       color: rgba(232, 244, 255, 0.92);
-      font-size: 16px;
+      font-size: 14px;
       line-height: 1;
       cursor: pointer;
       transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
@@ -375,7 +375,7 @@
       position: fixed;
       left: 40px;
       top: 50%;
-      transform: translateY(0);
+      transform: translateY(-50%);
       z-index: 280;
       width: 56px;
       height: 56px;
@@ -421,7 +421,7 @@
       position: fixed;
       right: 40px;
       top: 50%;
-      transform: translateY(0);
+      transform: translateY(-50%);
       z-index: 280;
       width: 56px;
       height: 56px;
@@ -1300,7 +1300,7 @@
       background: rgba(10, 16, 30, 0.72);
       color: rgba(241, 248, 255, 0.95);
       font-family: inherit;
-      font-size: 16px;
+      font-size: 14px;
       line-height: 1;
       cursor: pointer;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.32);
@@ -1312,7 +1312,7 @@
     }
 
     .our-work-detail__inline-back-glyph {
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 700;
       line-height: 1;
       transform: translateX(-1px) translateY(-0.5px);
@@ -1508,7 +1508,7 @@
         width: min(540px, 40vw);
         max-width: 540px;
         margin: 0 !important;
-        transform: translateY(0);
+        transform: translateY(-50%);
         opacity: 1 !important;
         pointer-events: auto;
         z-index: 12;
@@ -1548,7 +1548,7 @@
         top: 62%;
         width: min(500px, 35vw);
         max-width: 500px;
-        transform: translateY(0);
+        transform: translateY(-50%);
       }
 
       html.mode-3d .heads__section--neons.active-3d-card .section__card--neons-left {
@@ -1564,7 +1564,7 @@
       html.mode-3d .heads__section--beams.active-3d-card .section__card {
         left: 50% !important;
         right: auto;
-        top: 20%;
+        top: 45%;
         width: min(520px, 40vw);
         transform: translate(-50%, -50%);
       }
@@ -1581,7 +1581,7 @@
         right: auto;
         top: 60%;
         width: min(560px, 40vw);
-        transform: translateY(0);
+        transform: translateY(-50%);
       }
 
       html.mode-3d .heads__section--face.active-3d-card .section__card.is-work-detail-open {
@@ -1606,9 +1606,9 @@
       html.mode-3d .heads__section--end.active-3d-card .section__card {
         left: 7% !important;
         right: auto;
-        top: 20%;
+        top: 45%;
         width: min(520px, 38vw);
-        transform: translateY(0);
+        transform: translateY(-50%);
       }
 
       @keyframes mode3dCardIn {
@@ -1786,7 +1786,7 @@
       .tails__flow-slider__nav-btn {
         width: 22px;
         height: 22px;
-        font-size: 14px;
+        font-size: 12px;
       }
 
       .tails__flow-next-note {
@@ -2121,7 +2121,7 @@
       }
 
       .section-prev-arrow__glyph {
-        font-size: 24px;
+        font-size: 18px;
         margin-right: 1px;
       }
 
@@ -2133,11 +2133,16 @@
       }
 
       .section-next-arrow__glyph {
-        font-size: 24px;
+        font-size: 18px;
         margin-left: 1px;
       }
     }
-  </style>
+  
+      html.mode-3d .heads__section--end.active-3d-card .end__title {
+        top: 20% !important;
+        transform: translateY(0) !important;
+      }
+</style>
 
 </head>
 <body>
@@ -3066,35 +3071,35 @@
         
 
         <!-- NEW GRAY FULL WIDTH FOOTER -->
-          <div style="position: absolute; bottom: 0; left: 0; width: 100vw; height: auto; background-color: #1f1f23; padding: 30px 40px 20px; box-sizing: border-box; z-index: 9999;">
-            <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; color: #aaa; font-family: sans-serif; text-align: left;">
-              <div style="grid-column: 1/-1; max-width: 300px; margin-bottom: 10px;">
-                 <h2 style="color: #fff; margin-top:0; margin-bottom: 12px; font-size: 24px; font-weight: 700;">
+          <div style="position: absolute; bottom: 0; left: 0; width: 100vw; height: auto; background-color: #1f1f23; padding: 15px 40px 10px; box-sizing: border-box; z-index: 9999;">
+            <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; color: #aaa; font-family: sans-serif; text-align: left;">
+              <div style="grid-column: 1/-1; max-width: 300px; margin-bottom: 0px;">
+                 <h2 style="color: #fff; margin-top:0; margin-bottom: 6px; font-size: 18px; font-weight: 700;">
                    <span style="background: linear-gradient(90deg, #6da5ff, #5fffda); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Alphintra</span>
                    Engineering
                  </h2>
-                 <p style="line-height: 1.6; font-size: 14px; margin: 0; color: rgba(255,255,255,0.6);">Empowering digital experiences through advanced AI, Web, Mobile, and 3D engineering.</p>
+                 <p style="line-height: 1.6; font-size: 12px; margin: 0; color: rgba(255,255,255,0.6);" style="max-width: 250px;">Empowering digital experiences through advanced AI, Web, Mobile, and 3D engineering.</p>
               </div>
               <div style="display:flex; flex-direction:column; gap: 12px;">
-                 <h4 style="color:#fff; margin: 0 0 5px 0; font-size: 16px; font-weight: 600;">Platform</h4>
-                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 14px;">Solutions</a>
-                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 14px;">Case Studies</a>
-                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 14px;">Pricing</a>
+                 <h4 style="color:#fff; margin: 0 0 5px 0; font-size: 14px; font-weight: 600;">Platform</h4>
+                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 12px;">Solutions</a>
+                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 12px;">Case Studies</a>
+                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 12px;">Pricing</a>
               </div>
               <div style="display:flex; flex-direction:column; gap: 12px;">
-                 <h4 style="color:#fff; margin: 0 0 5px 0; font-size: 16px; font-weight: 600;">Support</h4>
-                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 14px;">Documentation</a>
-                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 14px;">Contact</a>
-                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 14px;">Privacy</a>
+                 <h4 style="color:#fff; margin: 0 0 5px 0; font-size: 14px; font-weight: 600;">Support</h4>
+                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 12px;">Documentation</a>
+                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 12px;">Contact</a>
+                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 12px;">Privacy</a>
               </div>
               <div style="display:flex; flex-direction:column; gap: 12px;">
-                 <h4 style="color:#fff; margin: 0 0 5px 0; font-size: 16px; font-weight: 600;">Community</h4>
-                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 14px;">Blog</a>
-                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 14px;">Twitter</a>
-                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 14px;">LinkedIn</a>
+                 <h4 style="color:#fff; margin: 0 0 5px 0; font-size: 14px; font-weight: 600;">Community</h4>
+                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 12px;">Blog</a>
+                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 12px;">Twitter</a>
+                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 12px;">LinkedIn</a>
               </div>
             </div>
-            <div style="max-width: 1200px; margin: 30px auto 0; padding-top: 25px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 13px; color: rgba(255,255,255,0.4);">
+            <div style="max-width: 1200px; margin: 15px auto 0; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 13px; color: rgba(255,255,255,0.4);">
                &copy; 2024 Alphintra. All rights reserved.
             </div>
           </div>
