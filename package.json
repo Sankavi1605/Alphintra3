@@ -7,7 +7,7 @@
     "start": "node local-server.js",
     "serve": "node local-server.js",
     "serve:gulp": "gulp serve",
-    "build": "gulp build"
+    "gulp-build": "gulp build"
   },
   "devDependencies": {
     "browserify": "^6.3.2",
