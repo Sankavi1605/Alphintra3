@@ -70,5 +70,8 @@
   },
   "overrides": {
     "graceful-fs": "^4.2.11"
+  },
+  "dependencies": {
+    "glob": "^13.0.6"
   }
 }
