@@ -173,6 +173,9 @@
 
     .tails__card-actions {
       margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
     }
 
     .tails__card-actions .tails__link {
@@ -1611,9 +1614,9 @@
       html.mode-3d .heads__section--end.active-3d-card .section__card {
         left: 7% !important;
         right: auto;
-        top: 36%;
+        top: 20%;
         width: min(520px, 38vw);
-        transform: translateY(-50%);
+        transform: translateY(0%);
       }
 
       @keyframes mode3dCardIn {
@@ -2069,6 +2072,10 @@
       html.mode-3d .heads__section--neons.active-3d-card .section__card--neons-left.is-mobile-active,
       html.mode-3d .heads__section--neons.active-3d-card .section__card--neons-right.is-mobile-active {
         display: block;
+      }
+
+      html.mode-3d .heads__section--end.active-3d-card .section__card {
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 400px) !important;
       }
 
       html.mode-3d .heads__section--neons.active-3d-card .section__card--neons-left.is-mobile-active {
