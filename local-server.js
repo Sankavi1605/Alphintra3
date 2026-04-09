@@ -61,7 +61,13 @@ const server = http.createServer((req, res) => {
 
     fs.readFile(filePath, (readErr, data) => {
       if (readErr) {
-        send(res, 404, 'text/plain; charset=utf-8', 'Not Found');
+        fs.readFile(path.resolve(ROOT_DIR, '404.html'), (err404, data404) => {
+          if (err404) {
+            send(res, 404, 'text/plain; charset=utf-8', 'Not Found');
+          } else {
+            send(res, 404, 'text/html; charset=utf-8', data404);
+          }
+        });
         return;
       }
 
