@@ -61,6 +61,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
     (function () {
+      document.documentElement.classList.add('preload-ui');
       if (window.location.search.indexOf('bg=1') !== -1) {
         document.documentElement.classList.add('bg-only-mode');
       }
@@ -103,6 +104,11 @@
     html.bg-only-mode,
     html.bg-only-mode body {
       overflow: hidden !important;
+    }
+
+    html.preload-ui .hero-logo {
+      opacity: 0 !important;
+      visibility: hidden !important;
     }
 
     html.bg-only-mode #desktop-body,
@@ -159,8 +165,8 @@
       height: 88px;
       z-index: 220;
       pointer-events: none;
-      opacity: 0;
-      visibility: hidden;
+      opacity: 1;
+      visibility: visible;
       transform: translateZ(0);
       will-change: transform, opacity;
     }
@@ -3225,6 +3231,7 @@
         if (!glyph || !cut || !slash) return false;
 
         root.__logoGsapReady = true;
+        document.documentElement.classList.remove('preload-ui');
         root.style.visibility = 'visible';
         root.style.opacity = '1';
 
