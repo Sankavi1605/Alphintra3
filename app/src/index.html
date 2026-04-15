@@ -793,10 +793,10 @@
       max-width: none;
       color: rgba(214, 226, 247, 0.82);
       line-height: 1.58;
-      display: -webkit-box;
-      overflow: hidden;
+      display: block;
+      overflow: visible;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 5;
+      -webkit-line-clamp: unset;
     }
 
     .our-work-card .tails__tags {
@@ -1628,9 +1628,10 @@
       html.mode-3d .heads__section--end.active-3d-card .section__card {
         left: 7% !important;
         right: auto;
-        top: 20%;
-        width: min(520px, 38vw);
+        top: 15%;
+        width: min(520px, 80vw);
         transform: translateY(0%);
+        z-index: 10000 !important;
       }
 
       @keyframes mode3dCardIn {
@@ -1670,7 +1671,8 @@
       }
 
       .our-work-card > p:not(.our-work-card__index):not(.our-work-card__subtitle) {
-        -webkit-line-clamp: 4;
+        -webkit-line-clamp: unset;
+        display: block;
       }
 
       .our-work-progress {
@@ -1774,9 +1776,10 @@
       .tails__flow-slider__card p {
         margin-bottom: 12px !important;
         display: -webkit-box;
-        overflow: hidden;
+        overflow: visible;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp: 4;
+        -webkit-line-clamp: unset;
+        display: block;
       }
 
       .tails__flow-slider__card .tails__detail-points {
@@ -1832,7 +1835,9 @@
         }
 
         html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card .tails__detail-points li {
-          -webkit-line-clamp: 1;
+          -webkit-line-clamp: unset;
+          overflow: visible;
+          display: block;
         }
 
         .tails__flow-next-note {
@@ -2042,10 +2047,10 @@
 
       html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card .tails__detail-points li {
         margin-bottom: 4px;
-        display: -webkit-box;
-        overflow: hidden;
+        display: block;
+        overflow: visible;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: unset;
       }
 
       html.mode-3d .heads__section--flow.active-3d-card .tails__flow-slider__viewport,
@@ -2089,7 +2094,36 @@
       }
 
       html.mode-3d .heads__section--end.active-3d-card .section__card {
-        bottom: calc(env(safe-area-inset-bottom, 0px) + 400px) !important;
+        top: calc(env(safe-area-inset-top, 0px) + 138px);
+        bottom: auto !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        z-index: 10000 !important;
+      }
+
+      html.mode-3d .heads__section--end.active-3d-card .section__card .tails__feature-card {
+        height: auto;
+        max-height: none;
+        min-height: 0;
+        padding: 16px 14px !important;
+        overflow: visible;
+      }
+
+      html.mode-3d .heads__section--end.active-3d-card .section__card .tails__feature-card h2 {
+        margin-bottom: 10px !important;
+      }
+
+      html.mode-3d .heads__section--end.active-3d-card .section__card .tails__feature-card p {
+        margin-bottom: 10px !important;
+      }
+
+      html.mode-3d .heads__section--end.active-3d-card .section__card .tails__card-actions {
+        margin-top: 10px;
+      }
+
+      html.mode-3d .heads__section--end.active-3d-card .section__card .tails__card-actions .tails__link {
+        min-width: 0;
+        width: 100%;
       }
 
       html.mode-3d .heads__section--neons.active-3d-card .section__card--neons-left.is-mobile-active {
@@ -2105,67 +2139,91 @@
       }
 
       html.mode-3d .menu {
-        top: calc(env(safe-area-inset-top, 0px) + 12px) !important;
-        left: 14px !important;
-        height: 24px !important;
+        position: fixed !important;
+        top: calc(env(safe-area-inset-top, 0px) + 14px) !important;
+        left: calc(env(safe-area-inset-left, 0px) + 14px) !important;
+        width: 36px !important;
+        height: 28px !important;
         opacity: 1 !important;
-        z-index: 260 !important;
+        z-index: 380 !important;
+        display: block !important;
+        visibility: visible !important;
+        overflow: visible !important;
       }
 
       html.mode-3d .menu__button {
+        position: absolute !important;
         top: 0 !important;
         margin-top: 0 !important;
-        width: 30px !important;
-        height: 24px !important;
+        width: 36px !important;
+        height: 28px !important;
         opacity: 1 !important;
       }
 
       html.mode-3d .menu__button__line {
+        position: absolute !important;
+        left: 0 !important;
+        width: 100% !important;
         height: 2px !important;
         background-color: rgba(255, 255, 255, 0.92) !important;
-        border-radius: 999px;
+        border-radius: 999px !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
       }
 
       html.mode-3d .menu__button__line--top {
         top: 2px !important;
+        transform: none !important;
       }
 
       html.mode-3d .menu__button__line--middle {
         top: 11px !important;
         margin-top: 0 !important;
+        transform: none !important;
       }
 
       html.mode-3d .menu__button__line--bottom {
+        top: auto !important;
         bottom: 2px !important;
+        transform: none !important;
       }
 
       .section-prev-arrow {
-        left: calc(env(safe-area-inset-left, 0px) + 24px);
-        width: 44px;
-        height: 44px;
-        z-index: 340;
+        left: calc(env(safe-area-inset-left, 0px) + 10px);
+        top: auto;
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 28px);
+        transform: none;
+        width: 30px;
+        height: 30px;
+        z-index: 10020;
+        pointer-events: auto;
       }
 
       .section-prev-arrow__glyph {
-        font-size: 24px;
-        margin-right: 1px;
+        font-size: 15px;
+        margin-right: 0;
       }
 
       .section-next-arrow {
-        right: calc(env(safe-area-inset-right, 0px) + 24px);
-        width: 44px;
-        height: 44px;
-        z-index: 340;
+        right: calc(env(safe-area-inset-right, 0px) + 10px);
+        top: auto;
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 28px);
+        transform: none;
+        width: 30px;
+        height: 30px;
+        z-index: 10020;
+        pointer-events: auto;
       }
 
       .section-next-arrow__glyph {
-        font-size: 24px;
-        margin-left: 1px;
+        font-size: 15px;
+        margin-left: 0;
       }
     }
   
       html.mode-3d .heads__section--end.active-3d-card .end__title {
-        top: 20% !important;
+        top: calc(env(safe-area-inset-top, 0px) + 72px) !important;
         transform: translateY(0) !important;
       }
 </style>
@@ -2815,27 +2873,8 @@
 
               
               <div class="our-work-card" data-work-card="1" aria-hidden="true">
-                <div class="our-work-card__media our-work-card__media--freewrite"></div>
-                <p class="our-work-card__index"> 02 </p>
-                <h2> Free Write </h2>
-                <p class="our-work-card__subtitle"> Creative Publishing Platform </p>
-                <p>
-                  Discover Free Write – an all-in-one creative platform where writers, readers, and designers come together to share, explore, and grow.
-                </p>
-                <div class="tails__tags">
-                  <span class="tails__tag"> COMMUNITY </span>
-                  <span class="tails__tag"> E-COMMERCE </span>
-                  <span class="tails__tag"> PUBLISHING </span>
-                </div>
-                <div class="our-work-card__actions">
-                  <button class="our-work-card__button" type="button" data-work-detail-open> View Detail </button>
-                </div>
-              </div>
-
-              
-              <div class="our-work-card" data-work-card="2" aria-hidden="true">
                 <div class="our-work-card__media our-work-card__media--goshop"></div>
-                <p class="our-work-card__index"> 03 </p>
+                <p class="our-work-card__index"> 02 </p>
                 <h2> GoShop </h2>
                 <p class="our-work-card__subtitle"> Modern E-Commerce Platform </p>
                 <p>
@@ -3086,36 +3125,64 @@
         
 
         <!-- NEW GRAY FULL WIDTH FOOTER -->
-          <div style="position: absolute; bottom: 0; left: 0; width: 100vw; height: auto; background: rgba(18, 18, 22, 0.3); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 12px 40px 8px; box-sizing: border-box; z-index: 9999; pointer-events: auto;">
-            <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; color: #aaa; font-family: inherit; text-align: left;">
-              <div style="grid-column: 1/-1; max-width: 300px; margin-bottom: 0px;">
-                 <h2 style="color: #fff; margin-top:0; margin-bottom: 6px; font-size: 24px; font-weight: 700;">
-                   <span style="color: #ffffff;">Alphintra</span>
-                   Engineering
-                 </h2>
-                 <p style="line-height: 1.6; font-size: 15px; margin: 0; color: rgba(255,255,255,0.6);" style="max-width: 250px;">Empowering digital experiences through advanced AI, Web, Mobile, and 3D engineering.</p>
+            <style>
+              .custom-footer {
+                position: absolute; bottom: 0; left: 0; width: 100vw; height: auto;
+                background: rgba(18, 18, 22, 0.3); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+                border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 24px 20px calc(env(safe-area-inset-bottom, 0px) + 20px); box-sizing: border-box; z-index: 9999; pointer-events: auto;
+              }
+              .custom-footer-grid {
+                max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; color: #aaa; font-family: inherit; text-align: left;
+              }
+              .custom-footer-brand { flex: 1 1 100%; max-width: 300px; margin-bottom: 0px; display: block; }
+              .custom-footer-links { display: flex; flex: 1 1 100%; justify-content: space-between; gap: 10px; }
+              .custom-footer-col { display: flex; flex-direction: column; gap: 8px; }
+              .custom-footer h2 { color: #fff; margin-top:0; margin-bottom: 4px; font-size: 16px; font-weight: 700; }
+              .custom-footer h4 { color:#fff; margin: 0 0 2px 0; font-size: 13px; font-weight: 600; }
+              .custom-footer p, .custom-footer a { color: rgba(255,255,255,0.6); font-size: 11px; text-decoration: none; line-height: 1.3; margin: 0; }
+              .custom-footer a:hover { color: #fff; }
+              .custom-footer-bottom { display: block; max-width: 1200px; margin: 12px auto 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 11px; color: rgba(255,255,255,0.4); }
+
+              @media (min-width: 768px) {
+                .custom-footer { padding: 32px 40px 24px; }
+                .custom-footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+                .custom-footer-brand { display: block; flex: none; max-width: 300px; }
+                .custom-footer-links { display: contents; }
+                .custom-footer-col { gap: 12px; }
+                .custom-footer h2 { font-size: 26px; margin-bottom: 8px; }
+                .custom-footer h4 { font-size: 24px; margin-bottom: 8px; }
+                .custom-footer p, .custom-footer a { font-size: 15px; line-height: 1.6; }
+                .custom-footer-bottom { display: block; margin-top: 24px; padding-top: 24px; font-size: 15px; }
+              }
+            </style>
+            <div class="custom-footer">
+              <div class="custom-footer-grid">
+                <div class="custom-footer-brand">
+                   <h2><span style="color: #ffffff;">Alphintra</span> Engineering</h2>
+                   <p style="max-width: 250px;">Empowering digital experiences through advanced AI, Web, Mobile, and 3D engineering.</p>
+                </div>
+                <div class="custom-footer-links">
+                  <div class="custom-footer-col">
+                     <h4>Platform</h4>
+                     <a href="#">Solutions</a>
+                     <a href="#">Case Studies</a>
+                     <a href="#">Pricing</a>
+                  </div>
+                  <div class="custom-footer-col">
+                     <h4>Support</h4>
+                     <a href="#">Documentation</a>
+                     <a href="#">Contact</a>
+                     <a href="#">Privacy</a>
+                  </div>
+                  <div class="custom-footer-col">
+                     <h4>Community</h4>
+                     <a href="#">Blog</a>
+                     <a href="#">Twitter</a>
+                     <a href="https://www.linkedin.com/company/alphintra/posts/?feedView=all" target="_blank">LinkedIn</a>
+                  </div>
+                </div>
               </div>
-              <div style="display:flex; flex-direction:column; gap: 12px;">
-                 <h4 style="color:#fff; margin: 0 0 5px 0; font-size: 24px; font-weight: 600;">Platform</h4>
-                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 15px;">Solutions</a>
-                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 15px;">Case Studies</a>
-                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 15px;">Pricing</a>
-              </div>
-              <div style="display:flex; flex-direction:column; gap: 12px;">
-                 <h4 style="color:#fff; margin: 0 0 5px 0; font-size: 24px; font-weight: 600;">Support</h4>
-                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 15px;">Documentation</a>
-                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 15px;">Contact</a>
-                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 15px;">Privacy</a>
-              </div>
-              <div style="display:flex; flex-direction:column; gap: 12px;">
-                 <h4 style="color:#fff; margin: 0 0 5px 0; font-size: 24px; font-weight: 600;">Community</h4>
-                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 15px;">Blog</a>
-                 <a href="#" style="color:#aaa; text-decoration:none; font-size: 15px;">Twitter</a>
-                 <a href="https://www.linkedin.com/company/alphintra/posts/?feedView=all" target="_blank" style="color:#aaa; text-decoration:none; font-size: 15px;">LinkedIn</a>
-              </div>
-            </div>
-            <div style="max-width: 1200px; margin: 15px auto 0; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 15px; color: rgba(255,255,255,0.4);">
-               &copy; 2024 Alphintra. All rights reserved.
+              <div class="custom-footer-bottom">
             </div>
           </div>
 
@@ -3322,33 +3389,7 @@
           },
           
           1: {
-            url: '/project-freewrite.html',
-            description: 'Discover Free Write – an all-in-one creative platform where writers, readers, and designers come together to share, explore, and grow. From publishing original stories to joining exciting competitions and discovering unique book covers, Free Write brings creativity to life.',
-            points: [
-              {
-                title: 'Story Publishing',
-                text: 'Easily write and publish your own original stories or spin-offs inspired by existing works.'
-              },
-              {
-                title: 'Vibrant Community',
-                text: 'Connect with a vast network of avid readers, talented writers, and creative designers.'
-              },
-              {
-                title: 'Competitions',
-                text: 'Participate in exciting writing competitions to showcase your skills.'
-              },
-              {
-                title: 'E-commerce Integration',
-                text: 'Manage profiles, orders, shopping carts, and secure payments directly on the platform.'
-              }
-            ],
-            images: [
-              { src: 'https://images.unsplash.com/photo-1455390582262-044cdead27d8?q=80&w=1000&format=auto&fit=crop', alt: 'Free Write interface', caption: 'Creative platform and reading interface.' },
-              { src: '/app/public/img/qubitz/UIUXHero.jpg', alt: 'Free Write book covers', caption: 'Designer book covers and e-commerce flow.' }
-            ]
-          },
-2: {
-            url: '/project-goshop.html',
+
             description: 'GoShop is a premium e-commerce platform offering a curated selection of apparel. Discover seamless shopping with advanced filtering by category, size, and price. Manage your cart, track processing and paid orders, and find everyday confidence.',
             points: [
               {
