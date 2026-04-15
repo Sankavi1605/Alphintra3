@@ -3219,6 +3219,14 @@
 
   <script type="text/javascript">
     (function () {
+      function releasePreloadUi() {
+        var root = document.querySelector('.hero-logo');
+        document.documentElement.classList.remove('preload-ui');
+        if (!root) return;
+        root.style.visibility = 'visible';
+        root.style.opacity = '1';
+      }
+
       function initHeroLogoGsap() {
         var root = document.querySelector('.hero-logo');
         if (!root) return false;
@@ -3231,9 +3239,7 @@
         if (!glyph || !cut || !slash) return false;
 
         root.__logoGsapReady = true;
-        document.documentElement.classList.remove('preload-ui');
-        root.style.visibility = 'visible';
-        root.style.opacity = '1';
+        releasePreloadUi();
 
         TweenLite.set([glyph, cut, slash], { transformOrigin: '50% 50%' });
         TweenLite.fromTo(
@@ -4801,6 +4807,12 @@ var cardWheelLock = false;
 
         if (logoReady && sectionReady && workReady && flowReady) return;
         setTimeout(bootCardEnhancements, 140);
+      }
+
+      if (!document.documentElement.__heroLogoFallbackScheduled) {
+        document.documentElement.__heroLogoFallbackScheduled = true;
+        window.setTimeout(releasePreloadUi, 1800);
+        window.addEventListener('load', releasePreloadUi, { once: true });
       }
 
       if (document.readyState === 'loading') {
