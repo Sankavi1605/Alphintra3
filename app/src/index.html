@@ -153,7 +153,8 @@
       height: 88px;
       z-index: 220;
       pointer-events: none;
-      opacity: 1;
+      opacity: 0;
+      visibility: hidden;
       transform: translateZ(0);
       will-change: transform, opacity;
     }
@@ -3218,6 +3219,8 @@
         if (!glyph || !cut || !slash) return false;
 
         root.__logoGsapReady = true;
+        root.style.visibility = 'visible';
+        root.style.opacity = '1';
 
         TweenLite.set([glyph, cut, slash], { transformOrigin: '50% 50%' });
         TweenLite.fromTo(
