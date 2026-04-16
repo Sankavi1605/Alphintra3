@@ -3162,10 +3162,29 @@
               .custom-footer-brand { flex: 1 1 100%; max-width: 300px; margin-bottom: 0px; display: block; }
               .custom-footer-links { display: flex; flex: 1 1 100%; justify-content: space-between; gap: 10px; }
               .custom-footer-col { display: flex; flex-direction: column; gap: 8px; }
+              .custom-footer-socials { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+              .custom-footer-social {
+                width: 34px;
+                height: 34px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid rgba(255,255,255,0.14);
+                border-radius: 999px;
+                background: rgba(255,255,255,0.04);
+                color: rgba(255,255,255,0.82);
+                transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+              }
+              .custom-footer-social svg { width: 16px; height: 16px; fill: currentColor; }
               .custom-footer h2 { color: #fff; margin-top:0; margin-bottom: 4px; font-size: 16px; font-weight: 700; }
               .custom-footer h4 { color:#fff; margin: 0 0 2px 0; font-size: 13px; font-weight: 600; }
               .custom-footer p, .custom-footer a { color: rgba(255,255,255,0.6); font-size: 11px; text-decoration: none; line-height: 1.3; margin: 0; }
               .custom-footer a:hover { color: #fff; }
+              .custom-footer-social:hover {
+                color: #fff;
+                background: rgba(255,255,255,0.1);
+                border-color: rgba(255,255,255,0.28);
+              }
               .custom-footer-bottom { display: block; max-width: 1200px; margin: 12px auto 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 11px; color: rgba(255,255,255,0.4); }
 
               @media (min-width: 768px) {
@@ -3174,6 +3193,9 @@
                 .custom-footer-brand { display: block; flex: none; max-width: 300px; }
                 .custom-footer-links { display: contents; }
                 .custom-footer-col { gap: 12px; }
+                .custom-footer-socials { gap: 12px; margin-top: 6px; }
+                .custom-footer-social { width: 42px; height: 42px; }
+                .custom-footer-social svg { width: 18px; height: 18px; }
                 .custom-footer h2 { font-size: 26px; margin-bottom: 8px; }
                 .custom-footer h4 { font-size: 24px; margin-bottom: 8px; }
                 .custom-footer p, .custom-footer a { font-size: 15px; line-height: 1.6; }
@@ -3191,8 +3213,17 @@
                      <h4>Connect</h4>
                      <a href="tel:+94740886002">+94 74 088 6002</a>
                      <a href="mailto:contact@alphintra.com">contact@alphintra.com</a>
-                     <a href="https://www.instagram.com/alphintra/" target="_blank">Instagram</a>
-                     <a href="https://www.linkedin.com/company/alphintra/posts/?feedView=all" target="_blank">LinkedIn</a>
+                     <div class="custom-footer-socials">
+                       <a class="custom-footer-social" href="https://www.linkedin.com/company/alphintra/posts/?feedView=all" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A2.02 2.02 0 0 0 3.2 5.02c0 1.1.9 2 2.02 2a2 2 0 1 0 .03-4.02ZM20.8 12.8c0-3.46-1.85-5.07-4.31-5.07-1.99 0-2.88 1.1-3.38 1.87V8.5H9.73c.04.73 0 11.5 0 11.5h3.38v-6.42c0-.34.03-.69.13-.94.27-.69.9-1.4 1.96-1.4 1.38 0 1.93 1.05 1.93 2.59V20H20.5v-7.2Z"/></svg>
+                       </a>
+                       <a class="custom-footer-social" href="https://www.youtube.com/@Alphintra" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.56A3.02 3.02 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.12 2.14c1.88.56 9.38.56 9.38.56s7.5 0 9.38-.56a3.02 3.02 0 0 0 2.12-2.14A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8ZM9.55 15.57V8.43L15.82 12l-6.27 3.57Z"/></svg>
+                       </a>
+                       <a class="custom-footer-social" href="https://www.instagram.com/alphintra/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2Zm0 1.8A3.96 3.96 0 0 0 3.8 7.75v8.5a3.96 3.96 0 0 0 3.95 3.95h8.5a3.96 3.96 0 0 0 3.95-3.95v-8.5a3.96 3.96 0 0 0-3.95-3.95h-8.5Zm8.95 1.35a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2ZM12 6.85A5.15 5.15 0 1 1 6.85 12 5.16 5.16 0 0 1 12 6.85Zm0 1.8A3.35 3.35 0 1 0 15.35 12 3.35 3.35 0 0 0 12 8.65Z"/></svg>
+                       </a>
+                     </div>
                   </div>
                 </div>
               </div>
