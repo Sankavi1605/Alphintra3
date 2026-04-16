@@ -1674,10 +1674,16 @@
 
     @media screen and (max-width: 900px) {
       .hero-logo {
-        top: 14px;
-        right: 16px;
-        width: 68px;
-        height: 68px;
+        top: 8px;
+        right: 14px;
+        width: 62px;
+        height: 62px;
+      }
+
+      .hero-logo svg {
+        width: 90%;
+        height: 90%;
+        margin: 5%;
       }
 
       .heads__section--wave {
@@ -2174,6 +2180,13 @@
         display: block !important;
         visibility: visible !important;
         overflow: visible !important;
+      }
+
+      html.mode-3d .hero-logo {
+        top: calc(env(safe-area-inset-top, 0px) + 8px) !important;
+        right: calc(env(safe-area-inset-right, 0px) + 14px) !important;
+        width: 62px !important;
+        height: 62px !important;
       }
 
       html.mode-3d .menu__button {
