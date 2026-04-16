@@ -157,6 +157,12 @@
       letter-spacing: 2px !important;
     }
 
+    .menu__item.is-current {
+      color: #fff !important;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+    }
+
     .hero-logo {
       position: fixed;
       top: 22px;
@@ -4786,6 +4792,48 @@ var cardWheelLock = false;
         document.documentElement.__sectionArrowReady = true;
       }
 
+      function bindMenuCurrentState() {
+        if (document.documentElement.__menuCurrentStateReady) return;
+
+        var menuItems = document.querySelectorAll('.menu .menu__item[data-section]');
+        var sections = document.querySelectorAll('.heads__section');
+        if (!menuItems.length || !sections.length) return;
+
+        function resolveActiveSectionName() {
+          var activeSection = document.querySelector('.heads__section.active-3d-card');
+          if (!activeSection || !activeSection.className) return 'hello';
+
+          var match = activeSection.className.match(/heads__section--([a-z0-9-]+)/);
+          return match && match[1] ? match[1] : 'hello';
+        }
+
+        function syncCurrentMenuItem() {
+          var activeSectionName = resolveActiveSectionName();
+
+          for (var i = 0; i < menuItems.length; i++) {
+            var isCurrent = menuItems[i].getAttribute('data-section') === activeSectionName;
+            menuItems[i].classList.toggle('is-current', isCurrent);
+          }
+        }
+
+        if (window.MutationObserver) {
+          for (var i = 0; i < sections.length; i++) {
+            (function (section) {
+              var observer = new MutationObserver(function (mutations) {
+                for (var m = 0; m < mutations.length; m++) {
+                  if (mutations[m].attributeName !== 'class') continue;
+                  syncCurrentMenuItem();
+                }
+              });
+              observer.observe(section, { attributes: true, attributeFilter: ['class'] });
+            })(sections[i]);
+          }
+        }
+
+        syncCurrentMenuItem();
+        document.documentElement.__menuCurrentStateReady = true;
+      }
+
       function bootCardEnhancements() {
         var logoReady = initHeroLogoGsap();
         var sectionReady = initCardScrollAnimations();
@@ -4793,6 +4841,7 @@ var cardWheelLock = false;
         var flowReady = initFlowCardSlider();
         bindHeroActions();
         bindSectionArrow();
+        bindMenuCurrentState();
 
         if (logoReady && sectionReady && workReady && flowReady) return;
         setTimeout(bootCardEnhancements, 140);
