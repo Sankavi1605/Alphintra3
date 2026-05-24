@@ -59,6 +59,10 @@
   />
   <meta name="twitter:image" content="https://www.alphintra.com/logo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
+  
+  
   <script>
     (function () {
       document.documentElement.classList.add('preload-ui');
@@ -525,12 +529,26 @@
       flex-wrap: wrap;
     }
 
+    .header-cta {
+      display: none;
+      pointer-events: auto !important;
+      position: fixed;
+      top: 66px;
+      transform: translateY(-50%);
+      right: 150px;
+      z-index: 1000;
+    }
+
+    [data-at-home="true"] .header-cta {
+      display: inline-flex;
+    }
+
     .hero-cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 176px;
-      padding: 12px 18px;
+      min-width: 120px;
+      padding: 10px 16px;
       border-radius: 999px;
       border: 1px solid rgba(170, 201, 255, 0.3);
       background: rgba(8, 12, 22, 0.58);
@@ -1680,6 +1698,15 @@
         height: 62px;
       }
 
+      .header-cta {
+        top: 39px;
+        transform: translateY(-50%);
+        right: 85px;
+        min-width: 120px;
+        padding: 8px 12px;
+        font-size: 8px;
+      }
+
       .hero-logo svg {
         width: 90%;
         height: 90%;
@@ -2189,6 +2216,11 @@
         height: 62px !important;
       }
 
+      html.mode-3d .header-cta {
+        top: calc(env(safe-area-inset-top, 0px) + 39px) !important;
+        transform: translateY(-50%) !important;
+      }
+
       html.mode-3d .menu__button {
         position: absolute !important;
         top: 0 !important;
@@ -2489,7 +2521,7 @@
           <a class="menu__item menu__items--3D" data-section="end"> LET'S TALK </a>
         </div>
       </div>
-
+      <a class="hero-cta header-cta" href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/contact-alphintra/30min'});return false;"> Schedule a Call </a>
       <div class="hero-logo" aria-hidden="true">
         <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-label="Alphintra logo" role="img">
           <path class="hero-logo__glyph" d="M56 472L240 58H272L456 472L366 404L256 162L146 404L56 472Z" fill="#FFFFFF"/>
@@ -3151,8 +3183,8 @@
               </p>
               <div class="tails__card-actions">
               <!-- Calendly link widget begin -->
-              <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-              <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+              
+              
               <a class="tails__link" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/contact-alphintra/30min'});return false;"> Schedule a Call </a>
               <!-- Calendly link widget end -->
 
@@ -4859,6 +4891,8 @@ var cardWheelLock = false;
 
         function syncCurrentMenuItem() {
           var activeSectionName = resolveActiveSectionName();
+          var isHome = activeSectionName === 'hello';
+          document.documentElement.setAttribute('data-at-home', isHome ? 'true' : 'false');
 
           for (var i = 0; i < menuItems.length; i++) {
             var isCurrent = menuItems[i].getAttribute('data-section') === activeSectionName;
