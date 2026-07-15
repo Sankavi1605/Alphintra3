@@ -165,6 +165,23 @@ var SCENE = (function () {
       }
 
       function onScroll (event) {
+        var activeCard = findCardFromTarget(event.target || (event.originalEvent && event.originalEvent.target));
+        if (activeCard) {
+          var cardCanScroll = activeCard.scrollHeight > (activeCard.clientHeight + 2);
+          if (cardCanScroll) {
+            var delta = (event.originalEvent && event.originalEvent.wheelDelta) || -(event.originalEvent && event.originalEvent.detail) || 0;
+            var cardAtTop = activeCard.scrollTop <= 1;
+            var cardAtBottom = (activeCard.scrollTop + activeCard.clientHeight) >= (activeCard.scrollHeight - 1);
+            var scrollingUp = delta > 0;
+            var scrollingDown = delta < 0;
+
+            var shouldScrollCard = (scrollingUp && !cardAtTop) || (scrollingDown && !cardAtBottom);
+            if (shouldScrollCard) {
+              return true;
+            }
+          }
+        }
+
         newDate = new Date();
 
         var elapsed = newDate.getTime() - oldDate.getTime();
@@ -323,10 +340,20 @@ var SCENE = (function () {
         targetSectionScale = 1.02;
         targetParallaxRange = 4.4;
       } else if (aspect < 0.72) {
-        targetFov = 76;
-        targetCameraZ = 48;
+        targetFov = 78;
+        targetCameraZ = 50;
         targetSectionScale = 1;
         targetParallaxRange = 4.7;
+      } else if (aspect < 0.88) {
+        targetFov = 72;
+        targetCameraZ = 46;
+        targetSectionScale = 1;
+        targetParallaxRange = 4.8;
+      } else if (aspect < 1.0) {
+        targetFov = 66;
+        targetCameraZ = 42;
+        targetSectionScale = 1;
+        targetParallaxRange = 4.9;
       } else {
         targetFov = 60;
         targetCameraZ = 40;

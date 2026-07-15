@@ -23,11 +23,11 @@ grid.el.position.x = -20;
 ballSection.add(grid.el);
 
 var text = new TextPanel(
-  'W  E  B    A  N  D \n M  O  B  I  L  E',
+  'A I   A N D \n A U T O M A T I O N',
   {
     align: 'left',
     style: '',
-    size: 50,
+    size: 42,
     lineSpacing: 40
   }
 );

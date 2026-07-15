@@ -22,7 +22,7 @@ var field = new FlowField(points, {
 flowSection.add(field.el);
 
 var text = new TextPanel(
-  'A  I    A  N  D \n A  U  T  O  M  A  T  I  O  N',
+  'W  E  B    A  N  D \n M  O  B  I  L  E',
   {
     align: 'center',
     style: '',

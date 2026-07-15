@@ -22,6 +22,7 @@ text.el.rotation.y = -0.4;
 function updateTextPosition () {
   if (window.innerWidth <= 900) {
     text.el.position.x = 10;
+    text.el.position.y = 18;
     text.el.position.z = 4;
     text.el.rotation.y = -0.22;
     text.el.scale.set(0.82, 0.82, 0.82);

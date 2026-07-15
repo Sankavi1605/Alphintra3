@@ -1581,9 +1581,25 @@
 
       html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card {
         animation: mode3dCardIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        max-height: calc(100vh - 160px);
+        overflow-y: auto;
+      }
+      
+      html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card::-webkit-scrollbar {
+        width: 6px;
+      }
+      html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 3px;
+      }
+      html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 3px;
+      }
+      html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.24);
       }
 
-      html.mode-3d .heads__section--drop.active-3d-card .section__card,
       html.mode-3d .heads__section--flow.active-3d-card .section__card,
       html.mode-3d .heads__section--wave.active-3d-card .section__card,
       html.mode-3d .heads__section--rocks.active-3d-card .section__card {
@@ -1592,8 +1608,9 @@
       }
 
       html.mode-3d .heads__section--drop.active-3d-card .section__card {
-        top: 68%;
-        left: 6% !important;
+        top: 50%;
+        right: 6.5% !important;
+        left: auto !important;
         width: min(500px, 36vw);
       }
 
@@ -1772,9 +1789,20 @@
         max-width: none;
         margin: 0;
         padding: 34px 12px 12px;
-        overflow: hidden;
+        overflow-y: auto !important;
       }
-
+      
+      .our-work-detail__content::-webkit-scrollbar {
+        width: 6px;
+      }
+      .our-work-detail__content::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 3px;
+      }
+      .our-work-detail__content::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 3px;
+      }
       .our-work-detail__title {
         font-size: clamp(24px, 8vw, 34px);
       }
@@ -2014,38 +2042,24 @@
         display: block;
       }
 
-      html.mode-3d .heads__section .part {
-        display: none;
-      }
-
       html.mode-3d .heads__section.active-3d-card .part--title {
-        display: none;
-        position: absolute;
-        top: calc(env(safe-area-inset-top, 0px) + 72px);
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        width: min(92vw, 390px);
-        padding: 0 2vw;
-        margin: 0;
-        text-align: center;
-        z-index: 11;
+        display: none !important;
       }
 
       html.mode-3d .heads__section.active-3d-card .part--title h1 {
-        font-size: clamp(16px, 4.9vw, 24px);
-        line-height: 1.18;
-        letter-spacing: 1.6px;
-        text-align: center !important;
-        white-space: normal;
+        display: none !important;
       }
 
       html.mode-3d .heads__section.active-3d-card .section__card {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
         position: absolute;
         left: 50% !important;
         right: auto;
-        top: auto;
-        bottom: calc(env(safe-area-inset-bottom, 0px) + 80px);
+        top: auto !important; /* Force all cards to the bottom */
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 80px) !important;
+        max-height: 45vh !important; /* Keep card in the bottom half */
         width: min(92vw, 460px);
         max-width: 92vw;
         margin: 0 !important;
@@ -2053,6 +2067,7 @@
         pointer-events: auto;
         z-index: 12 !important;
       }
+
 
       html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card {
         padding: 20px 16px !important;
@@ -2063,8 +2078,8 @@
         box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
         backdrop-filter: blur(10px) saturate(102%) !important;
         -webkit-backdrop-filter: blur(10px) saturate(102%) !important;
-        max-height: none;
-        overflow: hidden;
+        max-height: 100%;
+        overflow-y: auto;
         touch-action: pan-y;
       }
 
@@ -2111,7 +2126,7 @@
 
       html.mode-3d .heads__section--face.active-3d-card .part--title {
         display: block;
-        top: calc(env(safe-area-inset-top, 0px) + 104px);
+        top: calc(env(safe-area-inset-top, 0px) + 40px);
         width: min(94vw, 420px);
         z-index: 14;
       }
@@ -2122,8 +2137,16 @@
       }
 
       html.mode-3d .heads__section--face.active-3d-card .section__card {
-        bottom: calc(env(safe-area-inset-bottom, 0px) + 76px);
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 16px) !important;
       }
+
+      html.mode-3d .heads__section--face.active-3d-card .section__card:not(.is-work-detail-open) .tails__feature-card.our-work-stack {
+        min-height: 380px !important;
+        height: 380px !important;
+        max-height: 50vh !important;
+        overflow-y: hidden !important;
+      }
+
 
       html.mode-3d .heads__section--neons.active-3d-card .section__card {
         width: min(92vw, 460px);
@@ -2143,9 +2166,8 @@
       html.mode-3d .heads__section--neons.active-3d-card .section__card--neons-right.is-mobile-active {
         display: block;
       }
-
       html.mode-3d .heads__section--end.active-3d-card .section__card {
-        top: calc(env(safe-area-inset-top, 0px) + 138px);
+        top: calc(env(safe-area-inset-top, 0px) + 180px) !important;
         bottom: auto !important;
         left: 50% !important;
         transform: translateX(-50%) !important;
@@ -2191,7 +2213,7 @@
 
       html.mode-3d .menu {
         position: fixed !important;
-        top: calc(env(safe-area-inset-top, 0px) + 14px) !important;
+        top: calc(env(safe-area-inset-top, 0px) + 28px) !important;
         left: calc(env(safe-area-inset-left, 0px) + 14px) !important;
         width: 30px !important;
         height: 22px !important;
@@ -2288,6 +2310,17 @@
       html.mode-3d .heads__section--end.active-3d-card .end__title {
         top: calc(env(safe-area-inset-top, 0px) + 72px) !important;
         transform: translateY(0) !important;
+      }
+      
+      @media screen and (max-height: 550px) {
+        html.mode-3d .heads__section.active-3d-card .section__card {
+          top: 50% !important;
+          bottom: auto !important;
+          transform: translate(-50%, -50%) !important;
+        }
+        html.mode-3d .heads__section.active-3d-card .section__card .tails__feature-card {
+          max-height: calc(100vh - 60px);
+        }
       }
 </style>
 
@@ -2502,8 +2535,8 @@
           <a class="menu__item menu__items--3D" data-section="hello"> Home </a>
           <a class="menu__item menu__items--3D" data-section="beams"> ABOUT ALPHINTRA </a>
           <a class="menu__item menu__items--3D" data-section="drop"> WHY ALPHINTRA </a>
-          <a class="menu__item menu__items--3D" data-section="ball"> WEB AND MOBILE </a>
-          <a class="menu__item menu__items--3D" data-section="flow"> AI AND INTELLIGENT SYSTEMS </a>
+          <a class="menu__item menu__items--3D" data-section="ball"> AI AND INTELLIGENT SYSTEMS </a>
+          <a class="menu__item menu__items--3D" data-section="flow"> WEB AND MOBILE </a>
           <a class="menu__item menu__items--3D" data-section="neons"> DELIVERY TRACKS </a>
           <a class="menu__item menu__items--3D" data-section="height"> ENTERPRISE BACKEND </a>
           <a class="menu__item menu__items--3D" data-section="wave"> UI UX AND INTERACTIVE 3D </a>
@@ -2516,11 +2549,7 @@
       </div>
       <a class="hero-cta header-cta" href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/contact-alphintra/30min'});return false;"> Schedule a Call </a>
       <div class="hero-logo" aria-hidden="true">
-        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-label="Alphintra logo" role="img">
-          <path class="hero-logo__glyph" d="M56 472L240 58H272L456 472L366 404L256 162L146 404L56 472Z" fill="#FFFFFF"/>
-          <path class="hero-logo__cut" d="M256 180L196 336H316L256 180Z" fill="#050508"/>
-          <path class="hero-logo__slash" d="M56 472L330 258L456 214L342 312L74 450L56 472Z" fill="#FFFFFF"/>
-        </svg>
+        <img src="https://pub-fb213824e9ea46ca978d90bf0c95ba46.r2.dev/AlphintraRealLogo-removebg-preview%20(1).png" alt="Alphintra logo" style="width: 100%; height: 100%; object-fit: contain;">
       </div>
 
       <button class="section-prev-arrow" type="button" aria-label="Go to previous section">
@@ -2599,8 +2628,8 @@
           <div class="part part--title drop__title"
               data-1200="opacity:0"
               data-1500="opacity:1">
-            <h1 class="text--white text--right text--noMargin"> ENGINEER </h1>
-            <h1 class="text--white text--right text--noMargin"> THE FUTURE </h1>
+            <h1 class="text--white text--left text--noMargin"> ENGINEER </h1>
+            <h1 class="text--white text--left text--noMargin"> THE FUTURE </h1>
           </div>
           <div class="part section__card"
               data-1200="opacity:0"
@@ -2608,17 +2637,14 @@
             <div class="tails__section__el tails__feature-card">
               <h2> Why Alphintra </h2>
               <p>
-                We combine product strategy, engineering precision, and modern architecture to deliver measurable
-                outcomes. Our approach focuses on clear technical foundations, scalable system design, secure cloud
-                infrastructure, and long-term maintainability. We operate like embedded partners, not outsourced
-                vendors.
+                At ALPHINTRA, we believe the future belongs to AI-native organizations. As AI reshapes every industry, we help businesses adapt, scale, and thrive through intelligent automation. What sets us apart is ultra-fast delivery powered by AI-driven engineering. We don't just build automation for clients — we run our own AI-powered development, QA, and operations, giving us exceptional speed, consistency, and precision. Our expertise spans enterprise software, AI products, intelligent agents, and large-scale digital platforms — delivered with reliability and performance traditional development can't match. Security, quality, and scalability anchor everything we build, creating resilient, future-ready systems for an AI-first world. Our mission is combine AI, engineering excellence, and operational efficiency to deliver transformative solutions — fast, and without compromise.
               </p>
-              <div class="tails__tags">
+              <!-- <div class="tails__tags">
                 <span class="tails__tag"> TECHNICAL FOUNDATIONS </span>
                 <span class="tails__tag"> SCALABLE DESIGN </span>
                 <span class="tails__tag"> SECURE INFRASTRUCTURE </span>
                 <span class="tails__tag"> LONG-TERM MAINTAINABILITY </span>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="part part--drop"
@@ -2630,8 +2656,8 @@
           <div class="part part--title ball__title"
               data-1700="opacity:0"
               data-2000="opacity:1">
-            <h1 class="text--white text--noMargin text--left"> WEB AND </h1>
-            <h1 class="text--white text--noMargin text--left"> MOBILE </h1>
+            <h1 class="text--white text--noMargin text--left"> AI AND </h1>
+            <h1 class="text--white text--noMargin text--left"> AUTOMATION </h1>
           </div>
           <div class="part section__card"
               data-1700="opacity:0"
@@ -2640,36 +2666,38 @@
               <div class="tails__flow-slider__viewport">
                 <div class="tails__flow-slider__track">
                   <article class="tails__section__el tails__feature-card tails__flow-slider__card is-active" data-flow-card="0" aria-hidden="false">
-                    <h2> High-Performance Web &amp; Mobile Applications </h2>
+                    <h2> AI &amp; Intelligent Systems </h2>
                     <p>
-                      We build fast, SEO-optimized web platforms and cross-platform mobile applications designed for
-                      real-world scale across startups and enterprise teams.
+                      We design AI-powered systems that integrate directly into business workflows. From LLM integrations
+                      and RAG architectures to automation pipelines, we build intelligent systems that deliver measurable
+                      operational value.
                     </p>
-                    <div class="tails__tags">
-                      <span class="tails__tag"> NEXT.JS </span>
-                      <span class="tails__tag"> REACT </span>
-                      <span class="tails__tag"> FLUTTER </span>
-                    </div>
+                    <!-- <div class="tails__tags">
+                      <span class="tails__tag"> LLMS </span>
+                      <span class="tails__tag"> RAG </span>
+                      <span class="tails__tag"> AUTOMATION </span>
+                    </div> -->
                     <ul class="tails__detail-points">
-                      <li>Custom web systems aligned with business goals and operational workflows.</li>
-                      <li>Product UX engineered for conversion, retention, and daily usability.</li>
+                      <li>Outcome-driven AI strategies based on measurable business priorities.</li>
+                      <li>Rapid delivery cycles that validate value before full-scale rollout.</li>
+                      <li>Built-in data quality checks for stable and trustworthy outputs.</li>
                     </ul>
                   </article>
                   <article class="tails__section__el tails__feature-card tails__flow-slider__card" data-flow-card="1" aria-hidden="true">
-                    <h2> Delivery, Security &amp; Scale </h2>
+                    <h2> AI Ops &amp; Integrations </h2>
                     <p>
-                      From MVP launch to growth-stage platforms, we ship stable releases with strong security baselines,
-                      observability, and long-term maintainability.
+                      We productionize AI with resilient backend services, retrieval pipelines, and monitoring across
+                      prompts, models, and automation workflows so teams can scale with confidence.
                     </p>
-                    <div class="tails__tags">
-                      <span class="tails__tag"> TYPESCRIPT </span>
-                      <span class="tails__tag"> TAILWIND </span>
-                      <span class="tails__tag"> CI/CD </span>
-                    </div>
+                    <!-- <div class="tails__tags">
+                      <span class="tails__tag"> PYTHON </span>
+                      <span class="tails__tag"> VECTOR DATABASES </span>
+                      <span class="tails__tag"> AGENT WORKFLOWS </span>
+                    </div> -->
                     <ul class="tails__detail-points">
-                      <li>Native and cross-platform mobile delivery for Android and iOS.</li>
-                      <li>Security-first architecture, performance tuning, and optimization.</li>
-                      <li>Release workflows with QA gates and measurable engineering standards.</li>
+                      <li>Production-ready architecture with monitoring, security, and governance.</li>
+                      <li>Continuous optimization of prompts, retrieval, and workflow automation.</li>
+                      <li>Integration with ERP, CRM, and internal tools for end-to-end adoption.</li>
                     </ul>
                   </article>
                 </div>
@@ -2696,38 +2724,36 @@
               <div class="tails__flow-slider__viewport">
                 <div class="tails__flow-slider__track">
                   <article class="tails__section__el tails__feature-card tails__flow-slider__card is-active" data-flow-card="0" aria-hidden="false">
-                    <h2> AI &amp; Intelligent Systems </h2>
+                    <h2> High-Performance Web &amp; Mobile Applications </h2>
                     <p>
-                      We design AI-powered systems that integrate directly into business workflows. From LLM integrations
-                      and RAG architectures to automation pipelines, we build intelligent systems that deliver measurable
-                      operational value.
+                      We build fast, SEO-optimized web platforms and cross-platform mobile applications designed for
+                      real-world scale across startups and enterprise teams.
                     </p>
-                    <div class="tails__tags">
-                      <span class="tails__tag"> LLMS </span>
-                      <span class="tails__tag"> RAG </span>
-                      <span class="tails__tag"> AUTOMATION </span>
-                    </div>
+                    <!-- <div class="tails__tags">
+                      <span class="tails__tag"> NEXT.JS </span>
+                      <span class="tails__tag"> REACT </span>
+                      <span class="tails__tag"> FLUTTER </span>
+                    </div> -->
                     <ul class="tails__detail-points">
-                      <li>Outcome-driven AI strategies based on measurable business priorities.</li>
-                      <li>Rapid delivery cycles that validate value before full-scale rollout.</li>
-                      <li>Built-in data quality checks for stable and trustworthy outputs.</li>
+                      <li>Custom web systems aligned with business goals and operational workflows.</li>
+                      <li>Product UX engineered for conversion, retention, and daily usability.</li>
                     </ul>
                   </article>
                   <article class="tails__section__el tails__feature-card tails__flow-slider__card" data-flow-card="1" aria-hidden="true">
-                    <h2> AI Ops &amp; Integrations </h2>
+                    <h2> Delivery, Security &amp; Scale </h2>
                     <p>
-                      We productionize AI with resilient backend services, retrieval pipelines, and monitoring across
-                      prompts, models, and automation workflows so teams can scale with confidence.
+                      From MVP launch to growth-stage platforms, we ship stable releases with strong security baselines,
+                      observability, and long-term maintainability.
                     </p>
-                    <div class="tails__tags">
-                      <span class="tails__tag"> PYTHON </span>
-                      <span class="tails__tag"> VECTOR DATABASES </span>
-                      <span class="tails__tag"> AGENT WORKFLOWS </span>
-                    </div>
+                    <!-- <div class="tails__tags">
+                      <span class="tails__tag"> TYPESCRIPT </span>
+                      <span class="tails__tag"> TAILWIND </span>
+                      <span class="tails__tag"> CI/CD </span>
+                    </div> -->
                     <ul class="tails__detail-points">
-                      <li>Production-ready architecture with monitoring, security, and governance.</li>
-                      <li>Continuous optimization of prompts, retrieval, and workflow automation.</li>
-                      <li>Integration with ERP, CRM, and internal tools for end-to-end adoption.</li>
+                      <li>Native and cross-platform mobile delivery for Android and iOS.</li>
+                      <li>Security-first architecture, performance tuning, and optimization.</li>
+                      <li>Release workflows with QA gates and measurable engineering standards.</li>
                     </ul>
                   </article>
                 </div>
@@ -2755,20 +2781,18 @@
               data-2600="opacity:0"
               data-3400="opacity:1">
             <div class="tails__section__el tails__feature-card">
-              <h2> Startup Launch Track </h2>
+              <h2> Engineering Partner for Ambitious Teams </h2>
               <p>
-                Turn your idea into a production-ready product with short build cycles, clear milestones, and weekly
-                visibility from discovery to launch.
+                Whether you are launching a startup product or modernizing enterprise infrastructure, we operate
+                as a long-term engineering partner embedded into your roadmap and delivery model.
               </p>
-              <div class="tails__tags">
-                <span class="tails__tag"> MVP ACCELERATION </span>
-                <span class="tails__tag"> RAPID DELIVERY </span>
-                <span class="tails__tag"> PRODUCT STRATEGY </span>
-              </div>
+              <!-- <div class="tails__tags">
+                <span class="tails__tag"> EMBEDDED TEAMS </span>
+                <span class="tails__tag"> AI &amp; AUTOMATION </span>
+              </div> -->
               <ul class="tails__detail-points">
-                <li>Audience research, campaign strategy, and structured execution paths.</li>
-                <li>Content optimization and funnel-focused performance monitoring.</li>
-                <li>Ongoing ROI optimization through data-led iteration cycles.</li>
+                <li>Role-matched experts across frontend, backend, cloud, and AI systems.</li>
+                <li>Domain ownership with consistent technical decision-making across sprints.</li>
               </ul>
             </div>
           </div>
@@ -2776,20 +2800,19 @@
               data-2600="opacity:0"
               data-3400="opacity:1">
             <div class="tails__section__el tails__feature-card">
-              <h2> Growth &amp; Enterprise Track </h2>
+              <h2> Execution Model Built for Scale </h2>
               <p>
-                Modernize existing systems with scalable architecture, AI automation, and measurable releases aligned
-                to business outcomes.
+                We combine scalable cloud architecture and product-focused execution with predictable governance to
+                deliver measurable outcomes over long-term partnerships.
               </p>
-              <div class="tails__tags">
-                <span class="tails__tag"> AI AUTOMATION </span>
-                <span class="tails__tag"> SCALE &amp; SECURITY </span>
-                <span class="tails__tag"> CLOUD MODERNIZATION </span>
-              </div>
+              <!-- <div class="tails__tags">
+                <span class="tails__tag"> SCALABLE CLOUD </span>
+                <span class="tails__tag"> PRODUCT EXECUTION </span>
+                <span class="tails__tag"> DELIVERY GOVERNANCE </span>
+              </div> -->
               <ul class="tails__detail-points">
-                <li>Dedicated specialists embedded into your delivery workflow.</li>
-                <li>Flexible team scaling based on roadmap and sprint priorities.</li>
-                <li>Transparent reporting and quality governance across streams.</li>
+                <li>Predictable sprint delivery with low-surprise quality controls.</li>
+                <li>Long-term partnership model with measurable delivery outcomes.</li>
               </ul>
             </div>
           </div>
@@ -2814,11 +2837,11 @@
                       Scalable backend systems built for performance and reliability. We design microservices
                       architectures and delivery pipelines built for uptime and long-term growth.
                     </p>
-                    <div class="tails__tags">
+                    <!-- <div class="tails__tags">
                       <span class="tails__tag"> SPRING BOOT </span>
                       <span class="tails__tag"> NODE.JS </span>
                       <span class="tails__tag"> DOCKER </span>
-                    </div>
+                    </div> -->
                     <ul class="tails__detail-points">
                       <li>Service architecture and APIs aligned to business-critical workflows.</li>
                       <li>Structured CI/CD pipelines with release quality and rollback safety.</li>
@@ -2830,11 +2853,11 @@
                       We deploy secure cloud environments and stable data layers with observability, governance, and
                       continuous optimization for mission-critical systems.
                     </p>
-                    <div class="tails__tags">
+                    <!-- <div class="tails__tags">
                       <span class="tails__tag"> GCP </span>
                       <span class="tails__tag"> AWS </span>
                       <span class="tails__tag"> POSTGRESQL </span>
-                    </div>
+                    </div> -->
                     <ul class="tails__detail-points">
                       <li>ERP and CRM implementation tailored to your process architecture.</li>
                       <li>Tool integrations with dashboards for operational visibility.</li>
@@ -2870,11 +2893,11 @@
                       We combine design precision with engineering to create high-fidelity digital experiences with
                       strong usability, visual consistency, and measurable product outcomes.
                     </p>
-                    <div class="tails__tags">
+                    <!-- <div class="tails__tags">
                       <span class="tails__tag"> FIGMA </span>
                       <span class="tails__tag"> UX RESEARCH </span>
                       <span class="tails__tag"> DESIGN SYSTEMS </span>
-                    </div>
+                    </div> -->
                     <ul class="tails__detail-points">
                       <li>User-centered design process from discovery to usability validation.</li>
                       <li>Consistent interface systems with high design-to-code fidelity.</li>
@@ -2886,12 +2909,12 @@
                       From advanced UI systems to interactive 3D web environments, we bridge creativity and code to
                       deliver high-performance, memorable digital products.
                     </p>
-                    <div class="tails__tags">
+                    <!-- <div class="tails__tags">
                       <span class="tails__tag"> THREE.JS </span>
                       <span class="tails__tag"> GSAP </span>
                       <span class="tails__tag"> FRAMER MOTION </span>
                       <span class="tails__tag"> WEBGL </span>
-                    </div>
+                    </div> -->
                     <ul class="tails__detail-points">
                       <li>Motion and interaction engineered for clarity, speed, and engagement.</li>
                       <li>Performance tuning for smooth animations across desktop and mobile.</li>
@@ -2922,42 +2945,41 @@
                 </span>
               </div>
               <div class="our-work-card is-active" data-work-card="0" aria-hidden="false">
-                <div class="our-work-card__media our-work-card__media--ciperlux"></div>
+                <div class="our-work-card__media" style="background-image: url('https://pub-fb213824e9ea46ca978d90bf0c95ba46.r2.dev/Screenshot%202026-02-28%20at%201.32.06%E2%80%AFPM.png')"></div>
                 <p class="our-work-card__index"> 01 </p>
                 <h2> CipherLux </h2>
-                <p class="our-work-card__subtitle"> AI Capital Management Platform </p>
+                <p class="our-work-card__subtitle"> Professional Crypto Exchange </p>
                 <p>
-                  AI-powered financial intelligence platform designed for scalable, real-time market environments with
-                  cloud-native architecture, modular AI integration, secure APIs, and production deployment pipelines.
-                  Engineered for sub-200ms p95 APIs and 99.95% availability targets.
+                  Trade Bitcoin, Ethereum, and 350+ cryptocurrencies with the world's fastest matching engine and lowest fees.
                 </p>
-                <div class="tails__tags">
-                  <span class="tails__tag"> CLOUD NATIVE </span>
-                  <span class="tails__tag"> AI INTEGRATION </span>
-                  <span class="tails__tag"> SECURE APIS </span>
-                </div>
                 <div class="our-work-card__actions">
-                  <button class="our-work-card__button" type="button" data-work-detail-open> View Detail </button>
+                  <button class="our-work-card__button" type="button" data-work-detail-open> View Details </button>
                 </div>
               </div>
 
-              
               <div class="our-work-card" data-work-card="1" aria-hidden="true">
-                <div class="our-work-card__media our-work-card__media--goshop"></div>
+                <div class="our-work-card__media" style="background-image: url('https://pub-fb213824e9ea46ca978d90bf0c95ba46.r2.dev/Screenshot%202026-06-16%20230057.png')"></div>
                 <p class="our-work-card__index"> 02 </p>
-                <h2> GoShop </h2>
-                <p class="our-work-card__subtitle"> Modern E-Commerce Platform </p>
+                <h2> MCAS </h2>
+                <p class="our-work-card__subtitle"> Commercial Educational Website </p>
                 <p>
-                  Discover curated apparel across Men, Women, and Kids collections with a fast and seamless shopping flow.
-                  Filter, sort, and order your favorite outfits with ease.
+                  Designed to market academic programs with robust and streamlined enrollment management systems for modern institutions.
                 </p>
-                <div class="tails__tags">
-                  <span class="tails__tag"> REACT </span>
-                  <span class="tails__tag"> NODE.JS </span>
-                  <span class="tails__tag"> E-COMMERCE </span>
-                </div>
                 <div class="our-work-card__actions">
-                  <button class="our-work-card__button" type="button" data-work-detail-open> View Detail </button>
+                  <button class="our-work-card__button" type="button" data-work-detail-open> View Details </button>
+                </div>
+              </div>
+
+              <div class="our-work-card" data-work-card="2" aria-hidden="true">
+                <div class="our-work-card__media" style="background-image: url('https://pub-fb213824e9ea46ca978d90bf0c95ba46.r2.dev/Screenshot%202026-06-16%20225306.png')"></div>
+                <p class="our-work-card__index"> 03 </p>
+                <h2> Thurka Metal Crushers </h2>
+                <p class="our-work-card__subtitle"> Business Service & Corporate Profile </p>
+                <p>
+                  A premier business service and corporate profile website providing detailed overviews of industry-scale metal crushing and aggregate operations.
+                </p>
+                <div class="our-work-card__actions">
+                  <button class="our-work-card__button" type="button" data-work-detail-open> View Details </button>
                 </div>
               </div>
 
@@ -3006,9 +3028,9 @@
                         <a href="#" class="our-work-detail__action" data-work-detail-link>
                           Open Project
                         </a>
-                        <button class="our-work-detail__action our-work-detail__action--ghost" type="button" data-work-detail-image>
+                        <!-- <button class="our-work-detail__action our-work-detail__action--ghost" type="button" data-work-detail-image>
                           View Project Images
-                        </button>
+                        </button> -->
                         <button class="our-work-detail__action our-work-detail__action--ghost" type="button" data-work-detail-back>
                           Back to Work Section
                         </button>
@@ -3052,10 +3074,10 @@
                       Discovery aligns goals, architecture, and technical feasibility. Design converts requirements into
                       high-fidelity UI/UX prototypes and clear system plans.
                     </p>
-                    <div class="tails__tags">
+                    <!-- <div class="tails__tags">
                       <span class="tails__tag"> DISCOVERY </span>
                       <span class="tails__tag"> DESIGN </span>
-                    </div>
+                    </div> -->
                     <ul class="tails__detail-points">
                       <li>Clear scope and priority mapping before implementation begins.</li>
                       <li>Architecture decisions documented with delivery impact in mind.</li>
@@ -3067,10 +3089,10 @@
                       Sprint execution runs in agile cycles with weekly demos and milestone tracking. Deploy focuses on
                       production-ready releases, monitoring, and continuous optimization.
                     </p>
-                    <div class="tails__tags">
+                    <!-- <div class="tails__tags">
                       <span class="tails__tag"> SPRINT </span>
                       <span class="tails__tag"> DEPLOY </span>
-                    </div>
+                    </div> -->
                     <ul class="tails__detail-points">
                       <li>Transparent progress checkpoints with practical delivery updates.</li>
                       <li>Measured improvements after launch through data and iteration.</li>
@@ -3102,13 +3124,13 @@
                 Alphintra was founded by engineers with deep expertise in frontend, backend, cloud infrastructure, AI
                 systems, and interactive design. We are builders first. We think in systems. We execute with precision.
               </p>
-              <div class="tails__tags">
+              <!-- <div class="tails__tags">
                 <span class="tails__tag"> FRONTEND </span>
                 <span class="tails__tag"> BACKEND </span>
                 <span class="tails__tag"> CLOUD INFRASTRUCTURE </span>
                 <span class="tails__tag"> AI SYSTEMS </span>
                 <span class="tails__tag"> INTERACTIVE DESIGN </span>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="part part--galaxy"
@@ -3124,34 +3146,37 @@
               <div class="tails__flow-slider__viewport">
                 <div class="tails__flow-slider__track">
                   <article class="tails__section__el tails__feature-card tails__flow-slider__card is-active" data-flow-card="0" aria-hidden="false">
-                    <h2> Engineering Partner for Ambitious Teams </h2>
+                    <h2> Startup Launch Track </h2>
                     <p>
-                      Whether you are launching a startup product or modernizing enterprise infrastructure, we operate
-                      as a long-term engineering partner embedded into your roadmap and delivery model.
+                      Turn your idea into a production-ready product with short build cycles, clear milestones, and weekly
+                      visibility from discovery to launch.
                     </p>
-                    <div class="tails__tags">
-                      <span class="tails__tag"> EMBEDDED TEAMS </span>
-                      <span class="tails__tag"> AI &amp; AUTOMATION </span>
-                    </div>
+                    <!-- <div class="tails__tags">
+                      <span class="tails__tag"> MVP ACCELERATION </span>
+                      <span class="tails__tag"> RAPID DELIVERY </span>
+                      <span class="tails__tag"> PRODUCT STRATEGY </span>
+                    </div> -->
                     <ul class="tails__detail-points">
-                      <li>Role-matched experts across frontend, backend, cloud, and AI systems.</li>
-                      <li>Domain ownership with consistent technical decision-making across sprints.</li>
+                      <li>Audience research, campaign strategy, and structured execution paths.</li>
+                      <li>Content optimization and funnel-focused performance monitoring.</li>
+                      <li>Ongoing ROI optimization through data-led iteration cycles.</li>
                     </ul>
                   </article>
                   <article class="tails__section__el tails__feature-card tails__flow-slider__card" data-flow-card="1" aria-hidden="true">
-                    <h2> Execution Model Built for Scale </h2>
+                    <h2> Growth &amp; Enterprise Track </h2>
                     <p>
-                      We combine scalable cloud architecture and product-focused execution with predictable governance to
-                      deliver measurable outcomes over long-term partnerships.
+                      Modernize existing systems with scalable architecture, AI automation, and measurable releases aligned
+                      to business outcomes.
                     </p>
-                    <div class="tails__tags">
-                      <span class="tails__tag"> SCALABLE CLOUD </span>
-                      <span class="tails__tag"> PRODUCT EXECUTION </span>
-                      <span class="tails__tag"> DELIVERY GOVERNANCE </span>
-                    </div>
+                    <!-- <div class="tails__tags">
+                      <span class="tails__tag"> AI AUTOMATION </span>
+                      <span class="tails__tag"> SCALE &amp; SECURITY </span>
+                      <span class="tails__tag"> CLOUD MODERNIZATION </span>
+                    </div> -->
                     <ul class="tails__detail-points">
-                      <li>Predictable sprint delivery with low-surprise quality controls.</li>
-                      <li>Long-term partnership model with measurable delivery outcomes.</li>
+                      <li>Dedicated specialists embedded into your delivery workflow.</li>
+                      <li>Flexible team scaling based on roadmap and sprint priorities.</li>
+                      <li>Transparent reporting and quality governance across streams.</li>
                     </ul>
                   </article>
                 </div>
@@ -3463,63 +3488,81 @@
         var detailPoints = detailPanel ? detailPanel.querySelector('.our-work-detail__points--inline') : null;
         var detailData = {
           0: {
-            url: '/project-cipherlux.html',
-            description: 'CipherLux is an institutional AI capital platform built for live market operations. It combines streaming data ingestion, model-driven insight services, secure execution APIs, and governance-ready monitoring so teams can trade, analyze, and operate on one resilient system.',
+            url: 'https://app.cipherlux.com',
+            description: 'CipherLux | Professional Crypto Exchange. Trade Bitcoin, Ethereum, and 350+ cryptocurrencies with the world\'s fastest matching engine and lowest fees.',
             points: [
               {
-                title: 'Core Platform',
-                text: 'Unified services for portfolios, signals, execution pipelines, and observability in one cloud-native architecture.'
+                title: 'Professional Exchange',
+                text: 'High-performance trading platform built for institutional and retail traders.'
               },
               {
-                title: 'Intelligence Layer',
-                text: 'Real-time feature pipelines, adaptive forecasting models, and confidence scoring for decision support.'
+                title: 'Market Access',
+                text: 'Support for Bitcoin, Ethereum, and over 350+ diverse cryptocurrencies.'
               },
               {
-                title: 'Performance',
-                text: 'Sub-200ms p95 API responses for high-frequency operational endpoints and market insight retrieval.'
+                title: 'Matching Engine',
+                text: 'Engineered with the world\'s fastest matching engine for real-time order execution.'
               },
               {
-                title: 'Security',
-                text: 'Role-based access, encrypted event streams, and immutable audit traces across workflows.'
-              },
-              {
-                title: 'Delivery Model',
-                text: '99.95% availability target with multi-zone failover, monitored CI/CD, and controlled release gates.'
+                title: 'Cost Efficiency',
+                text: 'Optimized to provide the lowest trading fees in the market.'
               }
             ],
             images: [
-              { src: '/app/public/img/qubitz/AIHero.jpg', alt: 'CipherLux overview', caption: 'AI market intelligence and signal orchestration.' },
-              { src: '/app/public/img/qubitz/ERPCRMhero.jpg', alt: 'CipherLux architecture', caption: 'Operational architecture and secure integration layer.' }
+              { src: 'https://pub-fb213824e9ea46ca978d90bf0c95ba46.r2.dev/Screenshot%202026-02-28%20at%201.32.06%E2%80%AFPM.png', alt: 'CipherLux overview', caption: 'Professional Crypto Exchange' }
             ]
           },
-          
           1: {
-
-            description: 'GoShop is a premium e-commerce platform offering a curated selection of apparel. Discover seamless shopping with advanced filtering by category, size, and price. Manage your cart, track processing and paid orders, and find everyday confidence.',
+            url: 'https://themcas.com',
+            description: 'MCAS is a commercial educational website designed to market academic programs effectively. MCAS offers robust and streamlined enrollment management systems for modern institutions.',
             points: [
               {
-                title: 'Curated Collections',
-                text: 'Shop across dedicated Men, Women, and Kids categories with over 20+ premium products.'
+                title: 'Academic Marketing',
+                text: 'Commercial educational website built to market academic programs and services.'
               },
               {
-                title: 'Advanced Filtering',
-                text: 'Easily navigate the catalog using size, category, and dynamic price range filters, or sort by newest arrivals.'
+                title: 'Intuitive Navigation',
+                text: 'Designed for a seamless user experience for prospective students and educators.'
               },
               {
-                title: 'Product Customization',
-                text: 'Detailed product pages with selectable sizes, colors, and live quantity tracking.'
+                title: 'Information Delivery',
+                text: 'Clear presentation of program details, curriculum, and enrollment processes.'
               },
               {
-                title: 'Fast Checkout Experience',
-                text: 'A streamlined checkout flow keeping track of cart items and customer order history securely.'
+                title: 'Modern Architecture',
+                text: 'Scalable and responsive design supporting diverse user devices and traffic.'
               }
             ],
             images: [
-              { src: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&format=auto&fit=crop', alt: 'GoShop storefront', caption: 'Modern e-commerce landing page with core collections.' },
-              { src: '/app/public/img/qubitz/digitalMarketingHero.jpg', alt: 'GoShop products', caption: 'Advanced filtering and sorting product grid.' }
+              { src: 'https://pub-fb213824e9ea46ca978d90bf0c95ba46.r2.dev/Screenshot%202026-06-16%20230057.png', alt: 'MCAS Official Site', caption: 'Educational program marketing platform' }
+            ]
+          },
+          2: {
+            url: 'https://thurkametalcrushers.com',
+            description: 'Thurka Metal Crushers | A premier business service and corporate profile website providing detailed overviews of industry-scale metal crushing and aggregate operations.',
+            points: [
+              {
+                title: 'Corporate Profile',
+                text: 'A professional business service website establishing strong digital presence.'
+              },
+              {
+                title: 'Service Catalog',
+                text: 'Comprehensive showcase of metal crushing capabilities and product offerings.'
+              },
+              {
+                title: 'B2B Focus',
+                text: 'Designed specifically to facilitate B2B communication and client acquisition.'
+              },
+              {
+                title: 'Robust Operations',
+                text: 'Highlights industry-scale operations, safety standards, and project portfolios.'
+              }
+            ],
+            images: [
+              { src: 'https://pub-fb213824e9ea46ca978d90bf0c95ba46.r2.dev/Screenshot%202026-06-16%20225306.png', alt: 'Thurka Metal Crushers', caption: 'Business service and corporate profile website' }
             ]
           }
-          };
+        };
 
         function clearVisualStyles(node) {
           if (!node || !node.style) return;
@@ -4058,7 +4101,15 @@
 
           for (var b = 0; b < detailBackButtons.length; b++) {
             detailBackButtons[b].addEventListener('pointerdown', function (e) { e.stopPropagation(); });
-            detailBackButtons[b].addEventListener('click', function () {
+            detailBackButtons[b].addEventListener('touchstart', function (e) { e.stopPropagation(); }, { passive: true });
+            detailBackButtons[b].addEventListener('touchend', function (e) {
+              if (e.cancelable) e.preventDefault();
+              e.stopPropagation();
+              closeDetailPanel();
+            }, { passive: false });
+            detailBackButtons[b].addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
               closeDetailPanel();
             });
           }
@@ -4733,6 +4784,14 @@ var cardWheelLock = false;
         prevArrow.addEventListener('pointerup', function (event) {
           if (event.pointerType === 'mouse') return;
           runPrevArrowAction(event);
+        });
+
+        document.addEventListener('keydown', function (event) {
+          if (event.key === 'ArrowRight' || event.key === 'Right') {
+            runNextArrowAction(event);
+          } else if (event.key === 'ArrowLeft' || event.key === 'Left') {
+            runPrevArrowAction(event);
+          }
         });
 
         var touchSwipeLock = false;
