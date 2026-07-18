@@ -35,6 +35,12 @@ jQuery(function () {
   var loader = new Loader();
   var menu = new Menu();
   var help = new Help();
+  
+  window._gotoSection = function(index) {
+    if (index === 0) {
+      jQuery('html, body').stop().animate({ scrollTop: 0 }, 800);
+    }
+  };
   var imagesLoader = new ImagesLoader([
     './app/public/img/part-beam.png',
     './app/public/img/part-drop.png',

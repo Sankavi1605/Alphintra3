@@ -56,6 +56,17 @@ jQuery(function () {
     gravity: 11,
     end: 12
   };
+  
+  window._gotoSection = function(index) {
+    if (currentView === 'tails') {
+      APP.slide(function () {
+        if (SCENE && SCENE.goTo) SCENE.goTo(index);
+      });
+    } else {
+      if (SCENE && SCENE.goTo) SCENE.goTo(index);
+    }
+  };
+  
   var currentView = 'heads';
   var $tailsViewport = jQuery('.tails');
 
