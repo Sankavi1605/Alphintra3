@@ -109,6 +109,7 @@ function TextPanel (text, options) {
   group.visible = false;
 
   this.el = group;
+  this.width3D = canvas.width / 20;
 
   var cache = { y: mesh.position.y, opacity: mesh.material.opacity };
 

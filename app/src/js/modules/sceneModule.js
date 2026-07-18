@@ -135,8 +135,6 @@ var SCENE = (function () {
       }
 
       // scroll
-      var newDate;
-      var oldDate = new Date();
       var touchStartY = null;
       var touchStartX = null;
       var touchStartTime = 0;
@@ -182,20 +180,23 @@ var SCENE = (function () {
           }
         }
 
-        newDate = new Date();
+        var now = Date.now();
 
-        var elapsed = newDate.getTime() - oldDate.getTime();
-
-        // handle scroll smoothing (mac trackpad for instance)
-        if (elapsed > 50 && !isScrolling) {
-          if (event.originalEvent.detail > 0 || event.originalEvent.wheelDelta < 0) {
-            next();
-          } else {
-            prev();
-          }
+        // Absorb trackpad inertia by extending the cooldown on every event during animation or cooldown
+        if (isScrolling || now < (window._scrollCooldown || 0)) {
+          window._scrollCooldown = now + 150;
+          return false;
         }
 
-        oldDate = new Date();
+        // Trigger scroll
+        if (event.originalEvent.detail > 0 || event.originalEvent.wheelDelta < 0) {
+          next();
+        } else {
+          prev();
+        }
+
+        window._scrollCooldown = now + 150;
+        return false;
 
         return false;
       }
