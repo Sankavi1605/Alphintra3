@@ -1190,7 +1190,20 @@
       box-shadow: none;
       backdrop-filter: blur(4px) saturate(112%);
       -webkit-backdrop-filter: blur(4px) saturate(112%);
-      overflow: hidden;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .our-work-detail__content::-webkit-scrollbar {
+      width: 6px;
+    }
+    .our-work-detail__content::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 3px;
+    }
+    .our-work-detail__content::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 3px;
     }
 
     .our-work-detail__title {
