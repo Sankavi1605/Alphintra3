@@ -1420,6 +1420,31 @@
       min-height: 0;
     }
 
+    .our-work-detail__review {
+      margin-top: 24px;
+      padding: 16px;
+      border-left: 2px solid rgba(255, 255, 255, 0.2);
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      display: none; /* hidden by default */
+    }
+
+    .our-work-detail__review-author {
+      margin-top: 12px;
+      font-style: normal;
+      font-weight: 500;
+      color: #fff;
+    }
+
+    .our-work-detail__review-role {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.5);
+      font-style: normal;
+    }
+
+
     @media screen and (min-width: 901px) and (max-width: 1500px), screen and (min-width: 901px) and (max-height: 940px) {
       .our-work-detail__content {
         gap: 5px;
@@ -3029,6 +3054,7 @@
                         </button>
                       </div>
                       <ul class="our-work-detail__points our-work-detail__points--inline"></ul>
+                      <div class="our-work-detail__review"></div>
                     </div>
                   </section>
                   <aside class="our-work-detail__insights">
@@ -3482,6 +3508,7 @@
         var detailDescription = detailPanel ? detailPanel.querySelector('.our-work-detail__description') : null;
         var detailTags = detailPanel ? detailPanel.querySelector('.our-work-detail__tags') : null;
         var detailPoints = detailPanel ? detailPanel.querySelector('.our-work-detail__points--inline') : null;
+        var detailReview = detailPanel ? detailPanel.querySelector('.our-work-detail__review') : null;
         var detailData = {
           0: {
             url: 'https://app.cipherlux.com',
@@ -3506,7 +3533,12 @@
             ],
             images: [
               { src: 'https://pub-fb213824e9ea46ca978d90bf0c95ba46.r2.dev/Screenshot%202026-02-28%20at%201.32.06%E2%80%AFPM.png', alt: 'CipherLux overview', caption: 'Professional Crypto Exchange' }
-            ]
+            ],
+            review: {
+              text: 'Before partnering with ALPHINTRA, our trading system was fragile and unreliable. Critical features were hardcoded, automation was incomplete, and the architecture made it nearly impossible to add new features without breaking existing ones. ALPHINTRA completely rearchitected our system from scratch. They built a production-grade, distributed computing infrastructure that now handles massive real-time data loads with full reliability — a system built right, the way it should have been from the start.',
+              author: 'Angajan Ramanathan',
+              role: 'Former Member of Parliament, Sri Lanka'
+            }
           },
           1: {
             url: 'https://themcas.com',
@@ -3759,6 +3791,18 @@
 
           renderDetailTags(card);
           renderDetailPoints(data);
+
+          if (detailReview) {
+            if (data && data.review) {
+              detailReview.innerHTML = '<div>"' + data.review.text + '"</div>' +
+                                     '<div class="our-work-detail__review-author">' + data.review.author + '</div>' +
+                                     '<div class="our-work-detail__review-role">' + data.review.role + '</div>';
+              detailReview.style.display = 'block';
+            } else {
+              detailReview.style.display = 'none';
+              detailReview.innerHTML = '';
+            }
+          }
         }
 
         function closeDetailPanel() { console.log("closeDetailPanel called");
