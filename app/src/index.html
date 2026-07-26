@@ -1145,13 +1145,14 @@
       border-radius: inherit;
       border: 0;
       background: transparent;
-      overflow: hidden;
+      overflow-y: auto;
+      overflow-x: hidden;
       min-height: 0;
       height: 100%;
     }
 
     .our-work-detail__hero {
-      position: absolute;
+      position: fixed;
       inset: 0;
       background-size: cover;
       background-position: center center;
@@ -1162,7 +1163,7 @@
 
     .our-work-detail__hero::after {
       content: '';
-      position: absolute;
+      position: fixed;
       inset: 0;
       background:
         linear-gradient(98deg, rgba(5, 7, 13, 0.86) 0%, rgba(5, 7, 13, 0.66) 48%, rgba(5, 7, 13, 0.34) 100%),
@@ -1174,7 +1175,10 @@
       z-index: 2;
       top: 16px;
       left: 16px;
-      bottom: 16px;
+      bottom: auto;
+      min-height: calc(100% - 32px);
+      height: auto;
+      margin-bottom: 16px;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -1182,7 +1186,6 @@
       gap: 6px;
       width: min(880px, 67%);
       max-width: none;
-      margin: 0;
       padding: 32px 40px;
       border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.05);
@@ -1190,8 +1193,7 @@
       box-shadow: none;
       backdrop-filter: blur(4px) saturate(112%);
       -webkit-backdrop-filter: blur(4px) saturate(112%);
-      overflow-y: auto;
-      overflow-x: hidden;
+      overflow: visible;
     }
 
     .our-work-detail__content::-webkit-scrollbar {
@@ -1408,16 +1410,19 @@
       min-height: 0;
       height: 100%;
       border-radius: inherit;
-      overflow: hidden;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
 
     .our-work-detail__content {
       top: 16px;
       left: 16px;
-      bottom: 16px;
+      bottom: auto;
+      min-height: calc(100% - 32px);
+      height: auto;
+      margin-bottom: 16px;
       width: min(880px, 67%);
       max-width: none;
-      margin: 0;
       padding: 38px 14px 12px;
     }
 
@@ -1817,12 +1822,14 @@
         top: 10px;
         left: 10px;
         right: 10px;
-        bottom: 10px;
+        bottom: auto;
+        min-height: calc(100% - 20px);
+        height: auto;
+        margin-bottom: 10px;
         width: auto;
         max-width: none;
-        margin: 0;
         padding: 34px 12px 12px;
-        overflow-y: auto !important;
+        overflow: visible !important;
       }
       
       .our-work-detail__content::-webkit-scrollbar {
