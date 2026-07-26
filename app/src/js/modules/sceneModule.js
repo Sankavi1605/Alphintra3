@@ -145,7 +145,11 @@ var SCENE = (function () {
       var MAX_SWIPE_TIME = 700;
 
       function isCardNode (node) {
-        return !!(node && node.classList && (node.classList.contains('tails__feature-card') || node.classList.contains('our-work-detail__main')));
+        return !!(node && node.classList && (
+          node.classList.contains('tails__feature-card') ||
+          node.classList.contains('our-work-detail__content') ||
+          node.classList.contains('our-work-detail__main')
+        ));
       }
 
       function findCardFromTarget (target) {
@@ -163,23 +167,52 @@ var SCENE = (function () {
       }
 
       function onScroll (event) {
-        var activeCard = findCardFromTarget(event.target || (event.originalEvent && event.originalEvent.target));
+        var targetElement = event.target || (event.originalEvent && event.originalEvent.target);
+        var activeCard = findCardFromTarget(targetElement);
+        
+        var delta = (event.originalEvent && event.originalEvent.wheelDelta) || -(event.originalEvent && event.originalEvent.detail) || 0;
+        var scrollingUp = delta > 0;
+        var scrollingDown = delta < 0;
+
         if (activeCard) {
           var cardCanScroll = activeCard.scrollHeight > (activeCard.clientHeight + 2);
           if (cardCanScroll) {
-            var delta = (event.originalEvent && event.originalEvent.wheelDelta) || -(event.originalEvent && event.originalEvent.detail) || 0;
             var cardAtTop = activeCard.scrollTop <= 1;
             var cardAtBottom = (activeCard.scrollTop + activeCard.clientHeight) >= (activeCard.scrollHeight - 1);
-            var scrollingUp = delta > 0;
-            var scrollingDown = delta < 0;
 
             var shouldScrollCard = (scrollingUp && !cardAtTop) || (scrollingDown && !cardAtBottom);
             if (shouldScrollCard) {
               return true;
-            } else if (activeCard.classList.contains('our-work-detail__main')) {
-              return false;
             }
-          } else if (activeCard.classList.contains('our-work-detail__main')) {
+          }
+          
+          if (activeCard.classList.contains('our-work-detail__content') || activeCard.classList.contains('our-work-detail__main')) {
+            return false;
+          }
+        }
+
+        // Check if we are inside Our Work card stack (non-detail view)
+        var workStack = targetElement ? (targetElement.closest ? targetElement.closest('.our-work-stack') : null) : null;
+        if (!workStack && targetElement) {
+          var activeSectionEl = document.querySelector('.heads__section.active-3d-card');
+          if (activeSectionEl) {
+            workStack = activeSectionEl.querySelector('.our-work-stack');
+          }
+        }
+
+        if (workStack && workStack.classList.contains('is-detail-open')) {
+          return false;
+        }
+
+        if (workStack && !workStack.classList.contains('is-detail-open')) {
+          var workMoved = false;
+          if (scrollingDown && typeof workStack.__workCardNext === 'function') {
+            workMoved = workStack.__workCardNext({ wrap: false });
+          } else if (scrollingUp && typeof workStack.__workCardPrev === 'function') {
+            workMoved = workStack.__workCardPrev({ wrap: false });
+          }
+          if (workMoved) {
+            if (event.preventDefault && event.cancelable) event.preventDefault();
             return false;
           }
         }
@@ -192,16 +225,14 @@ var SCENE = (function () {
           return false;
         }
 
-        // Trigger scroll
-        if (event.originalEvent.detail > 0 || event.originalEvent.wheelDelta < 0) {
+        // Trigger section scroll
+        if (scrollingDown) {
           next();
-        } else {
+        } else if (scrollingUp) {
           prev();
         }
 
         window._scrollCooldown = now + 150;
-        return false;
-
         return false;
       }
 
