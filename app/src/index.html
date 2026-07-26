@@ -2182,6 +2182,20 @@
         overflow-y: hidden !important;
       }
 
+      html.mode-3d .heads__section--face.active-3d-card .section__card.is-work-detail-open {
+        top: calc(env(safe-area-inset-top, 0px) + 68px) !important;
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 16px) !important;
+        max-height: none !important;
+        height: auto !important;
+        z-index: 100 !important;
+      }
+
+      html.mode-3d .heads__section--face.active-3d-card .section__card.is-work-detail-open .our-work-stack {
+        height: 100% !important;
+        min-height: 100% !important;
+        max-height: 100% !important;
+      }
+
 
       html.mode-3d .heads__section--neons.active-3d-card .section__card {
         width: min(92vw, 460px);
