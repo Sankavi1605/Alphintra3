@@ -1198,11 +1198,11 @@
       width: 6px;
     }
     .our-work-detail__content::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 3px;
     }
     .our-work-detail__content::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.3);
       border-radius: 3px;
     }
 
@@ -1427,6 +1427,7 @@
       max-width: min(900px, 100%);
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 24px;
+      flex-shrink: 0;
     }
 
     .our-work-detail__points--inline li {
@@ -1442,6 +1443,7 @@
       font-size: 0.9rem;
       line-height: 1.5;
       display: none; /* hidden by default */
+      flex-shrink: 0; /* Prevents text from being cut off in the flex container */
     }
 
     .our-work-detail__review-author {

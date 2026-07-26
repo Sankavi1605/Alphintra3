@@ -145,7 +145,7 @@ var SCENE = (function () {
       var MAX_SWIPE_TIME = 700;
 
       function isCardNode (node) {
-        return !!(node && node.classList && node.classList.contains('tails__feature-card'));
+        return !!(node && node.classList && (node.classList.contains('tails__feature-card') || node.classList.contains('our-work-detail__content')));
       }
 
       function findCardFromTarget (target) {
@@ -176,7 +176,11 @@ var SCENE = (function () {
             var shouldScrollCard = (scrollingUp && !cardAtTop) || (scrollingDown && !cardAtBottom);
             if (shouldScrollCard) {
               return true;
+            } else if (activeCard.classList.contains('our-work-detail__content')) {
+              return false;
             }
+          } else if (activeCard.classList.contains('our-work-detail__content')) {
+            return false;
           }
         }
 
